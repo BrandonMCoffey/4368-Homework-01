@@ -40,7 +40,13 @@ namespace Assets.Scripts {
 
         public void AdjustSpeed(float multiplier, float time)
         {
-            StartCoroutine(AdjustSpeedTimer(multiplier, time));
+            if (time < 0) {
+                // Permanent Speed Increase
+                _tankController.IncreaseSpeed(multiplier);
+            } else {
+                // Timed Speed Increase
+                StartCoroutine(AdjustSpeedTimer(multiplier, time));
+            }
         }
 
         private IEnumerator AdjustSpeedTimer(float multiplier, float time)
