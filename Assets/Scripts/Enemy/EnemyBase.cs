@@ -28,16 +28,16 @@ namespace Assets.Scripts.Enemy {
             ImpactFeedback();
         }
 
-        internal virtual void Move()
+        protected virtual void Move()
         {
         }
 
-        internal virtual void PlayerImpact(Player player)
+        protected virtual void PlayerImpact(Player player)
         {
             player.Health.DecreaseHealth(_damageAmount);
         }
 
-        private void ImpactFeedback()
+        protected void ImpactFeedback()
         {
             if (_impactParticles != null) {
                 _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
