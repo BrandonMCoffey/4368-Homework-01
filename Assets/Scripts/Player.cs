@@ -1,13 +1,18 @@
 using UnityEngine;
 
 namespace Assets.Scripts {
+    [RequireComponent(typeof(TankController))]
     public class Player : MonoBehaviour {
-        private void Start()
+        private TankController _tankController;
+
+        private void Awake()
         {
+            _tankController = GetComponent<TankController>();
         }
 
-        private void Update()
+        public void Kill()
         {
+            gameObject.SetActive(false);
         }
     }
 }
