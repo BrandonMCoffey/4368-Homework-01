@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace Assets.Scripts {
-    public class PlayerHealth : MonoBehaviour {
+    public class Health : MonoBehaviour {
         [SerializeField] private int _maxHealth = 3;
         private int _currentHealth;
 

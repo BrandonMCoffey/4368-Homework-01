@@ -3,17 +3,20 @@ using UnityEngine;
 
 namespace Assets.Scripts {
     [RequireComponent(typeof(TankController))]
-    [RequireComponent(typeof(PlayerHealth))]
+    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(Inventory))]
     public class Player : MonoBehaviour {
         private TankController _tankController;
-        private PlayerHealth _health;
+        private Health _health;
+        private Inventory _inventory;
 
         #region Script References
 
         private void Awake()
         {
             _tankController = GetComponent<TankController>();
-            _health = GetComponent<PlayerHealth>();
+            _health = GetComponent<Health>();
+            _inventory = GetComponent<Inventory>();
         }
 
         private void OnEnable()
@@ -26,9 +29,14 @@ namespace Assets.Scripts {
             _health.OnKill -= Kill;
         }
 
-        public PlayerHealth GetHealth()
+        public Health GetHealth()
         {
             return _health;
+        }
+
+        public Inventory GetInventory()
+        {
+            return _inventory;
         }
 
         #endregion
