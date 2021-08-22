@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -5,24 +6,29 @@ namespace Assets.Scripts {
     [RequireComponent(typeof(PlayerHealth))]
     public class Player : MonoBehaviour {
         private TankController _tankController;
-        public PlayerHealth Health;
+        private PlayerHealth _health;
 
         #region Script References
 
         private void Awake()
         {
             _tankController = GetComponent<TankController>();
-            Health = GetComponent<PlayerHealth>();
+            _health = GetComponent<PlayerHealth>();
         }
 
         private void OnEnable()
         {
-            Health.OnKill += Kill;
+            _health.OnKill += Kill;
         }
 
         private void OnDisable()
         {
-            Health.OnKill -= Kill;
+            _health.OnKill -= Kill;
+        }
+
+        public PlayerHealth GetHealth()
+        {
+            return _health;
         }
 
         #endregion
@@ -30,6 +36,18 @@ namespace Assets.Scripts {
         public void Kill()
         {
             gameObject.SetActive(false);
+        }
+
+        public void AdjustSpeed(float multiplier, float time)
+        {
+            StartCoroutine(AdjustSpeedTimer(multiplier, time));
+        }
+
+        private IEnumerator AdjustSpeedTimer(float multiplier, float time)
+        {
+            _tankController.IncreaseSpeed(multiplier);
+            yield return new WaitForSecondsRealtime(time);
+            _tankController.DecreaseSpeed(multiplier);
         }
     }
 }

@@ -2,14 +2,21 @@
 
 namespace Assets.Scripts {
     public class TankController : MonoBehaviour {
-        [SerializeField] private float _moveSpeed = .25f;
+        [SerializeField] private float _baseMoveSpeed = .25f;
         [SerializeField] private float _turnSpeed = 2f;
+
+        private float _moveSpeed;
 
         private Rigidbody _rb;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            _moveSpeed = _baseMoveSpeed;
         }
 
         private void FixedUpdate()
@@ -37,6 +44,16 @@ namespace Assets.Scripts {
             Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
             _rb.MoveRotation(_rb.rotation * turnOffset);
+        }
+
+        public void IncreaseSpeed(float multiplier)
+        {
+            _moveSpeed += _baseMoveSpeed * multiplier;
+        }
+
+        public void DecreaseSpeed(float multiplier)
+        {
+            _moveSpeed -= _baseMoveSpeed * multiplier;
         }
     }
 }

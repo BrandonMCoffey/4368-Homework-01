@@ -9,6 +9,8 @@ namespace Assets.Scripts.Collectibles {
         [SerializeField] private ParticleSystem _collectParticles;
         [SerializeField] private AudioClip _collectSound;
 
+        protected float MovementSpeed => _movementSpeed;
+
         private Rigidbody _rb;
 
         private void Awake()

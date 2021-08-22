@@ -34,7 +34,7 @@ namespace Assets.Scripts.Enemy {
 
         protected virtual void PlayerImpact(Player player)
         {
-            player.Health.DecreaseHealth(_damageAmount);
+            player.GetHealth().DecreaseHealth(_damageAmount);
         }
 
         protected void ImpactFeedback()
