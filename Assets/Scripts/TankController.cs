@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Assets.Scripts.Utility;
+using UnityEngine;
 
 namespace Assets.Scripts {
     public class TankController : MonoBehaviour {
         [SerializeField] private float _baseMoveSpeed = .25f;
         [SerializeField] private float _turnSpeed = 2f;
 
-        private float _moveSpeed;
+        private AdjustableFloat _moveSpeed = new AdjustableFloat();
+        public AdjustableFloat AdjustMoveSpeed => _moveSpeed;
+        public float MoveSpeed => _moveSpeed.Value;
 
         private Rigidbody _rb;
 
@@ -14,9 +19,9 @@ namespace Assets.Scripts {
             _rb = GetComponent<Rigidbody>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            _moveSpeed = _baseMoveSpeed;
+            _moveSpeed.SetBaseValue(_baseMoveSpeed);
         }
 
         private void FixedUpdate()
@@ -28,7 +33,7 @@ namespace Assets.Scripts {
         public void MoveTank()
         {
             // calculate the move amount
-            float moveAmountThisFrame = Input.GetAxis("Vertical") * _moveSpeed;
+            float moveAmountThisFrame = Input.GetAxis("Vertical") * MoveSpeed;
             // create a vector from amount and direction
             Vector3 moveOffset = transform.forward * moveAmountThisFrame;
             // apply vector to the rigidbody
@@ -44,16 +49,6 @@ namespace Assets.Scripts {
             Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
             _rb.MoveRotation(_rb.rotation * turnOffset);
-        }
-
-        public void IncreaseSpeed(float multiplier)
-        {
-            _moveSpeed += _baseMoveSpeed * multiplier;
-        }
-
-        public void DecreaseSpeed(float multiplier)
-        {
-            _moveSpeed -= _baseMoveSpeed * multiplier;
         }
     }
 }

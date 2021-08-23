@@ -29,6 +29,11 @@ namespace Assets.Scripts {
             _health.OnKill -= Kill;
         }
 
+        public TankController GetTankController()
+        {
+            return _tankController;
+        }
+
         public Health GetHealth()
         {
             return _health;
@@ -44,24 +49,6 @@ namespace Assets.Scripts {
         public void Kill()
         {
             gameObject.SetActive(false);
-        }
-
-        public void AdjustSpeed(float multiplier, float time)
-        {
-            if (time < 0) {
-                // Permanent Speed Increase
-                _tankController.IncreaseSpeed(multiplier);
-            } else {
-                // Timed Speed Increase
-                StartCoroutine(AdjustSpeedTimer(multiplier, time));
-            }
-        }
-
-        private IEnumerator AdjustSpeedTimer(float multiplier, float time)
-        {
-            _tankController.IncreaseSpeed(multiplier);
-            yield return new WaitForSecondsRealtime(time);
-            _tankController.DecreaseSpeed(multiplier);
         }
     }
 }

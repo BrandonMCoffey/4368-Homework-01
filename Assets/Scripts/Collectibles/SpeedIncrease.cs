@@ -1,13 +1,21 @@
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
-    public class SpeedIncrease : CollectibleBase {
-        [SerializeField] private int _speedMultiplier = 1;
-        [SerializeField] private int _increaseDuration = 2;
+    public class SpeedIncrease : CollectibleRespawnBase {
+        [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
+        [SerializeField] private int _amount = 1;
+        [SerializeField] private bool _overTime = false;
+        [SerializeField] private int _duration = 0;
 
         protected override void Collect(Player player)
         {
-            player.AdjustSpeed(_speedMultiplier, _increaseDuration);
+            if (_overTime && _duration >= 0) {
+                AdjustableFloat speed = player.GetTankController().AdjustMoveSpeed;
+                StartCoroutine(speed.AdjustValueOverTime(_speedIncreaseType, _amount, _duration));
+            } else {
+                player.GetTankController().AdjustMoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
+            }
         }
 
         protected override void Movement(Rigidbody rb)

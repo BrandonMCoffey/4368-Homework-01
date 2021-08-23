@@ -7,7 +7,7 @@ namespace Assets.Scripts.Collectibles {
 
         [SerializeField] private float _movementSpeed = 1;
         [SerializeField] private ParticleSystem _collectParticles;
-        [SerializeField] private AudioClip _collectSound;
+        [SerializeField] private AudioClip _collectSound = null;
 
         protected float MovementSpeed => _movementSpeed;
 
