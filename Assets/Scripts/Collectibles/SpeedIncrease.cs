@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Collectibles {
     public class SpeedIncrease : CollectibleRespawnBase {
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
-        [SerializeField] private int _amount = 1;
+        [SerializeField] private float _amount = 1f;
         [SerializeField] private bool _overTime = false;
         [SerializeField] private int _duration = 0;
 

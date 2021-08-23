@@ -29,6 +29,10 @@ namespace Assets.Scripts {
             _health.OnKill -= Kill;
         }
 
+        #endregion
+
+        #region Getters
+
         public TankController GetTankController()
         {
             return _tankController;
