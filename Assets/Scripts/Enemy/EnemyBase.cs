@@ -1,23 +1,20 @@
+using Assets.Scripts.Entities;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy {
     [RequireComponent(typeof(Rigidbody))]
-    public class EnemyBase : MonoBehaviour {
+    public class EnemyBase : Entity {
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private ParticleSystem _impactParticles;
         [SerializeField] private AudioClip _impactSound = null;
 
         private Rigidbody _rb;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _rb = GetComponent<Rigidbody>();
-        }
-
-        private void FixedUpdate()
-        {
-            Move();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -28,13 +25,9 @@ namespace Assets.Scripts.Enemy {
             ImpactFeedback();
         }
 
-        protected virtual void Move()
-        {
-        }
-
         protected virtual void PlayerImpact(Player player)
         {
-            player.GetHealth().DecreaseHealth(_damageAmount);
+            player.Health.DecreaseHealth(_damageAmount);
         }
 
         protected void ImpactFeedback()

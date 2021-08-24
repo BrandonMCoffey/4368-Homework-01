@@ -6,7 +6,7 @@ namespace Assets.Scripts.Collectibles {
 
         protected override void Collect(Player player)
         {
-            player.GetHealth().IncreaseHealth(_healthAdded);
+            player.Health.IncreaseHealth(_healthAdded);
         }
     }
 }

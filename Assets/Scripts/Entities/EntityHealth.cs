@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts {
-    public class Health : MonoBehaviour {
+namespace Assets.Scripts.Entities {
+    public class EntityHealth : MonoBehaviour {
         [SerializeField] private int _maxHealth = 3;
         private int _currentHealth;
 

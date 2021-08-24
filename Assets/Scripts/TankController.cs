@@ -1,54 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts {
-    public class TankController : MonoBehaviour {
-        [SerializeField] private float _baseMoveSpeed = .25f;
-        [SerializeField] private float _turnSpeed = 2f;
-
-        private AdjustableFloat _moveSpeed = new AdjustableFloat();
-        public AdjustableFloat AdjustMoveSpeed => _moveSpeed;
-        public float MoveSpeed => _moveSpeed.Value;
-
-        private Rigidbody _rb;
-
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody>();
-        }
-
-        private void OnEnable()
-        {
-            _moveSpeed.SetBaseValue(_baseMoveSpeed);
-        }
-
-        private void FixedUpdate()
-        {
-            MoveTank();
-            TurnTank();
-        }
-
-        public void MoveTank()
+    public class TankController : EntityMovement {
+        protected override void Move(float speed)
         {
             // calculate the move amount
-            float moveAmountThisFrame = Input.GetAxis("Vertical") * MoveSpeed;
+            float moveAmountThisFrame = Input.GetAxis("Vertical") * speed;
             // create a vector from amount and direction
             Vector3 moveOffset = transform.forward * moveAmountThisFrame;
             // apply vector to the rigidbody
-            _rb.MovePosition(_rb.position + moveOffset);
+            Rb.MovePosition(Rb.position + moveOffset);
             // technically adjusting vector is more accurate! (but more complex)
         }
 
-        public void TurnTank()
+        protected override void Turn(float speed)
         {
             // calculate the turn amount
-            float turnAmountThisFrame = Input.GetAxis("Horizontal") * _turnSpeed;
+            float turnAmountThisFrame = Input.GetAxis("Horizontal") * speed;
             // create a Quaternion from amount and direction (x,y,z)
             Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
-            _rb.MoveRotation(_rb.rotation * turnOffset);
+            Rb.MoveRotation(Rb.rotation * turnOffset);
         }
     }
 }

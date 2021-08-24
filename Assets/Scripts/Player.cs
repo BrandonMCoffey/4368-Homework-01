@@ -1,58 +1,30 @@
 using System.Collections;
+using Assets.Scripts.Entities;
 using UnityEngine;
 
 namespace Assets.Scripts {
     [RequireComponent(typeof(TankController))]
-    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(EntityHealth))]
     [RequireComponent(typeof(Inventory))]
-    public class Player : MonoBehaviour {
+    public class Player : Entity {
         private TankController _tankController;
-        private Health _health;
         private Inventory _inventory;
 
-        #region Script References
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _tankController = GetComponent<TankController>();
-            _health = GetComponent<Health>();
             _inventory = GetComponent<Inventory>();
         }
-
-        private void OnEnable()
-        {
-            _health.OnKill += Kill;
-        }
-
-        private void OnDisable()
-        {
-            _health.OnKill -= Kill;
-        }
-
-        #endregion
-
-        #region Getters
 
         public TankController GetTankController()
         {
             return _tankController;
         }
 
-        public Health GetHealth()
-        {
-            return _health;
-        }
-
         public Inventory GetInventory()
         {
             return _inventory;
-        }
-
-        #endregion
-
-        public void Kill()
-        {
-            gameObject.SetActive(false);
         }
     }
 }
