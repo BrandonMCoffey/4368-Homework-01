@@ -2,9 +2,8 @@ using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class CollectibleBase : MonoBehaviour {
-        protected abstract void Collect(Player player);
-
         [SerializeField] private float _movementSpeed = 1;
         [SerializeField] private ParticleSystem _collectParticles;
         [SerializeField] private AudioClip _collectSound = null;
@@ -32,11 +31,7 @@ namespace Assets.Scripts.Collectibles {
             DisableObject();
         }
 
-        protected virtual void Movement(Rigidbody rb)
-        {
-            Quaternion turnOffset = Quaternion.Euler(0, _movementSpeed, 0);
-            rb.MoveRotation(_rb.rotation * turnOffset);
-        }
+        protected abstract void Collect(Player player);
 
         protected virtual void Feedback()
         {
@@ -52,6 +47,12 @@ namespace Assets.Scripts.Collectibles {
         protected virtual void DisableObject()
         {
             gameObject.SetActive(false);
+        }
+
+        protected virtual void Movement(Rigidbody rb)
+        {
+            Quaternion turnOffset = Quaternion.Euler(0, _movementSpeed, 0);
+            rb.MoveRotation(_rb.rotation * turnOffset);
         }
     }
 }

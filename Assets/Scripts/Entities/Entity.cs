@@ -26,6 +26,7 @@ namespace Assets.Scripts.Entities {
 
         public virtual void Kill()
         {
+            if (_entityHealth != null && Health.Invincible) return;
             gameObject.SetActive(false);
         }
     }
