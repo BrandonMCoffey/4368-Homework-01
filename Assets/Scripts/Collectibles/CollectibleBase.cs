@@ -5,7 +5,7 @@ namespace Assets.Scripts.Collectibles {
     [RequireComponent(typeof(Rigidbody))]
     public abstract class CollectibleBase : MonoBehaviour {
         [SerializeField] private float _movementSpeed = 1;
-        [SerializeField] private ParticleSystem _collectParticles;
+        [SerializeField] private ParticleSystem _collectParticles = null;
         [SerializeField] private AudioClip _collectSound = null;
 
         protected float MovementSpeed => _movementSpeed;
