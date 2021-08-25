@@ -1,12 +1,20 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Utility.FloatRef;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities {
     public class EntityHealth : MonoBehaviour {
+        [Header("Health Settings")]
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
+
+        [Header("Invincibility Settings")]
+        [SerializeField] private Material _invincibilityMaterial = null;
+        [SerializeField] private List<MeshRenderer> _materialsToChangeWhenInvincible = new List<MeshRenderer>();
+
+        private List<Material> _regularMaterial;
         private bool _invincible;
         public bool Invincible => _invincible;
 
@@ -39,9 +47,18 @@ namespace Assets.Scripts.Entities {
 
         private IEnumerator Invincibility(float duration)
         {
+            _regularMaterial = new List<Material>(_materialsToChangeWhenInvincible.Count);
+            foreach (var meshRenderer in _materialsToChangeWhenInvincible) {
+                _regularMaterial.Add(meshRenderer.material);
+                meshRenderer.material = _invincibilityMaterial;
+            }
             _invincible = true;
             yield return new WaitForSecondsRealtime(duration);
+            for (int i = 0; i < _materialsToChangeWhenInvincible.Count; ++i) {
+                _materialsToChangeWhenInvincible[i].material = _regularMaterial[i];
+            }
             _invincible = false;
+            _regularMaterial.Clear();
         }
     }
 }
