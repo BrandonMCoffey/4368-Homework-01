@@ -398,8 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e64561d1994f47bf5e167ceb85844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayText: {fileID: 0}
-  _textToDisplay: 'Treasure: '
   _treasureCount:
     UseConstant: 0
     ConstantValue: 0
