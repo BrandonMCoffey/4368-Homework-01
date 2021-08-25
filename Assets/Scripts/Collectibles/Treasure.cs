@@ -2,11 +2,28 @@ using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     public class Treasure : CollectibleBase {
-        [SerializeField] private int value = 1;
+        [SerializeField] private int _value = 1;
+        [SerializeField] private float _upDownSpeed = 0.1f;
+        [SerializeField] private float _upDownAmplitude = 0.4f;
+
+        private float _spin;
+        private Vector3 _startPos;
+
+        private void Start()
+        {
+            _startPos = transform.position;
+        }
 
         protected override void Collect(Player player)
         {
-            player.GetInventory().AddTreasure(value);
+            player.GetInventory().AddTreasure(_value);
+        }
+
+        protected override void Movement(Rigidbody rb)
+        {
+            base.Movement(rb);
+            _spin += _upDownSpeed;
+            rb.MovePosition(_startPos + Vector3.up * Mathf.Sin(_spin) * _upDownAmplitude);
         }
     }
 }
