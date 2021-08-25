@@ -1,3 +1,4 @@
+using Assets.Scripts.Utility.FloatRef;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,20 +6,20 @@ namespace Assets.Scripts {
     public class Inventory : MonoBehaviour {
         [SerializeField] private Text _displayText = null;
         [SerializeField] private string _textToDisplay = "Treasure: ";
+        [SerializeField] private FloatReference _treasureCount = new FloatReference(0);
 
-        private int _treasureCount;
-        public int Treasure => _treasureCount;
+        public int Treasure => Mathf.FloorToInt(_treasureCount.Value);
 
 
         private void OnEnable()
         {
-            _treasureCount = 0;
+            _treasureCount.Value = 0;
             OnValueChanged();
         }
 
         public void AddTreasure(int amount = 1)
         {
-            _treasureCount += amount;
+            _treasureCount.Value += amount;
             OnValueChanged();
         }
 

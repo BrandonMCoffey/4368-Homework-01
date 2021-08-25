@@ -382,6 +382,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
+  _currentHealth:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 124ddd206c15b1a4b805fa1d17f5d78b, type: 2}
 --- !u!114 &9098590632699325619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +400,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayText: {fileID: 0}
   _textToDisplay: 'Treasure: '
+  _treasureCount:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 888bc9b021792594c9aaafc34f5b4d9f, type: 2}
 --- !u!1 &9098590632770979647
 GameObject:
   m_ObjectHideFlags: 0

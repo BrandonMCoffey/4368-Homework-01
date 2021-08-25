@@ -5,7 +5,7 @@ namespace Assets.Scripts.Utility.FloatRef {
     public class FloatReference {
         public bool UseConstant;
         public float ConstantValue;
-        public FloatVariable Variable;
+        public FloatVariable Variable = null;
 
         public FloatReference()
         {
@@ -19,7 +19,16 @@ namespace Assets.Scripts.Utility.FloatRef {
             ConstantValue = value;
         }
 
-        public float Value => UseConstant ? ConstantValue : Variable.Value;
+        public float Value {
+            get => UseConstant ? ConstantValue : Variable.Value;
+            set {
+                if (UseConstant) {
+                    ConstantValue = value;
+                } else {
+                    Variable.Value = value;
+                }
+            }
+        }
 
         public static implicit operator float(FloatReference reference)
         {
