@@ -40,12 +40,7 @@ namespace Assets.Scripts.Entities {
             }
         }
 
-        public void SetInvincible(float duration)
-        {
-            StartCoroutine(Invincibility(duration));
-        }
-
-        private IEnumerator Invincibility(float duration)
+        public void SetInvincible()
         {
             _regularMaterial = new List<Material>(_materialsToChangeWhenInvincible.Count);
             foreach (var meshRenderer in _materialsToChangeWhenInvincible) {
@@ -53,7 +48,11 @@ namespace Assets.Scripts.Entities {
                 meshRenderer.material = _invincibilityMaterial;
             }
             _invincible = true;
-            yield return new WaitForSecondsRealtime(duration);
+        }
+
+        public void RemoveInvincible()
+        {
+            if (!_invincible) return;
             for (int i = 0; i < _materialsToChangeWhenInvincible.Count; ++i) {
                 _materialsToChangeWhenInvincible[i].material = _regularMaterial[i];
             }
