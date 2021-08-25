@@ -1,3 +1,4 @@
+using System.Collections;
 using Assets.Scripts.Entities;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Assets.Scripts.Enemy {
     [RequireComponent(typeof(Rigidbody))]
     public class EnemyBase : Entity {
         [SerializeField] private int _damageAmount = 1;
-        [SerializeField] private ParticleSystem _impactParticles;
+        [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;
 
         private Rigidbody _rb;
@@ -33,7 +34,7 @@ namespace Assets.Scripts.Enemy {
         protected void ImpactFeedback()
         {
             if (_impactParticles != null) {
-                _impactParticles.Play();
+                Instantiate(_impactParticles, transform.position, Quaternion.identity);
             }
             if (_impactSound != null) {
                 AudioHelper.PlayClip2D(_impactSound);

@@ -36,7 +36,7 @@ namespace Assets.Scripts.Collectibles {
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
-                _collectParticles = Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity);
             }
             // Audio (TODO: Consider Object Pooling for performance)
             if (_collectSound != null) {

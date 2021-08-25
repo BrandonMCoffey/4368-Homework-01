@@ -948,10 +948,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511352566}
     m_Modifications:
-    - target: {fileID: 1335513803, guid: 7319d2c2acebc474293a6f55e98ae293, type: 3}
-      propertyPath: CollisionModule.m_Planes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1785415587}
     - target: {fileID: 1982285133998452681, guid: 7319d2c2acebc474293a6f55e98ae293, type: 3}
       propertyPath: m_Name
       value: Slower
@@ -1057,10 +1053,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 2608741721786912830, guid: d3670ebe1ac37544a80babd2bdb3d1e8, type: 3}
-      propertyPath: CollisionModule.m_Planes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1785415587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3670ebe1ac37544a80babd2bdb3d1e8, type: 3}
 --- !u!1001 &5227411719627144172
@@ -1070,10 +1062,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511352566}
     m_Modifications:
-    - target: {fileID: 2094573274, guid: b44277fa95b699c4f81ed083dee0ffe5, type: 3}
-      propertyPath: CollisionModule.m_Planes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1785415587}
     - target: {fileID: 5227411719347901994, guid: b44277fa95b699c4f81ed083dee0ffe5, type: 3}
       propertyPath: m_RootOrder
       value: 1
