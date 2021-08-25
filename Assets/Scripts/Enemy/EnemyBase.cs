@@ -33,7 +33,7 @@ namespace Assets.Scripts.Enemy {
         protected void ImpactFeedback()
         {
             if (_impactParticles != null) {
-                _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
+                _impactParticles.Play();
             }
             if (_impactSound != null) {
                 AudioHelper.PlayClip2D(_impactSound);
