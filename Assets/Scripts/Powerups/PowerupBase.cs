@@ -11,6 +11,13 @@ namespace Assets.Scripts.Powerups {
         [SerializeField] private ParticleSystem _collectParticles;
         [SerializeField] private AudioClip _collectSound = null;
 
+        private Collider _collider;
+
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             EntityHealth health = other.gameObject.GetComponent<EntityHealth>();
@@ -20,6 +27,7 @@ namespace Assets.Scripts.Powerups {
 
         private IEnumerator PowerupCoroutine(EntityHealth health)
         {
+            _collider.enabled = false;
             _art.SetActive(false);
             ActivatePowerup(health);
             Feedback();
