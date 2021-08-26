@@ -1,5 +1,6 @@
 using System.Collections;
 using Assets.Scripts.Entities;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -7,6 +8,9 @@ namespace Assets.Scripts {
     [RequireComponent(typeof(EntityHealth))]
     [RequireComponent(typeof(Inventory))]
     public class Player : Entity {
+        [Header("Audio")]
+        [SerializeField] private AudioClip _deathSound = null;
+
         private TankController _tankController;
         private Inventory _inventory;
 
@@ -15,6 +19,14 @@ namespace Assets.Scripts {
             base.Awake();
             _tankController = GetComponent<TankController>();
             _inventory = GetComponent<Inventory>();
+        }
+
+        public override void Kill()
+        {
+            if (_deathSound != null) {
+                AudioHelper.PlayClip2D(_deathSound);
+            }
+            base.Kill();
         }
 
         public TankController GetTankController()

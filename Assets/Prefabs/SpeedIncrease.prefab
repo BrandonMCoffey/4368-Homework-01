@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 1
   _collectParticles: {fileID: 0}
-  _collectSound: {fileID: 0}
+  _collectSound: {fileID: 8300000, guid: 0e5cb50b8e6433948ba9ad12271446dd, type: 3}
   _respawnTime: 5
   _art: {fileID: 3986818383902519942}
   _collider: {fileID: 1803373369315612379}

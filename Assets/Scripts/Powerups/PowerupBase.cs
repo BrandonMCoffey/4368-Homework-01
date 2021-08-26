@@ -9,7 +9,8 @@ namespace Assets.Scripts.Powerups {
         [SerializeField] private float _powerupDuration = 5;
         [SerializeField] private GameObject _art = null;
         [SerializeField] private ParticleSystem _collectParticles;
-        [SerializeField] private AudioClip _collectSound = null;
+        [SerializeField] private AudioClip _powerUpSound = null;
+        [SerializeField] private AudioClip _powerDownSound = null;
 
         private Collider _collider;
 
@@ -36,18 +37,24 @@ namespace Assets.Scripts.Powerups {
             gameObject.SetActive(false);
         }
 
-        protected abstract void ActivatePowerup(EntityHealth health);
+        protected virtual void ActivatePowerup(EntityHealth health)
+        {
+            if (_powerUpSound != null) {
+                AudioHelper.PlayClip2D(_powerUpSound);
+            }
+        }
 
-        protected abstract void DeactivatePowerup(EntityHealth health);
+        protected virtual void DeactivatePowerup(EntityHealth health)
+        {
+            if (_powerDownSound != null) {
+                AudioHelper.PlayClip2D(_powerDownSound);
+            }
+        }
 
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
                 _collectParticles = Instantiate(_collectParticles, transform.position, Quaternion.identity);
-            }
-            // Audio (TODO: Consider Object Pooling for performance)
-            if (_collectSound != null) {
-                AudioHelper.PlayClip2D(_collectSound);
             }
         }
     }

@@ -1290,6 +1290,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9098590632699325617, guid: 56a4bb1b2fdda744ca08e7a3bea0710c, type: 3}
+      propertyPath: _deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 24b3874836a3d7d4293a40ec623424ad, type: 3}
     - target: {fileID: 9098590632699325620, guid: 56a4bb1b2fdda744ca08e7a3bea0710c, type: 3}
       propertyPath: m_Name
       value: Tank
