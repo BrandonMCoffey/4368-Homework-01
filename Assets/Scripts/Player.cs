@@ -1,6 +1,6 @@
-using System.Collections;
 using Assets.Scripts.Entities;
 using Assets.Scripts.Utility;
+using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -8,7 +8,7 @@ namespace Assets.Scripts {
     [RequireComponent(typeof(EntityHealth))]
     [RequireComponent(typeof(Inventory))]
     public class Player : Entity {
-        [SerializeField] private AudioClip _deathSound = null;
+        [SerializeField] private GameEvent _onDeath = null;
 
         private TankController _tankController;
         private Inventory _inventory;
@@ -23,8 +23,8 @@ namespace Assets.Scripts {
         public override void Kill()
         {
             if (Health != null && Health.Invincible) return;
-            if (_deathSound != null) {
-                AudioHelper.PlayClip2D(_deathSound);
+            if (_onDeath != null) {
+                _onDeath.Invoke();
             }
             base.Kill();
         }

@@ -1,4 +1,4 @@
-using Assets.Scripts.Utility.FloatRef;
+using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 using UnityEngine.UI;
 

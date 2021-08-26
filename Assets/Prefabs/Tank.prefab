@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7deae910b21a2142adfc1132501442e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathSound: {fileID: 8300000, guid: 24b3874836a3d7d4293a40ec623424ad, type: 3}
+  _onDeath: {fileID: 11400000, guid: a60c2d6dcc57d0e4680e16a7543ecb38, type: 2}
 --- !u!114 &9098590632699325618
 MonoBehaviour:
   m_ObjectHideFlags: 0

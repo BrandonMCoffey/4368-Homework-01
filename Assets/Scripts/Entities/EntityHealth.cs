@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Utility.FloatRef;
+using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities {

@@ -1,5 +1,4 @@
 using Assets.Scripts.Entities;
-using UnityEngine;
 
 namespace Assets.Scripts.Powerups {
     public class Invincibility : PowerupBase {

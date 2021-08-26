@@ -1,4 +1,4 @@
-using Assets.Scripts.Utility;
+using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
