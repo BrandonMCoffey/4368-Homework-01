@@ -8,7 +8,6 @@ namespace Assets.Scripts {
     [RequireComponent(typeof(EntityHealth))]
     [RequireComponent(typeof(Inventory))]
     public class Player : Entity {
-        [Header("Audio")]
         [SerializeField] private AudioClip _deathSound = null;
 
         private TankController _tankController;
@@ -23,6 +22,7 @@ namespace Assets.Scripts {
 
         public override void Kill()
         {
+            if (Health != null && Health.Invincible) return;
             if (_deathSound != null) {
                 AudioHelper.PlayClip2D(_deathSound);
             }

@@ -13,7 +13,7 @@ namespace Assets.Scripts.Utility {
             // activate
             audioSource.Play();
             if (destroy) {
-                Object.Destroy(audioSource, clip.length);
+                Object.Destroy(audioSource.gameObject, clip.length);
             }
             // return (in case other things need it)
             return audioSource;

@@ -127,7 +127,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &1982285133998452695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,10 +157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageAmount: 1
-  _impactSound: {fileID: 8300000, guid: 953efa66e9b192f48b5ef5e0032f5dd5, type: 3}
   _impactParticles: {fileID: 305038720598563104, guid: ae22e71779c4ff94286370559978e4ef, type: 3}
+  _impactSound: {fileID: 8300000, guid: 953efa66e9b192f48b5ef5e0032f5dd5, type: 3}
   _speedIncreaseType: 2
-  _amount: 0.5
+  _amount: 0.4
   _duration: 5
 --- !u!1 &2871557398681922981
 GameObject:
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2871557398681922981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4410311682416842541}

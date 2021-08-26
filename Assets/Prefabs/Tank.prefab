@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7deae910b21a2142adfc1132501442e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathSound: {fileID: 8300000, guid: 24b3874836a3d7d4293a40ec623424ad, type: 3}
 --- !u!114 &9098590632699325618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,14 +383,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
-  _materialsToChangeWhenInvincible:
-  - {fileID: 9098590632290169661}
-  - {fileID: 9098590632770979641}
-  _invincibilityMaterial: {fileID: 2100000, guid: 5a54bd1cd0a121b409452354e8aab306, type: 2}
   _currentHealth:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 124ddd206c15b1a4b805fa1d17f5d78b, type: 2}
+  _invincibilityMaterial: {fileID: 2100000, guid: 5a54bd1cd0a121b409452354e8aab306, type: 2}
+  _materialsToChangeWhenInvincible:
+  - {fileID: 9098590632290169661}
+  - {fileID: 9098590632770979641}
 --- !u!114 &9098590632699325619
 MonoBehaviour:
   m_ObjectHideFlags: 0

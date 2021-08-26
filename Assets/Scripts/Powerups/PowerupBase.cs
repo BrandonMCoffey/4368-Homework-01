@@ -8,7 +8,7 @@ namespace Assets.Scripts.Powerups {
     public abstract class PowerupBase : MonoBehaviour {
         [SerializeField] private float _powerupDuration = 5;
         [SerializeField] private GameObject _art = null;
-        [SerializeField] private ParticleSystem _collectParticles;
+        [SerializeField] private ParticleSystem _collectParticles = null;
         [SerializeField] private AudioClip _powerUpSound = null;
         [SerializeField] private AudioClip _powerDownSound = null;
 
