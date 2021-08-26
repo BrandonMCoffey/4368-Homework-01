@@ -54,7 +54,7 @@ namespace Assets.Scripts.Powerups {
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
-                _collectParticles = Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity);
             }
         }
     }

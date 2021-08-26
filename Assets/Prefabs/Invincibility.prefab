@@ -172,6 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _powerupDuration: 4
   _art: {fileID: 5510914114543878286}
-  _collectParticles: {fileID: 0}
-  _powerUpSound: {fileID: 8300000, guid: b45a6f3bf08933c4ca0ebcad9b5fdcbc, type: 3}
+  _collectParticles: {fileID: 5801992968807110235, guid: 9bebd2aa2fa155b4d9e62782768237cc, type: 3}
   _powerDownSound: {fileID: 8300000, guid: 4ef16ba931d659e458c8eb210164fd3e, type: 3}
+  _powerUpSound: {fileID: 8300000, guid: b45a6f3bf08933c4ca0ebcad9b5fdcbc, type: 3}

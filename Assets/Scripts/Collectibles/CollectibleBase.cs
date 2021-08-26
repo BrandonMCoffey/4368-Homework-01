@@ -5,7 +5,7 @@ namespace Assets.Scripts.Collectibles {
     [RequireComponent(typeof(Rigidbody))]
     public abstract class CollectibleBase : MonoBehaviour {
         [SerializeField] private float _movementSpeed = 1;
-        [SerializeField] private ParticleSystem _collectParticles;
+        [SerializeField] private ParticleSystem _collectParticles = null;
         [SerializeField] private AudioClip _collectSound = null;
 
         protected float MovementSpeed => _movementSpeed;
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Collectibles {
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
-                _collectParticles = Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity);
             }
             // Audio (TODO: Consider Object Pooling for performance)
             if (_collectSound != null) {
