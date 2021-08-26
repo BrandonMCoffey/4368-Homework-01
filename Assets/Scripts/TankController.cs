@@ -10,18 +10,20 @@ namespace Assets.Scripts {
             // create a vector from amount and direction
             Vector3 moveOffset = transform.forward * moveAmountThisFrame;
             // apply vector to the rigidbody
-            Rb.MovePosition(Rb.position + moveOffset);
+            Rb.velocity = moveOffset;
+            //Rb.MovePosition(Rb.position + moveOffset);
             // technically adjusting vector is more accurate! (but more complex)
         }
 
         protected override void Turn(float speed)
         {
             // calculate the turn amount
-            float turnAmountThisFrame = Input.GetAxis("Horizontal") * speed;
+            float turnAmountThisFrame = Input.GetAxisRaw("Horizontal") * speed;
             // create a Quaternion from amount and direction (x,y,z)
-            Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
+            //Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
-            Rb.MoveRotation(Rb.rotation * turnOffset);
+            Rb.angularVelocity = new Vector3(0, turnAmountThisFrame, 0);
+            //Rb.MoveRotation(Rb.rotation * turnOffset);
         }
     }
 }
