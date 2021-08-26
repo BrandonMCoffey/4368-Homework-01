@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.Utility.FloatRef {
+namespace Assets.Scripts.Utility.CustomFloats {
     [Serializable]
     public class FloatReference {
         public bool UseConstant;

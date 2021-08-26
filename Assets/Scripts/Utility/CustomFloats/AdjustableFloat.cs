@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility {
+namespace Assets.Scripts.Utility.CustomFloats {
     public enum ValueAdjustType {
         AddRaw,
         AddBase,

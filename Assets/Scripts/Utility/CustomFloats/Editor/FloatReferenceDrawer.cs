@@ -1,18 +1,18 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.FloatRef.Editor {
+namespace Assets.Scripts.Utility.CustomFloats.Editor {
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(FloatReference))]
     public class FloatReferenceDrawer : PropertyDrawer {
         private readonly string[] _popupOptions =
-            {"Use Constant", "Use Variable"};
+            { "Use Constant", "Use Variable" };
 
         private GUIStyle _popupStyle;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            _popupStyle ??= new GUIStyle(GUI.skin.GetStyle("PaneOptions")) {imagePosition = ImagePosition.ImageOnly};
+            _popupStyle ??= new GUIStyle(GUI.skin.GetStyle("PaneOptions")) { imagePosition = ImagePosition.ImageOnly };
 
             label = EditorGUI.BeginProperty(position, label, property);
             position = EditorGUI.PrefixLabel(position, label);
