@@ -24,10 +24,12 @@ namespace Assets.Scripts.Entities {
             _currentHealth.Value = _maxHealth;
         }
 
-        public void IncreaseHealth(int amount)
+        public bool IncreaseHealth(int amount)
         {
+            if (_currentHealth >= _maxHealth) return false;
             _currentHealth.Value = _currentHealth + amount;
             _currentHealth.Value = Mathf.Clamp(_currentHealth.Value, 0, _maxHealth);
+            return true;
         }
 
         public void DecreaseHealth(int amount)

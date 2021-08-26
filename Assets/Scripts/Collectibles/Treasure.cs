@@ -14,9 +14,10 @@ namespace Assets.Scripts.Collectibles {
             _startPos = transform.position;
         }
 
-        protected override void Collect(Player player)
+        protected override bool Collect(Player player)
         {
             player.GetInventory().AddTreasure(_value);
+            return true;
         }
 
         protected override void Movement(Rigidbody rb)

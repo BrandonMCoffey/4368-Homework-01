@@ -8,7 +8,7 @@ namespace Assets.Scripts.Collectibles {
         [SerializeField] private bool _overTime = false;
         [SerializeField] private int _duration = 0;
 
-        protected override void Collect(Player player)
+        protected override bool Collect(Player player)
         {
             if (_overTime && _duration >= 0) {
                 AdjustableFloat speed = player.GetTankController().AdjustMoveSpeed;
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Collectibles {
             } else {
                 player.GetTankController().AdjustMoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
             }
+            return true;
         }
 
         protected override void Movement(Rigidbody rb)

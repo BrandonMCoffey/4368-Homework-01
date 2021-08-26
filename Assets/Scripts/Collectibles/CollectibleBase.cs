@@ -26,12 +26,13 @@ namespace Assets.Scripts.Collectibles {
         {
             Player player = other.gameObject.GetComponent<Player>();
             if (player == null) return;
-            Collect(player);
+            bool wasCollected = Collect(player);
+            if (!wasCollected) return;
             Feedback();
             DisableObject();
         }
 
-        protected abstract void Collect(Player player);
+        protected abstract bool Collect(Player player);
 
         protected virtual void Feedback()
         {
