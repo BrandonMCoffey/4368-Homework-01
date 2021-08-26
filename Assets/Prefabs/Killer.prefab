@@ -107,13 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageAmount: 1
-<<<<<<< HEAD
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
-=======
   _impactParticles: {fileID: 1090193467929786055, guid: 910f86a71cc999d458079d9ad31a1423, type: 3}
-  _impactSound: {fileID: 0}
->>>>>>> VisualParticles
+  _impactSound: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
 --- !u!1 &5341123330969247775
 GameObject:
   m_ObjectHideFlags: 0
