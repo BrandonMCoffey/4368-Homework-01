@@ -8,6 +8,7 @@ namespace Assets.Scripts.Powerups {
     public abstract class PowerupBase : MonoBehaviour {
         [SerializeField] private float _powerupDuration = 5;
         [SerializeField] private GameObject _art = null;
+        [SerializeField] private ParticleSystem _constantParticles = null;
         [SerializeField] private ParticleSystem _collectParticles = null;
         [SerializeField] private AudioClip _powerUpSound = null;
         [SerializeField] private AudioClip _powerDownSound = null;
@@ -29,7 +30,11 @@ namespace Assets.Scripts.Powerups {
         private IEnumerator PowerupCoroutine(EntityHealth health)
         {
             _collider.enabled = false;
-            _art.SetActive(false);
+            if (_art != null) _art.SetActive(false);
+            if (_constantParticles != null) {
+                ParticleSystem.EmissionModule emission = _constantParticles.emission;
+                emission.rateOverTime = 0;
+            }
             ActivatePowerup(health);
             Feedback();
             yield return new WaitForSecondsRealtime(_powerupDuration);

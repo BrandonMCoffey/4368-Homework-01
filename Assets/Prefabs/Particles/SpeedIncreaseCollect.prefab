@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5852478602432798577}
   - component: {fileID: -7147998317776345932}
   m_Layer: 0
-  m_Name: SpeedInreaseCollect
+  m_Name: SpeedIncreaseCollect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,8 +116,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.1
+      scalar: 1
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4876,4 +4876,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048e3adaa7ca0fe47aed20a229e85b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifespan: 0.5
+  _lifespan: 1

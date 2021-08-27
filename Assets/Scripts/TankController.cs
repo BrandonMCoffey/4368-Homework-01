@@ -4,7 +4,8 @@ using UnityEngine;
 namespace Assets.Scripts {
     public class TankController : EntityMovement {
         [SerializeField] private ParticleSystem _slowedDownEffects = null;
-        [SerializeField] private float _slowedDownEffectsMultiplier = 10;
+        [SerializeField] private float _particleMultiplier = 10;
+        [SerializeField] private float _speedMultiplier = 0.5f;
 
         private const float DistFromGround = 0.05f;
 
@@ -12,8 +13,8 @@ namespace Assets.Scripts {
         {
             ParticleSystem.MainModule main = _slowedDownEffects.main;
             ParticleSystem.EmissionModule emission = _slowedDownEffects.emission;
-            main.startSpeedMultiplier = Rb.velocity.magnitude;
-            emission.rateOverTime = AdjustMoveSpeed.ActiveEffects * _slowedDownEffectsMultiplier;
+            main.startSpeedMultiplier = Rb.velocity.magnitude * _speedMultiplier;
+            emission.rateOverTime = AdjustMoveSpeed.ActiveEffects * _particleMultiplier;
         }
 
         protected override void Move(float speed)

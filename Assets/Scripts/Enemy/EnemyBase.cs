@@ -8,6 +8,7 @@ namespace Assets.Scripts.Enemy {
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;
+        protected ParticleSystem ImpactParticles => _impactParticles;
 
         private Rigidbody _rb;
 
