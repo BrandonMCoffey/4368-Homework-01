@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1592114
+      value: -3.72
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1107,7 +1107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.0573215
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1413,8 +1413,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560543898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: 10}
-  m_LocalScale: {x: 16, y: 2, z: 2}
+  m_LocalPosition: {x: 13, y: 0, z: 11}
+  m_LocalScale: {x: 16, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 204652480}
   m_RootOrder: 5
@@ -1627,8 +1627,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775490236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9}
-  m_LocalScale: {x: 10, y: 2, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 10, y: 2, z: 6}
   m_Children: []
   m_Father: {fileID: 204652480}
   m_RootOrder: 4
@@ -3542,8 +3542,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714832050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: 12}
-  m_LocalScale: {x: 12, y: 2, z: 2}
+  m_LocalPosition: {x: -10, y: 0, z: 12}
+  m_LocalScale: {x: 10, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 204652480}
   m_RootOrder: 3
@@ -3907,6 +3907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _restartKey: 8
+  _exitGameKey: 27
   _treasureCount: {fileID: 11400000, guid: 888bc9b021792594c9aaafc34f5b4d9f, type: 2}
   _treasureToWin: 10
   _onWin: {fileID: 11400000, guid: 2c13f3e2cc6dc294c8e49a3e58ba58cb, type: 2}
@@ -4030,7 +4031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.0858622
+      value: -2.21
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4038,7 +4039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58
+      value: -7.52
       objectReference: {fileID: 0}
     - target: {fileID: 7357065920650428953, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
       propertyPath: m_LocalRotation.w

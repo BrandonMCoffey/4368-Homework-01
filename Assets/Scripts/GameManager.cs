@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 namespace Assets.Scripts {
     public class GameManager : MonoBehaviour {
         [SerializeField] private KeyCode _restartKey = KeyCode.Backspace;
+        [SerializeField] private KeyCode _exitGameKey = KeyCode.Escape;
         [SerializeField] private FloatVariable _treasureCount = null;
         [SerializeField] private int _treasureToWin = 10;
         [SerializeField] private GameEvent _onWin = null;
@@ -15,7 +16,9 @@ namespace Assets.Scripts {
             if (Input.GetKeyDown(_restartKey)) {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
-
+            if (Input.GetKeyDown(_exitGameKey)) {
+                Application.Quit();
+            }
             if (_treasureCount.Value >= _treasureToWin) {
                 Win();
             }
