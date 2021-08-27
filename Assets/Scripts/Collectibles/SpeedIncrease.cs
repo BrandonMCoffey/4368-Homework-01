@@ -2,7 +2,7 @@ using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
-    public class SpeedIncrease : CollectibleRespawnBase {
+    public class SpeedIncrease : CollectibleBase {
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
         [SerializeField] private float _amount = 1f;
         [SerializeField] private bool _overTime = false;

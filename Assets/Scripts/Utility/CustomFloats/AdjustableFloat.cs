@@ -11,6 +11,7 @@ namespace Assets.Scripts.Utility.CustomFloats {
     public class AdjustableFloat {
         private float _baseValue;
         public float Value { get; private set; }
+        public int ActiveEffects { get; private set; }
 
         public void SetBaseValue(float baseValue)
         {
@@ -20,8 +21,10 @@ namespace Assets.Scripts.Utility.CustomFloats {
 
         public IEnumerator AdjustValueOverTime(ValueAdjustType type, float amount, float timer)
         {
+            ActiveEffects++;
             IncreaseValue(type, amount);
             yield return new WaitForSecondsRealtime(timer);
+            ActiveEffects--;
             DecreaseValue(type, amount);
         }
 
