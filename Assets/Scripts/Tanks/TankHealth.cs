@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Entities {
-    public class EntityHealth : MonoBehaviour {
+namespace Assets.Scripts.Tanks {
+    public class TankHealth : MonoBehaviour {
         [Header("Health Settings")]
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();

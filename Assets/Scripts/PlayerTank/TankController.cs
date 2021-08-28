@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Entities;
+﻿using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts {
-    public class TankController : EntityMovement {
+namespace Assets.Scripts.PlayerTank {
+    public class TankController : TankMovement {
         [SerializeField] private ParticleSystem _slowedDownEffects = null;
         [SerializeField] private float _particleMultiplier = 10;
         [SerializeField] private float _speedMultiplier = 0.5f;

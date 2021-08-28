@@ -1,10 +1,11 @@
-using Assets.Scripts.Entities;
+using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemy {
+namespace Assets.Scripts.EnemyTanks {
     [RequireComponent(typeof(Rigidbody))]
-    public class EnemyBase : Entity {
+    public class Enemy : Tank {
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;

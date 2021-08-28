@@ -1,13 +1,13 @@
-using Assets.Scripts.Entities;
+using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 
-namespace Assets.Scripts {
+namespace Assets.Scripts.PlayerTank {
     [RequireComponent(typeof(TankController))]
-    [RequireComponent(typeof(EntityHealth))]
+    [RequireComponent(typeof(TankHealth))]
     [RequireComponent(typeof(Inventory))]
-    public class Player : Entity {
+    public class Player : Tank {
         [SerializeField] private GameEvent _onDeath = null;
         [SerializeField] private AudioClip _deathAudio = null;
         [SerializeField] private ParticleSystem _deathParticles = null;

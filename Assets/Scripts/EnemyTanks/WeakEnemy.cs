@@ -1,9 +1,10 @@
-using Assets.Scripts.Entities;
+using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemy {
-    [RequireComponent(typeof(EntityHealth))]
-    public class WeakEnemy : EnemyBase {
+namespace Assets.Scripts.EnemyTanks {
+    [RequireComponent(typeof(TankHealth))]
+    public class WeakEnemy : Enemy {
         protected override void PlayerImpact(Player player)
         {
             base.PlayerImpact(player);

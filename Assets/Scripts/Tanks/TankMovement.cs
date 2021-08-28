@@ -1,9 +1,9 @@
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Entities {
+namespace Assets.Scripts.Tanks {
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class EntityMovement : MonoBehaviour {
+    public abstract class TankMovement : MonoBehaviour {
         [SerializeField] private float _baseMoveSpeed = .25f;
         [SerializeField] private float _turnSpeed = 2f;
 

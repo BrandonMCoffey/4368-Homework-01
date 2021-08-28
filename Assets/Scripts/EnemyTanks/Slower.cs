@@ -1,8 +1,9 @@
+using Assets.Scripts.PlayerTank;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemy {
-    public class Slower : EnemyBase {
+namespace Assets.Scripts.EnemyTanks {
+    public class Slower : Enemy {
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.Multiply;
         [SerializeField] private float _amount = 0.5f;
         [SerializeField] private int _duration = 5;

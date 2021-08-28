@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Scripts.Entities;
+using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -22,12 +22,12 @@ namespace Assets.Scripts.Powerups {
 
         private void OnTriggerEnter(Collider other)
         {
-            EntityHealth health = other.gameObject.GetComponent<EntityHealth>();
+            TankHealth health = other.gameObject.GetComponent<TankHealth>();
             if (health == null) return;
             StartCoroutine(PowerupCoroutine(health));
         }
 
-        private IEnumerator PowerupCoroutine(EntityHealth health)
+        private IEnumerator PowerupCoroutine(TankHealth health)
         {
             _collider.enabled = false;
             if (_art != null) _art.SetActive(false);
@@ -42,14 +42,14 @@ namespace Assets.Scripts.Powerups {
             gameObject.SetActive(false);
         }
 
-        protected virtual void ActivatePowerup(EntityHealth health)
+        protected virtual void ActivatePowerup(TankHealth health)
         {
             if (_powerUpSound != null) {
                 AudioHelper.PlayClip2D(_powerUpSound);
             }
         }
 
-        protected virtual void DeactivatePowerup(EntityHealth health)
+        protected virtual void DeactivatePowerup(TankHealth health)
         {
             if (_powerDownSound != null) {
                 AudioHelper.PlayClip2D(_powerDownSound);
