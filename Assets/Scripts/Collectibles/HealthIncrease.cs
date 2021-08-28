@@ -1,13 +1,13 @@
-using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     public class HealthIncrease : CollectibleBase {
         [SerializeField] private int _healthAdded = 1;
 
-        protected override bool Collect(Player player)
+        protected override bool Collect(PlayerTank playerTank)
         {
-            bool healthUsed = player.Health.IncreaseHealth(_healthAdded);
+            bool healthUsed = playerTank.Health.IncreaseHealth(_healthAdded);
             return healthUsed;
         }
     }

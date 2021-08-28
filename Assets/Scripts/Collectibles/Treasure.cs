@@ -1,4 +1,4 @@
-using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
@@ -15,9 +15,9 @@ namespace Assets.Scripts.Collectibles {
             _startPos = transform.position;
         }
 
-        protected override bool Collect(Player player)
+        protected override bool Collect(PlayerTank playerTank)
         {
-            player.GetInventory().AddTreasure(_value);
+            playerTank.GetInventory().AddTreasure(_value);
             return true;
         }
 

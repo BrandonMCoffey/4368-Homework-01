@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.PlayerTank {
+namespace Assets.Scripts.Player {
     public class TankController : TankMovement {
         [SerializeField] private ParticleSystem _slowedDownEffects = null;
         [SerializeField] private float _particleMultiplier = 10;

@@ -3,11 +3,11 @@ using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 
-namespace Assets.Scripts.PlayerTank {
+namespace Assets.Scripts.Player {
     [RequireComponent(typeof(TankController))]
     [RequireComponent(typeof(TankHealth))]
     [RequireComponent(typeof(Inventory))]
-    public class Player : Tank {
+    public class PlayerTank : Tank {
         [SerializeField] private GameEvent _onDeath = null;
         [SerializeField] private AudioClip _deathAudio = null;
         [SerializeField] private ParticleSystem _deathParticles = null;

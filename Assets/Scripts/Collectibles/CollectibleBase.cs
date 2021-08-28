@@ -1,4 +1,4 @@
-using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Player;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -25,15 +25,15 @@ namespace Assets.Scripts.Collectibles {
 
         private void OnTriggerEnter(Collider other)
         {
-            Player player = other.gameObject.GetComponent<Player>();
-            if (player == null) return;
-            bool wasCollected = Collect(player);
+            PlayerTank playerTank = other.gameObject.GetComponent<PlayerTank>();
+            if (playerTank == null) return;
+            bool wasCollected = Collect(playerTank);
             if (!wasCollected) return;
             Feedback();
             DisableObject();
         }
 
-        protected abstract bool Collect(Player player);
+        protected abstract bool Collect(PlayerTank playerTank);
 
         protected virtual void Feedback()
         {

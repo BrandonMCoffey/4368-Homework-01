@@ -1,4 +1,4 @@
-using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Player;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
@@ -9,13 +9,13 @@ namespace Assets.Scripts.Collectibles {
         [SerializeField] private bool _overTime = false;
         [SerializeField] private int _duration = 0;
 
-        protected override bool Collect(Player player)
+        protected override bool Collect(PlayerTank playerTank)
         {
             if (_overTime && _duration >= 0) {
-                AdjustableFloat speed = player.GetTankController().AdjustMoveSpeed;
+                AdjustableFloat speed = playerTank.GetTankController().AdjustMoveSpeed;
                 StartCoroutine(speed.AdjustValueOverTime(_speedIncreaseType, _amount, _duration));
             } else {
-                player.GetTankController().AdjustMoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
+                playerTank.GetTankController().AdjustMoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
             }
             return true;
         }

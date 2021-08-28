@@ -1,9 +1,9 @@
-using Assets.Scripts.PlayerTank;
+using Assets.Scripts.Player;
 using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.EnemyTanks {
+namespace Assets.Scripts.Enemies {
     [RequireComponent(typeof(Rigidbody))]
     public class Enemy : Tank {
         [SerializeField] private int _damageAmount = 1;
@@ -21,15 +21,15 @@ namespace Assets.Scripts.EnemyTanks {
 
         private void OnCollisionEnter(Collision other)
         {
-            Player player = other.gameObject.GetComponent<Player>();
-            if (player == null) return;
-            PlayerImpact(player);
+            PlayerTank playerTank = other.gameObject.GetComponent<PlayerTank>();
+            if (playerTank == null) return;
+            PlayerImpact(playerTank);
             ImpactFeedback();
         }
 
-        protected virtual void PlayerImpact(Player player)
+        protected virtual void PlayerImpact(PlayerTank playerTank)
         {
-            player.Health.DecreaseHealth(_damageAmount);
+            playerTank.Health.DecreaseHealth(_damageAmount);
         }
 
         protected void ImpactFeedback()
