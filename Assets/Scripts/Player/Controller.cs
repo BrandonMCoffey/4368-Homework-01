@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.Scripts.Player {
-    public class TankController : TankMovement {
+    public class Controller : MovementBase {
         [SerializeField] private ParticleSystem _slowedDownEffects = null;
         [SerializeField] private float _particleMultiplier = 10;
         [SerializeField] private float _speedMultiplier = 0.5f;
@@ -19,6 +19,7 @@ namespace Assets.Scripts.Player {
 
         protected override void Move(float speed)
         {
+            Debug.Log(Input.GetAxis("Vertical"));
             // calculate the move amount
             float moveAmountThisFrame = Input.GetAxis("Vertical") * speed;
             // create a vector from amount and direction

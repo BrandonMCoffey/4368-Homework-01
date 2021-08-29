@@ -10,7 +10,7 @@ namespace Assets.Scripts.Enemies {
 
         protected override void PlayerImpact(PlayerTank playerTank)
         {
-            AdjustableFloat speed = playerTank.GetTankController().AdjustMoveSpeed;
+            AdjustableFloat speed = playerTank.Movement.MoveSpeed;
             StartCoroutine(speed.AdjustValueOverTime(_speedIncreaseType, _amount, _duration));
         }
     }

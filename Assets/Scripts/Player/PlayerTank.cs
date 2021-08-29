@@ -4,27 +4,40 @@ using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 
 namespace Assets.Scripts.Player {
-    [RequireComponent(typeof(TankController))]
+    [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(TankHealth))]
+    [RequireComponent(typeof(TankMovement))]
     [RequireComponent(typeof(Inventory))]
-    public class PlayerTank : Tank {
+    [RequireComponent(typeof(Rigidbody))]
+    public class PlayerTank : MonoBehaviour {
         [SerializeField] private GameEvent _onDeath = null;
         [SerializeField] private AudioClip _deathAudio = null;
         [SerializeField] private ParticleSystem _deathParticles = null;
 
-        private TankController _tankController;
-        private Inventory _inventory;
+        public TankHealth Health { get; private set; }
+        public TankMovement Movement { get; private set; }
+        public Inventory Inventory { get; private set; }
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-            _tankController = GetComponent<TankController>();
-            _inventory = GetComponent<Inventory>();
+            Health = GetComponent<TankHealth>();
+            Movement = GetComponent<TankMovement>();
+            Inventory = GetComponent<Inventory>();
         }
 
-        public override void Kill()
+        private void OnEnable()
         {
-            if (Health != null && Health.Invincible) return;
+            Health.OnKill += Kill;
+        }
+
+        private void OnDisable()
+        {
+            Health.OnKill -= Kill;
+        }
+
+        public void Kill()
+        {
+            if (Health.Invincible) return;
             if (_onDeath != null) {
                 _onDeath.Invoke();
             }
@@ -34,17 +47,6 @@ namespace Assets.Scripts.Player {
             if (_deathParticles != null) {
                 Instantiate(_deathParticles, transform.position, Quaternion.identity);
             }
-            base.Kill();
-        }
-
-        public TankController GetTankController()
-        {
-            return _tankController;
-        }
-
-        public Inventory GetInventory()
-        {
-            return _inventory;
         }
     }
 }

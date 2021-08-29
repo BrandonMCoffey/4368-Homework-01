@@ -17,7 +17,7 @@ namespace Assets.Scripts.Collectibles {
 
         protected override bool Collect(PlayerTank playerTank)
         {
-            playerTank.GetInventory().AddTreasure(_value);
+            playerTank.Inventory.AddTreasure(_value);
             return true;
         }
 

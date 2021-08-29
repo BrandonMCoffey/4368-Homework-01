@@ -12,10 +12,10 @@ namespace Assets.Scripts.Collectibles {
         protected override bool Collect(PlayerTank playerTank)
         {
             if (_overTime && _duration >= 0) {
-                AdjustableFloat speed = playerTank.GetTankController().AdjustMoveSpeed;
+                AdjustableFloat speed = playerTank.Movement.MoveSpeed;
                 StartCoroutine(speed.AdjustValueOverTime(_speedIncreaseType, _amount, _duration));
             } else {
-                playerTank.GetTankController().AdjustMoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
+                playerTank.Movement.MoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
             }
             return true;
         }
