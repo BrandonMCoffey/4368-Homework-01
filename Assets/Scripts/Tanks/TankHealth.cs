@@ -3,6 +3,7 @@ using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
 using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Tanks {
     public class TankHealth : MonoBehaviour {
@@ -10,17 +11,26 @@ namespace Assets.Scripts.Tanks {
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
 
-        [Header("Death Feedback")]
-        [SerializeField] private GameEvent _onDeath = null;
-        [SerializeField] private AudioClip _deathAudio = null;
-        [SerializeField] private ParticleSystem _deathParticles = null;
-
         [Header("Invincibility Settings")]
         [SerializeField] private Material _invincibilityMaterial = null;
         [SerializeField] private List<MeshRenderer> _materialsToChangeWhenInvincible = new List<MeshRenderer>();
 
+        [Header("Death Feedback")]
+        [SerializeField] private AudioClip _deathAudio = null;
+        [SerializeField] private ParticleSystem _deathParticles = null;
+        [SerializeField] private UnityEvent _onDeath = new UnityEvent();
+
         private List<Material> _regularMaterial;
         private bool _invincible;
+
+        private void Awake()
+        {
+            // Check if mis-assigned current health
+            if (!_currentHealth.UseConstant && _currentHealth.Variable == null) {
+                _currentHealth.UseConstant = true;
+                DebugHelper.Warn(gameObject, "Current Health has no assigned variable");
+            }
+        }
 
         private void Start()
         {
@@ -67,9 +77,7 @@ namespace Assets.Scripts.Tanks {
         public void Kill()
         {
             if (_invincible) return;
-            if (_onDeath != null) {
-                _onDeath.Invoke();
-            }
+            _onDeath?.Invoke();
             if (_deathAudio != null) {
                 AudioHelper.PlayClip2D(_deathAudio);
             }

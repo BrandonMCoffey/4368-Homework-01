@@ -1,4 +1,5 @@
 using Assets.Scripts.Tanks;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Player {
@@ -14,6 +15,10 @@ namespace Assets.Scripts.Player {
             Health = GetComponent<TankHealth>();
             Movement = GetComponent<TankMovement>();
             Inventory = GetComponent<Inventory>();
+
+            if (Movement == null) {
+                DebugHelper.Error(gameObject, "No assigned movement");
+            }
         }
     }
 }

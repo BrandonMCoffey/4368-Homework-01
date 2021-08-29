@@ -4,7 +4,7 @@ namespace Assets.Scripts.Enemies {
     public class Killer : Enemy {
         protected override void PlayerImpact(PlayerTank playerTank)
         {
-            playerTank.Kill();
+            playerTank.Health.Kill();
         }
     }
 }
