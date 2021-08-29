@@ -8,7 +8,7 @@ namespace Assets.Scripts.Enemies {
         protected override void PlayerImpact(PlayerTank playerTank)
         {
             base.PlayerImpact(playerTank);
-            Health.DecreaseHealth(1);
+            //Health.DecreaseHealth(1);
         }
 
         public override void Kill()

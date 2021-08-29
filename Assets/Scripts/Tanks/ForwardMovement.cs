@@ -1,27 +1,14 @@
-﻿using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Player {
-    public class Controller : MovementBase {
-        [SerializeField] private ParticleSystem _slowedDownEffects = null;
-        [SerializeField] private float _particleMultiplier = 10;
-        [SerializeField] private float _speedMultiplier = 0.5f;
-
-        private const float DistFromGround = 0.05f;
-
-        private void Update()
-        {
-            ParticleSystem.MainModule main = _slowedDownEffects.main;
-            ParticleSystem.EmissionModule emission = _slowedDownEffects.emission;
-            main.startSpeedMultiplier = Rb.velocity.magnitude * _speedMultiplier;
-            emission.rateOverTime = AdjustMoveSpeed.ActiveEffects * _particleMultiplier;
-        }
+namespace Assets.Scripts.Tanks {
+    public class ForwardMovement : TankMovement {
+        private float _forwardAmount;
+        private float _turnAmount;
 
         protected override void Move(float speed)
         {
-            Debug.Log(Input.GetAxis("Vertical"));
             // calculate the move amount
-            float moveAmountThisFrame = Input.GetAxis("Vertical") * speed;
+            float moveAmountThisFrame = _forwardAmount * speed;
             // create a vector from amount and direction
             Vector3 moveOffset = transform.forward * moveAmountThisFrame;
             if (transform.position.y > DistFromGround) {
@@ -36,7 +23,7 @@ namespace Assets.Scripts.Player {
         protected override void Turn(float speed)
         {
             // calculate the turn amount
-            float turnAmountThisFrame = Input.GetAxisRaw("Horizontal") * speed;
+            float turnAmountThisFrame = _turnAmount * speed;
 
             // Add the turn amount to angular velocity
             //Rb.angularVelocity = new Vector3(0, turnAmountThisFrame, 0);
@@ -45,6 +32,13 @@ namespace Assets.Scripts.Player {
             Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
             Rb.MoveRotation(Rb.rotation * turnOffset);
+        }
+
+
+        public override void SetMovementDirection(Vector2 dir)
+        {
+            _forwardAmount = dir.y;
+            _turnAmount = dir.x;
         }
     }
 }

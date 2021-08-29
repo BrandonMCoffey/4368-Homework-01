@@ -1,11 +1,10 @@
 using Assets.Scripts.Player;
-using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies {
     [RequireComponent(typeof(Rigidbody))]
-    public class Enemy : Tank {
+    public class Enemy : MonoBehaviour {
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;
@@ -13,9 +12,8 @@ namespace Assets.Scripts.Enemies {
 
         private Rigidbody _rb;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             _rb = GetComponent<Rigidbody>();
         }
 
@@ -40,6 +38,10 @@ namespace Assets.Scripts.Enemies {
             if (_impactSound != null) {
                 AudioHelper.PlayClip2D(_impactSound);
             }
+        }
+
+        public virtual void Kill()
+        {
         }
     }
 }

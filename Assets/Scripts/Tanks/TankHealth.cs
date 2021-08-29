@@ -1,6 +1,7 @@
-using System;
 using System.Collections.Generic;
+using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
+using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 
 namespace Assets.Scripts.Tanks {
@@ -9,15 +10,17 @@ namespace Assets.Scripts.Tanks {
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
 
+        [Header("Death Feedback")]
+        [SerializeField] private GameEvent _onDeath = null;
+        [SerializeField] private AudioClip _deathAudio = null;
+        [SerializeField] private ParticleSystem _deathParticles = null;
+
         [Header("Invincibility Settings")]
         [SerializeField] private Material _invincibilityMaterial = null;
         [SerializeField] private List<MeshRenderer> _materialsToChangeWhenInvincible = new List<MeshRenderer>();
 
         private List<Material> _regularMaterial;
         private bool _invincible;
-        public bool Invincible => _invincible;
-
-        public Action OnKill = delegate { };
 
         private void Start()
         {
@@ -37,7 +40,7 @@ namespace Assets.Scripts.Tanks {
             if (_invincible) return;
             _currentHealth.Value -= amount;
             if (_currentHealth <= 0) {
-                OnKill.Invoke();
+                Kill();
             }
         }
 
@@ -59,6 +62,20 @@ namespace Assets.Scripts.Tanks {
             }
             _invincible = false;
             _regularMaterial.Clear();
+        }
+
+        public void Kill()
+        {
+            if (_invincible) return;
+            if (_onDeath != null) {
+                _onDeath.Invoke();
+            }
+            if (_deathAudio != null) {
+                AudioHelper.PlayClip2D(_deathAudio);
+            }
+            if (_deathParticles != null) {
+                Instantiate(_deathParticles, transform.position, Quaternion.identity);
+            }
         }
     }
 }
