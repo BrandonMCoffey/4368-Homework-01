@@ -42,7 +42,8 @@ namespace Assets.Scripts.Player {
             Physics.Raycast(ray, out var hit, _tankAimMaxDistance, _tankAimMask);
             if (hit.collider == null) return;
 
-            OnAimTurret?.Invoke(hit.point);
+            Vector2 pos = new Vector2(hit.point.x, hit.point.z);
+            OnAimTurret?.Invoke(pos);
         }
 
         private void Fire()
