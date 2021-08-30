@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player;
 using Assets.Scripts.Tanks;
 using UnityEngine;
@@ -45,9 +46,9 @@ namespace Assets.Scripts.Bullets {
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.GetComponent<PlayerTank>()) return;
-            TankHealth health = other.gameObject.GetComponent<TankHealth>();
+            IDamageable health = other.gameObject.GetComponent<TankHealth>();
             if (health != null) {
-                health.DecreaseHealth(_damageAmount);
+                health.OnBulletImpact(_damageAmount);
             } else if (_currentBounces++ < _bounceTimes) {
                 Kill();
                 //Vector3 contact = other.GetContact(0).normal;

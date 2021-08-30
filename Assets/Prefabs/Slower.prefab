@@ -156,11 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8b22606263efb40a9047780459c99a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 1
   _impactParticles: {fileID: 305038720598563104, guid: ae22e71779c4ff94286370559978e4ef, type: 3}
   _impactSound: {fileID: 8300000, guid: 953efa66e9b192f48b5ef5e0032f5dd5, type: 3}
   _speedIncreaseType: 2
-  _amount: 0.4
+  _amount: 2
   _duration: 5
 --- !u!1 &2871557398681922981
 GameObject:

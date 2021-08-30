@@ -1,28 +1,28 @@
-using Assets.Scripts.Player;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     public class SpeedIncrease : CollectibleBase {
+        [Header("Effect Settings")]
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
         [SerializeField] private float _amount = 1f;
-        [SerializeField] private bool _overTime = false;
-        [SerializeField] private int _duration = 0;
 
-        protected override bool Collect(PlayerTank playerTank)
+        protected override bool OnCollect(GameObject other)
         {
-            if (_overTime && _duration >= 0) {
-                AdjustableFloat speed = playerTank.Movement.MoveSpeed;
-                StartCoroutine(speed.AdjustValueOverTime(_speedIncreaseType, _amount, _duration));
-            } else {
-                playerTank.Movement.MoveSpeed.IncreaseValue(_speedIncreaseType, _amount);
+            IMoveable moveableObject = other.GetComponent<IMoveable>();
+            if (moveableObject == null) {
+                return false;
             }
+            // Permanently Increase the speed of the other object
+            moveableObject.OnSpeedIncrease(_amount, _speedIncreaseType);
+
             return true;
         }
 
         protected override void Movement(Rigidbody rb)
         {
-            Quaternion turnOffset = Quaternion.Euler(MovementSpeed, MovementSpeed, MovementSpeed);
+            Quaternion turnOffset = Quaternion.Euler(RotationSpeed, RotationSpeed, RotationSpeed);
             rb.MoveRotation(rb.rotation * turnOffset);
         }
     }

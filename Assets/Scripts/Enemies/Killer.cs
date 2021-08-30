@@ -1,10 +1,18 @@
-using Assets.Scripts.Player;
+using Assets.Scripts.Interfaces;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies {
     public class Killer : Enemy {
-        protected override void PlayerImpact(PlayerTank playerTank)
+        protected override bool OnImpact(GameObject other)
         {
-            playerTank.Health.Kill();
+            IDamageable damageableObject = other.GetComponent<IDamageable>();
+            if (damageableObject == null) {
+                return false;
+            }
+            // Kill the other object
+            damageableObject.OnKill();
+
+            return true;
         }
     }
 }

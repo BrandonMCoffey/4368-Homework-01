@@ -1,14 +1,19 @@
-using Assets.Scripts.Player;
+using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     public class HealthIncrease : CollectibleBase {
+        [Header("Effect Settings")]
         [SerializeField] private int _healthAdded = 1;
 
-        protected override bool Collect(PlayerTank playerTank)
+        protected override bool OnCollect(GameObject other)
         {
-            bool healthUsed = playerTank.Health.IncreaseHealth(_healthAdded);
-            return healthUsed;
+            IHealable healableObject = other.GetComponent<IHealable>();
+            if (healableObject == null) {
+                return false;
+            }
+            // Heal the other object
+            return healableObject.OnHeal(_healthAdded);
         }
     }
 }

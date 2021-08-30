@@ -1,15 +1,16 @@
-using Assets.Scripts.Player;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     [RequireComponent(typeof(Rigidbody))]
     public abstract class CollectibleBase : MonoBehaviour {
-        [SerializeField] private float _movementSpeed = 1;
+        [Header("Feedback")]
         [SerializeField] private ParticleSystem _collectParticles = null;
         [SerializeField] private AudioClip _collectSound = null;
+        [Header("Movement")]
+        [SerializeField] private float _rotationSpeed = 1;
 
-        protected float MovementSpeed => _movementSpeed;
+        protected float RotationSpeed => _rotationSpeed;
 
         private Rigidbody _rb;
 
@@ -25,15 +26,13 @@ namespace Assets.Scripts.Collectibles {
 
         private void OnTriggerEnter(Collider other)
         {
-            PlayerTank playerTank = other.gameObject.GetComponent<PlayerTank>();
-            if (playerTank == null) return;
-            bool wasCollected = Collect(playerTank);
-            if (!wasCollected) return;
-            Feedback();
-            DisableObject();
+            if (OnCollect(other.gameObject)) {
+                Feedback();
+                DisableObject();
+            }
         }
 
-        protected abstract bool Collect(PlayerTank playerTank);
+        protected abstract bool OnCollect(GameObject other);
 
         protected virtual void Feedback()
         {
@@ -53,7 +52,7 @@ namespace Assets.Scripts.Collectibles {
 
         protected virtual void Movement(Rigidbody rb)
         {
-            Quaternion turnOffset = Quaternion.Euler(0, _movementSpeed, 0);
+            Quaternion turnOffset = Quaternion.Euler(0, _rotationSpeed, 0);
             rb.MoveRotation(_rb.rotation * turnOffset);
         }
     }
