@@ -1,7 +1,7 @@
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies {
+namespace Assets.Scripts.Enemies.Basic {
     public abstract class Enemy : MonoBehaviour {
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;

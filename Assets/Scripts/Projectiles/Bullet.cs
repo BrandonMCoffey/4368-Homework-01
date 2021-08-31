@@ -1,6 +1,5 @@
 using System.Collections;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player;
 using Assets.Scripts.Tanks;
 using UnityEngine;
 

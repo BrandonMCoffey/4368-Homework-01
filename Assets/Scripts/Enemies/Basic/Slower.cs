@@ -2,7 +2,7 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies {
+namespace Assets.Scripts.Enemies.Basic {
     public class Slower : Enemy {
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.Multiply;
         [SerializeField] private float _amount = 2f;
