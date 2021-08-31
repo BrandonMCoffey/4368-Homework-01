@@ -5131,6 +5131,8 @@ MonoBehaviour:
   _turnSpeed: 6
   _slowEffectWhenTurning: 45
   _reverseDirectionAngle: 90
+  _onlyRotateArt: 1
+  _artTransform: {fileID: 4709992259292516710}
 --- !u!1 &4709992258357087597
 GameObject:
   m_ObjectHideFlags: 0

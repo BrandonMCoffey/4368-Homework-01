@@ -7,6 +7,8 @@ namespace Assets.Scripts.Tanks {
     public abstract class TankMovement : MonoBehaviour, IMoveable {
         [SerializeField] private float _baseMoveSpeed = 8f;
         [SerializeField] private float _turnSpeed = 10f;
+        [SerializeField] private bool _onlyRotateArt = true;
+        [SerializeField] private Transform _artTransform = null;
 
         public AdjustableFloat MoveSpeed { get; } = new AdjustableFloat();
 
@@ -14,9 +16,24 @@ namespace Assets.Scripts.Tanks {
 
         protected Rigidbody Rb { get; private set; }
 
+        protected bool OnlyRotateArt => _onlyRotateArt && _artTransform != null;
+        protected Transform ArtTransform => _artTransform;
+
+        protected Vector3 Forward {
+            get {
+                if (_onlyRotateArt && _artTransform != null) {
+                    return _artTransform.forward;
+                }
+                return transform.forward;
+            }
+        }
+
         private void Awake()
         {
             Rb = GetComponent<Rigidbody>();
+            if (OnlyRotateArt) {
+                Rb.freezeRotation = true;
+            }
         }
 
         private void OnEnable()

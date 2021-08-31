@@ -10,7 +10,7 @@ namespace Assets.Scripts.Tanks {
             // calculate the move amount
             float moveAmountThisFrame = _forwardAmount * speed;
             // create a vector from amount and direction
-            Vector3 moveOffset = transform.forward * moveAmountThisFrame;
+            Vector3 moveOffset = Forward * moveAmountThisFrame;
             if (transform.position.y > DistFromGround) {
                 moveOffset -= Vector3.up;
             }
@@ -32,6 +32,12 @@ namespace Assets.Scripts.Tanks {
             Quaternion turnOffset = Quaternion.Euler(0, turnAmountThisFrame, 0);
             // apply quaternion to the rigidbody
             Rb.MoveRotation(Rb.rotation * turnOffset);
+
+            if (OnlyRotateArt) {
+                ArtTransform.rotation = Rb.rotation * turnOffset;
+            } else {
+                Rb.MoveRotation(Rb.rotation * turnOffset);
+            }
         }
 
 

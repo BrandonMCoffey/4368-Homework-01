@@ -25,7 +25,7 @@ namespace Assets.Scripts.Player {
             _inventory = GetComponent<Inventory>();
 
             if (_movement == null) {
-                DebugHelper.Error(gameObject, "No assigned movement");
+                DebugHelper.Error(gameObject, "No assigned Tank Movement");
             }
         }
 

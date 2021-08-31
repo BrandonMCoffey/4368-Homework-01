@@ -19,9 +19,9 @@ namespace Assets.Scripts.Tanks {
 
         protected override void Move(float speed)
         {
-            float angle = Vector3.Angle(MoveDir, transform.forward);
+            float angle = Vector3.Angle(MoveDir, Forward);
             float moveAmountThisFrame = MoveDir.magnitude * speed / Mathf.Max(1, angle / _slowEffectWhenTurning);
-            Vector3 moveOffset = transform.forward * moveAmountThisFrame;
+            Vector3 moveOffset = Forward * moveAmountThisFrame;
             if (_moveBackwards) {
                 moveOffset = -moveOffset;
             }
@@ -33,16 +33,19 @@ namespace Assets.Scripts.Tanks {
 
         protected override void Turn(float speed)
         {
-            // TODO: Turning when against a wall doesn't work -- maybe adjust collider or don't rotate collider?
-
             if (MoveDir.magnitude == 0) return;
-            float angle = Vector3.Angle(MoveDir, transform.forward);
+            float angle = Vector3.Angle(MoveDir, Forward);
             if (angle > _reverseDirectionAngle) {
                 _moveBackwards = !_moveBackwards;
             }
 
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, MoveDir, speed * Mathf.Deg2Rad, 0);
-            Rb.rotation = Quaternion.LookRotation(newDirection);
+            Vector3 newDirection = Vector3.RotateTowards(Forward, MoveDir, speed * Mathf.Deg2Rad, 0);
+
+            if (OnlyRotateArt) {
+                ArtTransform.rotation = Quaternion.LookRotation(newDirection);
+            } else {
+                Rb.rotation = Quaternion.LookRotation(newDirection);
+            }
         }
 
         public override void SetMovementDirection(Vector2 dir)
