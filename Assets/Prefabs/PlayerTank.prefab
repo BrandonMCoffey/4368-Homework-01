@@ -5129,10 +5129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseMoveSpeed: 8
   _turnSpeed: 6
-  _slowEffectWhenTurning: 45
-  _reverseDirectionAngle: 90
   _onlyRotateArt: 1
   _artTransform: {fileID: 4709992259292516710}
+  _slowEffectWhenTurning: 45
+  _reverseDirectionAngle: 90
 --- !u!1 &4709992258357087597
 GameObject:
   m_ObjectHideFlags: 0
@@ -10398,10 +10398,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a63b772dd5211a49b9f1f42133eabd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turretFirePos: {fileID: 4709992259486010734}
+  _bulletToFire: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
   _ignoreCollider: {fileID: 4709992258312169191}
   _ignoreDuration: 0.2
-  _turretEndPos: {fileID: 4709992259486010734}
-  _bulletToFire: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
+  _hasMaximumBullets: 1
+  _maximumBullets: 5
+  _hasReloadTime: 0
+  _reloadTime: 0.2
 --- !u!1 &5887800378557081860
 GameObject:
   m_ObjectHideFlags: 0
