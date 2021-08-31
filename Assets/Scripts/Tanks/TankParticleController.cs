@@ -10,7 +10,7 @@ namespace Assets.Scripts.Tanks {
 
         private void Awake()
         {
-            if (_tankMovement == null) DebugHelper.Warn("No Tank Movement Connected");
+            if (_tankMovement == null) DebugHelper.Warn(gameObject, "No Tank Movement Connected");
         }
 
         private void Update()

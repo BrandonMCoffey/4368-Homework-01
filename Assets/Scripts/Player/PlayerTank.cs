@@ -24,9 +24,7 @@ namespace Assets.Scripts.Player {
             _movement = GetComponent<TankMovement>();
             _inventory = GetComponent<Inventory>();
 
-            if (_movement == null) {
-                DebugHelper.Error(gameObject, "No assigned Tank Movement");
-            }
+            if (_movement == null) DebugHelper.Error(gameObject, "No assigned Tank Movement");
         }
 
         public bool OnHeal(int amount)

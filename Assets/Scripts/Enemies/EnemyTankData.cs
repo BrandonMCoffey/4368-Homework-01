@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.Tank {
+namespace Assets.Scripts.Enemies {
     public enum EnemyTankType {
         Brown,
         Grey,

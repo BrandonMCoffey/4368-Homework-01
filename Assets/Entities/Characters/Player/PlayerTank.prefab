@@ -10385,6 +10385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turretPos: {fileID: 4709992258616972329}
+  _smoothRotation: 1
   _rotateSpeed: 10
 --- !u!114 &4709992259953831834
 MonoBehaviour:
@@ -10400,12 +10401,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretFirePos: {fileID: 4709992259486010734}
   _bulletToFire: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
+  _fireSound: {fileID: 8300000, guid: d50600c0c858b574bb3b2b4a66bb5890, type: 3}
+  _fireParticles: {fileID: 196773123664035779, guid: 47275274626f9aa4283a974077c76b12, type: 3}
+  _fireParticleCount: 50
   _ignoreCollider: {fileID: 4709992258312169191}
   _ignoreDuration: 0.2
   _hasMaximumBullets: 1
   _maximumBullets: 5
-  _hasReloadTime: 0
-  _reloadTime: 0.2
 --- !u!1 &5887800378557081860
 GameObject:
   m_ObjectHideFlags: 0

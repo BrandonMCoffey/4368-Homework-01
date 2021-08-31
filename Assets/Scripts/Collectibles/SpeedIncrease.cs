@@ -15,7 +15,7 @@ namespace Assets.Scripts.Collectibles {
                 return false;
             }
             // Permanently Increase the speed of the other object
-            moveableObject.OnSpeedIncrease(_amount, _speedIncreaseType);
+            moveableObject.OnSpeedIncrease(_amount, -1, _speedIncreaseType);
 
             return true;
         }

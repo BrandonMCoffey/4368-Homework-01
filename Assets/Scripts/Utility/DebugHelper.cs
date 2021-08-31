@@ -7,24 +7,14 @@ namespace Assets.Scripts.Utility {
             Debug.Log(message);
         }
 
-        public static void Warn(string message)
-        {
-            Log("[Warning] " + message);
-        }
-
         public static void Warn(GameObject obj, string message)
         {
-            Warn(obj.name + ": " + message);
-        }
-
-        public static void Error(string message)
-        {
-            Log("[Error] " + message);
+            Log("[Warning] " + obj.name + ": " + message);
         }
 
         public static void Error(GameObject obj, string message)
         {
-            Error(obj.name + ": " + message);
+            Log("[Error] " + obj.name + ": " + message);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Utility.GameEvents.Logic {
 
         private void Awake()
         {
-            if (_event == null) DebugHelper.Warn("No Attached Event");
+            if (_event == null) DebugHelper.Warn(gameObject, "No Attached Event");
         }
 
         private void OnEnable()
