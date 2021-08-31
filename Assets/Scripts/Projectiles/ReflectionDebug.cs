@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts {
+namespace Assets.Scripts.Projectiles {
     public class ReflectionDebug : MonoBehaviour {
         [SerializeField] private int _reflectionTimes = 10;
         [SerializeField] private float _maxDistance = 100;

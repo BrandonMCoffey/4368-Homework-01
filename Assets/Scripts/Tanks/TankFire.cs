@@ -21,7 +21,7 @@ namespace Assets.Scripts.Tanks {
         private void Awake()
         {
             if (_bulletToFire == null || _turretFirePos == null) {
-                DebugHelper.Error("Missing Bullet Information To Fire");
+                DebugHelper.Error(gameObject, "Missing Bullet Information To Fire");
             }
         }
 
