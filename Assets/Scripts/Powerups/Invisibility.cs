@@ -2,28 +2,29 @@ using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Powerups {
-    public class Invincibility : PowerupBase {
-        private IInvincible _effected;
+    public class Invisibility : PowerupBase {
+        private IInvisibile _effected;
 
         protected override bool OnCollect(GameObject other)
         {
-            IInvincible invincibleObject = other.GetComponent<IInvincible>();
-            if (invincibleObject == null) {
+            IInvisibile invisibileObject = other.GetComponent<IInvisibile>();
+            if (invisibileObject == null) {
                 return false;
             }
-            _effected = invincibleObject;
+            _effected = invisibileObject;
 
             return true;
         }
 
+
         protected override void Activate()
         {
-            _effected.OnSetInvincible();
+            _effected.OnSetInvisible();
         }
 
         protected override void Deactivate()
         {
-            _effected.OnRemoveInvincible();
+            _effected.OnRemoveInvisible();
         }
     }
 }

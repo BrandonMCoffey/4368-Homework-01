@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Player {
     [RequireComponent(typeof(TankHealth))]
-    [RequireComponent(typeof(Inventory))]
+    [RequireComponent(typeof(Inventory))] // TODO: Implement IInvisible
     public class PlayerTank : MonoBehaviour, IHealable, IInvincible, IInventory<Treasure> {
         [Header("Invincibility Settings")]
         [SerializeField] private Material _invincibilityMaterial = null;

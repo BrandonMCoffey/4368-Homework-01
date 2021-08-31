@@ -12,6 +12,8 @@ namespace Assets.Scripts.Powerups {
         [SerializeField] private AudioClip _powerUpSound = null;
         [SerializeField] private AudioClip _powerDownSound = null;
 
+        protected float Duration => _powerupDuration;
+
         private Collider _collider;
 
         private void Awake()
