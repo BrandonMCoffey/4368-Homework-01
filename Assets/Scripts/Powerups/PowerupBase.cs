@@ -18,6 +18,10 @@ namespace Assets.Scripts.Powerups {
         {
             _collider = GetComponent<Collider>();
             _collider.isTrigger = true;
+            // Ensure collect particles don't play on awake or self destruct
+            if (_collectParticles != null && _collectParticles.gameObject.activeInHierarchy) {
+                _collectParticles.gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -56,7 +60,7 @@ namespace Assets.Scripts.Powerups {
         protected virtual void ActivationFeedback()
         {
             if (_collectParticles != null) {
-                Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
             if (_powerUpSound != null) {
                 AudioHelper.PlayClip2D(_powerUpSound);

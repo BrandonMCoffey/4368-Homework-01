@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider))]
     public abstract class CollectibleBase : MonoBehaviour {
         [Header("Feedback")]
         [SerializeField] private ParticleSystem _collectParticles = null;
@@ -17,6 +18,11 @@ namespace Assets.Scripts.Collectibles {
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            GetComponent<Collider>().isTrigger = true;
+            // Ensure collect particles don't play on awake or self destruct
+            if (_collectParticles != null && _collectParticles.gameObject.activeInHierarchy) {
+                _collectParticles.gameObject.SetActive(false);
+            }
         }
 
         private void FixedUpdate()
@@ -37,7 +43,7 @@ namespace Assets.Scripts.Collectibles {
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
-                Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
             // Audio (TODO: Consider Object Pooling for performance)
             if (_collectSound != null) {

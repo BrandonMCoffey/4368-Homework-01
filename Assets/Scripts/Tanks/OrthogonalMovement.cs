@@ -33,6 +33,8 @@ namespace Assets.Scripts.Tanks {
 
         protected override void Turn(float speed)
         {
+            // TODO: Turning when against a wall doesn't work -- maybe adjust collider or don't rotate collider?
+
             if (MoveDir.magnitude == 0) return;
             float angle = Vector3.Angle(MoveDir, transform.forward);
             if (angle > _reverseDirectionAngle) {

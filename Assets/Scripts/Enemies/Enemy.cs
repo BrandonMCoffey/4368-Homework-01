@@ -6,6 +6,14 @@ namespace Assets.Scripts.Enemies {
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private AudioClip _impactSound = null;
 
+        protected virtual void Awake()
+        {
+            // Ensure impact particles don't play on awake or self destruct
+            if (_impactParticles != null && _impactParticles.gameObject.activeInHierarchy) {
+                _impactParticles.gameObject.SetActive(false);
+            }
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             if (OnImpact(other.gameObject)) {
@@ -18,7 +26,7 @@ namespace Assets.Scripts.Enemies {
         protected void ImpactFeedback()
         {
             if (_impactParticles != null) {
-                Instantiate(_impactParticles, transform.position, Quaternion.identity);
+                Instantiate(_impactParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
             if (_impactSound != null) {
                 AudioHelper.PlayClip2D(_impactSound);

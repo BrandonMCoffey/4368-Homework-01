@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
@@ -25,6 +24,10 @@ namespace Assets.Scripts.Tanks {
                 _currentHealth.UseConstant = true;
                 DebugHelper.Warn(gameObject, "Current Health has no assigned variable");
             }
+            // Ensure death particles don't play on awake or self destruct
+            if (_deathParticles != null && _deathParticles.gameObject.activeInHierarchy) {
+                _deathParticles.gameObject.SetActive(false);
+            }
         }
 
         private void Start()
@@ -45,7 +48,7 @@ namespace Assets.Scripts.Tanks {
             if (Invincible) return;
             _currentHealth.Value -= amount;
             if (_currentHealth <= 0) {
-                Kill();
+                OnKill();
             }
         }
 
@@ -72,7 +75,7 @@ namespace Assets.Scripts.Tanks {
                 AudioHelper.PlayClip2D(_deathAudio);
             }
             if (_deathParticles != null) {
-                Instantiate(_deathParticles, transform.position, Quaternion.identity);
+                Instantiate(_deathParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
         }
     }

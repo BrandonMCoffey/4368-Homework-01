@@ -10,8 +10,9 @@ namespace Assets.Scripts.Enemies {
 
         private TankHealth _health;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _health = GetComponent<TankHealth>();
         }
 
