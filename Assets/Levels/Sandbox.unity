@@ -400,7 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662632564ca4caf49b1bffe0d301dd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundMusic: {fileID: 0}
   _musicController: {fileID: 388409703}
   _audioPlayerName: SFX
   _poolParent: {fileID: 493410739}
@@ -625,7 +624,7 @@ GameObject:
   - component: {fileID: 388409704}
   - component: {fileID: 388409703}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Music Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,7 +639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 388409702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82df8e6cc141c0145bf60342b4a65b4e, type: 3}
+  m_Script: {fileID: 11500000, guid: e6bb78ea849c83747a3bb9e6c71ae0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &388409704
@@ -2600,6 +2599,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _restartKey: 8
   _exitGameKey: 27
+  _musicToPlay:
+    UseConstant: 1
+    Clip: {fileID: 0}
+    Data: {fileID: 0}
   _treasureCount: {fileID: 11400000, guid: 888bc9b021792594c9aaafc34f5b4d9f, type: 2}
   _treasureToWin: 10
   _onWin: {fileID: 11400000, guid: 2c13f3e2cc6dc294c8e49a3e58ba58cb, type: 2}
@@ -3113,10 +3116,6 @@ PrefabInstance:
     - target: {fileID: 1158170019345884273, guid: 8e3642162fe9b70449c84d1d2c7109cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158170019345884274, guid: 8e3642162fe9b70449c84d1d2c7109cc, type: 3}
-      propertyPath: _turnSpeed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1158170019345884278, guid: 8e3642162fe9b70449c84d1d2c7109cc, type: 3}
       propertyPath: m_Name

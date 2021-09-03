@@ -4,10 +4,9 @@ using UnityEngine;
 namespace Assets.Scripts.Audio {
     public class AudioManager : MonoBehaviour {
         [Header("Music Controller")]
-        [SerializeField] private SfxData _backgroundMusic = null;
-        [SerializeField] private AudioSourceController _musicController;
+        [SerializeField] private MusicController _musicController;
         [Header("Audio Pool")]
-        [SerializeField] private string _audioPlayerName = "Audio Play";
+        [SerializeField] private string _audioPlayerName = "SFX Player";
         [SerializeField] private Transform _poolParent;
         [SerializeField] private int _initialPoolSize = 5;
         [SerializeField] private List<AudioSourceController> _pool = new List<AudioSourceController>();
@@ -41,12 +40,9 @@ namespace Assets.Scripts.Audio {
 
             // TODO: More advanced music control system
             if (_musicController == null) {
-                GameObject musicController = new GameObject("Music Controller", typeof(AudioSourceController));
+                GameObject musicController = new GameObject("Music Controller");
                 musicController.transform.SetParent(transform);
-                _musicController = musicController.GetComponent<AudioSourceController>();
-            }
-            if (_backgroundMusic != null) {
-                // _backgroundMusic.Play(_musicController);
+                _musicController = musicController.AddComponent<MusicController>();
             }
             // SFX Pool
             if (_poolParent == null) {
@@ -55,6 +51,10 @@ namespace Assets.Scripts.Audio {
                 _poolParent = sfxPool;
             }
             BuildInitialPool(_initialPoolSize);
+        }
+
+        public void PlayMusic(SfxReference musicTrack, float fadeOut, bool crossFade, float fadeIn)
+        {
         }
 
         public AudioSourceController GetController()

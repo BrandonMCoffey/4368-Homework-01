@@ -28,7 +28,6 @@ namespace Assets.Scripts.Tanks {
             if (transform.position.y > DistFromGround) {
                 moveOffset -= Vector3.up;
             }
-            Debug.Log(moveOffset);
             Rb.velocity = moveOffset;
         }
 
