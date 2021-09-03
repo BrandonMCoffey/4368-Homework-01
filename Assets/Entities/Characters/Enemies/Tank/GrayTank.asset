@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ac24be6fce038948857175b6b5f5d9b, type: 3}
-  m_Name: BrownTank
+  m_Name: GrayTank
   m_EditorClassIdentifier: 
-  _type: 0
-  _material: {fileID: 2100000, guid: aa95409eda0231f4c9fdca65c097ba1d, type: 2}
+  _type: 1
+  _material: {fileID: 2100000, guid: 2dc7b84ba33cb00449cceb3e8d4957ff, type: 2}

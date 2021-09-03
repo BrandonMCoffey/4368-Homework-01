@@ -12,7 +12,6 @@ namespace Assets.Scripts.Tanks {
         [Header("Feedback")]
         [SerializeField] private AudioClip _fireSound = null;
         [SerializeField] private ParticleSystem _fireParticles = null;
-        [SerializeField] private int _fireParticleCount = 50;
         [Header("Ignore Collision When Firing")]
         [SerializeField] private Collider _ignoreCollider = null;
         [SerializeField] private float _ignoreDuration = 0.2f;
