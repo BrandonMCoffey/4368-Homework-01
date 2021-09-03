@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Audio {
@@ -35,7 +34,7 @@ namespace Assets.Scripts.Audio {
         {
             if (NullTest()) return;
             if (UseConstant) {
-                PoolController(Clip);
+                AudioHelper.PlayClip(Clip);
             } else {
                 Data.Play();
             }
@@ -45,8 +44,7 @@ namespace Assets.Scripts.Audio {
         {
             if (NullTest()) return;
             if (UseConstant) {
-                var controller = PoolController(Clip);
-                controller.transform.position = position;
+                AudioHelper.PlayClip(Clip, position);
             } else {
                 Data.PlayAtPosition(position);
             }
@@ -56,8 +54,7 @@ namespace Assets.Scripts.Audio {
         {
             if (NullTest()) return;
             if (UseConstant) {
-                var controller = PoolController(Clip);
-                controller.SetParent(parent);
+                AudioHelper.PlayClip(Clip, parent);
             } else {
                 Data.PlayWithParent(parent);
             }
@@ -67,20 +64,8 @@ namespace Assets.Scripts.Audio {
         {
             if (UseConstant) {
                 return Clip == null;
-            } else {
-                return Data == null;
             }
-        }
-
-        // TODO: Redundant Call mixed with SfxData Functions. Where to put?
-        private AudioSourceController PoolController(AudioClip clip)
-        {
-            var controller = AudioManager.Instance.GetController();
-            controller.Reset();
-            controller.Claimed = true;
-            controller.SetSourceProperties(clip, 1, 1, false, 0);
-            controller.Play();
-            return controller;
+            return Data == null;
         }
     }
 }

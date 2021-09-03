@@ -6,7 +6,6 @@ namespace Assets.Scripts.Audio {
         private Transform _parent;
         private AudioSource _source;
 
-        public AudioSource Source => _source;
         public bool Claimed { get; set; } = false;
 
         private void Awake()

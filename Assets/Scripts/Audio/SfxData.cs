@@ -13,35 +13,19 @@ namespace Assets.Scripts.Audio {
         public void Play()
         {
             if (_clip == null) return;
-            PoolController(AudioManager.Instance.GetController());
-        }
-
-        public void Play(AudioSourceController controller)
-        {
-            PoolController(controller);
+            AudioHelper.PlayClip(_clip, _volume, _pitch, _loop, _spacialBlend);
         }
 
         public void PlayAtPosition(Vector3 position)
         {
             if (_clip == null) return;
-            AudioSourceController controller = PoolController(AudioManager.Instance.GetController());
-            controller.SetPosition(position);
+            AudioHelper.PlayClip(_clip, position, _volume, _pitch, _loop, _spacialBlend);
         }
 
         public void PlayWithParent(Transform parent)
         {
             if (_clip == null) return;
-            AudioSourceController controller = PoolController(AudioManager.Instance.GetController());
-            controller.SetParent(parent);
-        }
-
-        private AudioSourceController PoolController(AudioSourceController controller)
-        {
-            controller.Reset();
-            controller.Claimed = true;
-            controller.SetSourceProperties(_clip, _volume, _pitch, _loop, _spacialBlend);
-            controller.Play();
-            return controller;
+            AudioHelper.PlayClip(_clip, parent, _volume, _pitch, _loop, _spacialBlend);
         }
     }
 }

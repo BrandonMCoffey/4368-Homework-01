@@ -11,7 +11,7 @@ namespace Assets.Scripts.Tanks {
         [SerializeField] private Transform _turretFirePos = null;
         [SerializeField] private Bullet _bulletToFire = null;
         [Header("Feedback")]
-        [SerializeField] private AudioClip _fireSound = null;
+        [SerializeField] private SfxReference _fireSfx = new SfxReference();
         [SerializeField] private ParticleSystem _fireParticles = null;
         [Header("Ignore Collision When Firing")]
         [SerializeField] private Collider _ignoreCollider = null;
@@ -55,13 +55,11 @@ namespace Assets.Scripts.Tanks {
 
         private void FireFeedback()
         {
+            // TODO: Consider moving onto Bullet script
             if (_fireParticles != null) {
                 Instantiate(_fireParticles, _turretFirePos.position, _turretFirePos.rotation).gameObject.SetActive(true);
             }
-            // Audio (TODO: Consider Object Pooling for performance)
-            if (_fireSound != null) {
-                AudioHelper.PlayClip(_fireSound);
-            }
+            _fireSfx.Play();
         }
     }
 }

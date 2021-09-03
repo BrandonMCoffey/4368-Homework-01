@@ -46,7 +46,7 @@ namespace Assets.Scripts.Audio {
                 _musicController = musicController.GetComponent<AudioSourceController>();
             }
             if (_backgroundMusic != null) {
-                _backgroundMusic.Play(_musicController);
+                // _backgroundMusic.Play(_musicController);
             }
             // SFX Pool
             if (_poolParent == null) {

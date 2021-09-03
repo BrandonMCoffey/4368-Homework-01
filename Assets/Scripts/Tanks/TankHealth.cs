@@ -12,7 +12,7 @@ namespace Assets.Scripts.Tanks {
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
 
         [Header("Death Feedback")]
-        [SerializeField] private AudioClip _deathAudio = null;
+        [SerializeField] private SfxReference _deathSfx = new SfxReference();
         [SerializeField] private ParticleSystem _deathParticles = null;
         [SerializeField] private UnityEvent _onDeath = new UnityEvent();
 
@@ -72,9 +72,7 @@ namespace Assets.Scripts.Tanks {
         private void Kill()
         {
             _onDeath?.Invoke();
-            if (_deathAudio != null) {
-                AudioHelper.PlayClip(_deathAudio);
-            }
+            _deathSfx.Play();
             if (_deathParticles != null) {
                 Instantiate(_deathParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }

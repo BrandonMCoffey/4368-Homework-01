@@ -110,7 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _impactParticles: {fileID: 8307856876020646216}
-  _impactSound: {fileID: 8300000, guid: d50600c0c858b574bb3b2b4a66bb5890, type: 3}
+  _impactSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
+    Data: {fileID: 0}
   _damageAmount: 1
   _selfDamageAmount: 1
 --- !u!114 &129932787
@@ -130,7 +133,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  _deathAudio: {fileID: 8300000, guid: d50600c0c858b574bb3b2b4a66bb5890, type: 3}
+  _deathSfx:
+    UseConstant: 1
+    Clip: {fileID: 0}
+    Data: {fileID: 0}
   _deathParticles: {fileID: 4978979826345498566}
   _onDeath:
     m_PersistentCalls:

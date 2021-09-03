@@ -1,6 +1,5 @@
 using System.Collections;
 using Assets.Scripts.Audio;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Powerups {
@@ -10,8 +9,8 @@ namespace Assets.Scripts.Powerups {
         [SerializeField] private GameObject _art = null;
         [SerializeField] private ParticleSystem _constantParticles = null;
         [SerializeField] private ParticleSystem _collectParticles = null;
-        [SerializeField] private AudioClip _powerUpSound = null;
-        [SerializeField] private AudioClip _powerDownSound = null;
+        [SerializeField] private SfxReference _powerUpSfx = new SfxReference();
+        [SerializeField] private SfxReference _powerDownSfx = new SfxReference();
 
         protected float Duration => _powerupDuration;
 
@@ -65,16 +64,12 @@ namespace Assets.Scripts.Powerups {
             if (_collectParticles != null) {
                 Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
-            if (_powerUpSound != null) {
-                AudioHelper.PlayClip(_powerUpSound);
-            }
+            _powerUpSfx.Play();
         }
 
         protected virtual void DeactivationFeedback()
         {
-            if (_powerDownSound != null) {
-                AudioHelper.PlayClip(_powerDownSound);
-            }
+            _powerDownSfx.Play();
         }
 
         protected virtual void DisableObject()

@@ -61,9 +61,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretFirePos: {fileID: 254657730}
   _bulletToFire: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
-  _fireSound: {fileID: 8300000, guid: d50600c0c858b574bb3b2b4a66bb5890, type: 3}
+  _fireSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: d50600c0c858b574bb3b2b4a66bb5890, type: 3}
+    Data: {fileID: 0}
   _fireParticles: {fileID: 196773123664035779, guid: 47275274626f9aa4283a974077c76b12, type: 3}
-  _fireParticleCount: 50
   _ignoreCollider: {fileID: 6401569967214668282}
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
@@ -5197,7 +5199,10 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  _deathAudio: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
+  _deathSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
+    Data: {fileID: 0}
   _deathParticles: {fileID: 4852857176113043332}
   _onDeath:
     m_PersistentCalls:

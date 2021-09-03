@@ -9888,5 +9888,11 @@ MonoBehaviour:
   _art: {fileID: 5510914114543878286}
   _constantParticles: {fileID: 446099469}
   _collectParticles: {fileID: 2664749927556953962}
-  _powerUpSound: {fileID: 8300000, guid: b45a6f3bf08933c4ca0ebcad9b5fdcbc, type: 3}
-  _powerDownSound: {fileID: 8300000, guid: 4ef16ba931d659e458c8eb210164fd3e, type: 3}
+  _powerUpSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: b45a6f3bf08933c4ca0ebcad9b5fdcbc, type: 3}
+    Data: {fileID: 0}
+  _powerDownSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 4ef16ba931d659e458c8eb210164fd3e, type: 3}
+    Data: {fileID: 0}

@@ -675,7 +675,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectParticles: {fileID: 4043406106147915702}
-  _collectSound: {fileID: 8300000, guid: b519c0333ffe019489513abfa2410e9c, type: 3}
+  _collectSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: b519c0333ffe019489513abfa2410e9c, type: 3}
+    Data: {fileID: 0}
   _rotationSpeed: 1
   _healthAdded: 1
 --- !u!1 &7404861068235479824

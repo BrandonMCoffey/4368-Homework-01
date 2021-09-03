@@ -189,7 +189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _impactParticles: {fileID: 7707443774391209177}
-  _impactSound: {fileID: 8300000, guid: 953efa66e9b192f48b5ef5e0032f5dd5, type: 3}
+  _impactSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 953efa66e9b192f48b5ef5e0032f5dd5, type: 3}
+    Data: {fileID: 0}
   _speedIncreaseType: 2
   _amount: 2
   _duration: 5

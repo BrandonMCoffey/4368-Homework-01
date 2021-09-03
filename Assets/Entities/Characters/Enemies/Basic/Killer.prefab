@@ -108,7 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _impactParticles: {fileID: 5142490477433344770}
-  _impactSound: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
+  _impactSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 6e5028151887bfd43a0b34190c456874, type: 3}
+    Data: {fileID: 0}
 --- !u!1 &5341123330969247775
 GameObject:
   m_ObjectHideFlags: 0

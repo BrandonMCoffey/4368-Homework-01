@@ -1,11 +1,10 @@
 using Assets.Scripts.Audio;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Basic {
     public abstract class Enemy : MonoBehaviour {
         [SerializeField] private ParticleSystem _impactParticles = null;
-        [SerializeField] private AudioClip _impactSound = null;
+        [SerializeField] private SfxReference _impactSfx = new SfxReference();
 
         protected virtual void Awake()
         {
@@ -29,9 +28,7 @@ namespace Assets.Scripts.Enemies.Basic {
             if (_impactParticles != null) {
                 Instantiate(_impactParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
-            if (_impactSound != null) {
-                AudioHelper.PlayClip(_impactSound);
-            }
+            _impactSfx.Play();
         }
     }
 }

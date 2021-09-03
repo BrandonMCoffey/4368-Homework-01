@@ -1,5 +1,4 @@
 using Assets.Scripts.Audio;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Collectibles {
@@ -8,7 +7,7 @@ namespace Assets.Scripts.Collectibles {
     public abstract class CollectibleBase : MonoBehaviour {
         [Header("Feedback")]
         [SerializeField] private ParticleSystem _collectParticles = null;
-        [SerializeField] private AudioClip _collectSound = null;
+        [SerializeField] private SfxReference _collectSfx = new SfxReference();
         [Header("Movement")]
         [SerializeField] private float _rotationSpeed = 1;
 
@@ -46,10 +45,7 @@ namespace Assets.Scripts.Collectibles {
             if (_collectParticles != null) {
                 Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
-            // Audio (TODO: Consider Object Pooling for performance)
-            if (_collectSound != null) {
-                AudioHelper.PlayClip(_collectSound);
-            }
+            _collectSfx.Play();
         }
 
         protected virtual void DisableObject()
