@@ -4,14 +4,13 @@ using UnityEngine;
 namespace Assets.Scripts.Audio {
     public class AudioManager : MonoBehaviour {
         [Header("Music Controller")]
-        [SerializeField] private SoundInfo _backgroundMusic = null;
-        [SerializeField] private AudioSourceController _musicController = null;
+        [SerializeField] private SfxData _backgroundMusic = null;
+        [SerializeField] private AudioSourceController _musicController;
         [Header("Audio Pool")]
-        [SerializeField] private string _audioPlayerName = "Audio Player";
+        [SerializeField] private string _audioPlayerName = "Audio Play";
         [SerializeField] private Transform _poolParent;
         [SerializeField] private int _initialPoolSize = 5;
-
-        private List<AudioSourceController> _pool = new List<AudioSourceController>();
+        [SerializeField] private List<AudioSourceController> _pool = new List<AudioSourceController>();
 
         #region Singleton
 
@@ -21,8 +20,6 @@ namespace Assets.Scripts.Audio {
             get {
                 if (_instance == null) {
                     _instance = new GameObject("AudioManager", typeof(AudioManager)).GetComponent<AudioManager>();
-                    // Start is called twice, but must be called immediately (here) before it is returned. Then is called by unity next frame...
-                    _instance.Start();
                 }
                 return _instance;
             }
@@ -39,12 +36,9 @@ namespace Assets.Scripts.Audio {
             } else {
                 Destroy(gameObject);
             }
-        }
 
-        #endregion
+            #endregion
 
-        private void Start()
-        {
             // TODO: More advanced music control system
             if (_musicController == null) {
                 GameObject musicController = new GameObject("Music Controller", typeof(AudioSourceController));
@@ -65,7 +59,6 @@ namespace Assets.Scripts.Audio {
 
         public AudioSourceController GetController()
         {
-            Debug.Log(_pool.Count);
             if (_pool.Count > 0) {
                 AudioSourceController output = _pool[0];
                 _pool.Remove(output);
@@ -73,6 +66,7 @@ namespace Assets.Scripts.Audio {
                 return output;
             }
             GameObject obj = new GameObject(_audioPlayerName);
+            obj.transform.SetParent(_poolParent);
             return obj.AddComponent<AudioSourceController>();
         }
 

@@ -1,3 +1,4 @@
+using Assets.Scripts.Audio;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Collectibles {
             }
             // Audio (TODO: Consider Object Pooling for performance)
             if (_collectSound != null) {
-                AudioHelper.PlayClip2D(_collectSound);
+                AudioHelper.PlayClip(_collectSound);
             }
         }
 

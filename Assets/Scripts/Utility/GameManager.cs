@@ -12,11 +12,6 @@ namespace Assets.Scripts.Utility {
         [SerializeField] private int _treasureToWin = 10;
         [SerializeField] private GameEvent _onWin = null;
 
-        private void Start()
-        {
-            AudioManager.Instance.GetController();
-        }
-
         private void Update()
         {
             if (Input.GetKeyDown(_restartKey)) {

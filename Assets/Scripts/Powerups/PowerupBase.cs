@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.Audio;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -65,14 +66,14 @@ namespace Assets.Scripts.Powerups {
                 Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
             if (_powerUpSound != null) {
-                AudioHelper.PlayClip2D(_powerUpSound);
+                AudioHelper.PlayClip(_powerUpSound);
             }
         }
 
         protected virtual void DeactivationFeedback()
         {
             if (_powerDownSound != null) {
-                AudioHelper.PlayClip2D(_powerDownSound);
+                AudioHelper.PlayClip(_powerDownSound);
             }
         }
 

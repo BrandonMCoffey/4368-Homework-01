@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Audio;
 using Assets.Scripts.Projectiles;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -59,7 +60,7 @@ namespace Assets.Scripts.Tanks {
             }
             // Audio (TODO: Consider Object Pooling for performance)
             if (_fireSound != null) {
-                AudioHelper.PlayClip2D(_fireSound);
+                AudioHelper.PlayClip(_fireSound);
             }
         }
     }

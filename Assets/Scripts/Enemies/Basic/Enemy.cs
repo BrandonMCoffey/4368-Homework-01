@@ -1,3 +1,4 @@
+using Assets.Scripts.Audio;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -29,7 +30,7 @@ namespace Assets.Scripts.Enemies.Basic {
                 Instantiate(_impactParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
             if (_impactSound != null) {
-                AudioHelper.PlayClip2D(_impactSound);
+                AudioHelper.PlayClip(_impactSound);
             }
         }
     }

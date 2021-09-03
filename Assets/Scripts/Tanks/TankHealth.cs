@@ -1,3 +1,4 @@
+using Assets.Scripts.Audio;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
@@ -72,7 +73,7 @@ namespace Assets.Scripts.Tanks {
         {
             _onDeath?.Invoke();
             if (_deathAudio != null) {
-                AudioHelper.PlayClip2D(_deathAudio);
+                AudioHelper.PlayClip(_deathAudio);
             }
             if (_deathParticles != null) {
                 Instantiate(_deathParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);

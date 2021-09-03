@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Audio
-{
+namespace Assets.Scripts.Audio {
     [RequireComponent(typeof(AudioSource))]
-    public class AudioSourceController : MonoBehaviour
-    {
+    public class AudioSourceController : MonoBehaviour {
         private Transform _parent;
         private AudioSource _source;
 
+        public AudioSource Source => _source;
         public bool Claimed { get; set; } = false;
 
         private void Awake()
@@ -18,12 +17,9 @@ namespace Assets.Scripts.Audio
         private void LateUpdate()
         {
             if (!Claimed) return;
-            if (_source.isPlaying == false)
-            {
+            if (_source.isPlaying == false) {
                 Stop();
-            }
-            else if (_parent != null)
-            {
+            } else if (_parent != null) {
                 transform.position = _parent.position;
             }
         }
