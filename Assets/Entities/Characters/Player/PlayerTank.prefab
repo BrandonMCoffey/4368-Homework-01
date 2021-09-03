@@ -4885,7 +4885,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7918734152587452185}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b708007de8e530341bb0abd093cfa8e6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4931,8 +4931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a51cb6122e6f646a2e528d42c5a198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseMoveSpeed: 8
-  _turnSpeed: 6
+  _baseMoveSpeed: 5
+  _turnSpeed: 8
   _onlyRotateArt: 1
   _artTransform: {fileID: 7918734153561647257}
   _slowEffectWhenTurning: 45
