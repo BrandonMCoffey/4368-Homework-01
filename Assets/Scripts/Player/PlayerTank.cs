@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Assets.Scripts.Collectibles;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
@@ -6,9 +5,7 @@ using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Player {
-    [RequireComponent(typeof(TankHealth))]
-    [RequireComponent(typeof(Inventory))]
-    [RequireComponent(typeof(TankPowerup))]
+    [RequireComponent(typeof(TankHealth), typeof(Inventory), typeof(TankPowerup))]
     public class PlayerTank : MonoBehaviour, IHealable, IInventory<Treasure> {
         private TankHealth _health;
         private TankMovement _movement;

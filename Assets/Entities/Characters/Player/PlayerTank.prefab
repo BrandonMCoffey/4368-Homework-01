@@ -4851,6 +4851,7 @@ GameObject:
   - component: {fileID: 7918734152587452188}
   - component: {fileID: 7918734152587452179}
   - component: {fileID: 7918734152587452191}
+  - component: {fileID: 6607670296990937948}
   - component: {fileID: 7918734152587452190}
   m_Layer: 0
   m_Name: PlayerTank
@@ -4983,6 +4984,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6607670296990937948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7918734152587452185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b62028543f8b345abac69c4ff9610a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invincibilityMaterial: {fileID: 2100000, guid: 15373bac37a1b09468ac4819d99aafb7, type: 2}
+  _materialsToChangeWhenInvincible:
+  - {fileID: 7918734152715583632}
+  - {fileID: 7918734152625894548}
+  _regularArt: []
+  _invisibleArt: []
 --- !u!114 &7918734152587452190
 MonoBehaviour:
   m_ObjectHideFlags: 0

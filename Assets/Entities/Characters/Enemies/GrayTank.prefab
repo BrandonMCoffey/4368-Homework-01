@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e013044435798c242a3b8e1f0190ec44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseMoveSpeed: 3
-  _turnSpeed: 8
-  _onlyRotateArt: 0
+  _baseMoveSpeed: 8
+  _turnSpeed: 10
+  _onlyRotateArt: 1
   _artTransform: {fileID: 1158170020724542600}
 --- !u!1 &1158170020724542601
 GameObject:
@@ -5130,9 +5130,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fireTime: {x: 1, y: 4}
-  _moveTime: {x: 1.5, y: 3}
-  _moveDistance: {x: 3, y: 4}
+  _fireTime: {x: 1, y: 3}
+  _moveTime: {x: 2, y: 4}
+  _moveDistance: {x: 2, y: 4}
 --- !u!1 &5243408812530993483
 GameObject:
   m_ObjectHideFlags: 0

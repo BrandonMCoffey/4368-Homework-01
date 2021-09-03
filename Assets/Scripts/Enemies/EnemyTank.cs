@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemies {
     [RequireComponent(typeof(TankHealth))]
-    public class EnemyTank : MonoBehaviour, IDamageable {
+    public class EnemyTank : MonoBehaviour {
         [SerializeField] private EnemyTankData _enemyData = null;
         [SerializeField] private List<MeshRenderer> _baseMaterialsToChange = new List<MeshRenderer>();
 
@@ -32,21 +32,6 @@ namespace Assets.Scripts.Enemies {
             foreach (var meshRenderer in _baseMaterialsToChange) {
                 meshRenderer.material = _enemyData.Material;
             }
-        }
-
-        public void OnTankImpact(int damageTaken)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnBulletImpact(int damageTaken)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnKill()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
