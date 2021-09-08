@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1158170019345884275}
   - component: {fileID: 1393751031146976613}
   - component: {fileID: 1158170019345884274}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GrayTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1158170020724542600}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 836714514980379150}
   - component: {fileID: 7576110443221161923}
   - component: {fileID: 7064031362216153264}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TankDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5055,7 +5055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5243408811549000502}
   - component: {fileID: 5243408811549000496}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5145,7 +5145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5243408812530993480}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TurretEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5177,7 +5177,7 @@ GameObject:
   - component: {fileID: 5243408812585191250}
   - component: {fileID: 5243408812585191248}
   - component: {fileID: 5243408812585191251}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5245,7 +5245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5243408813159400707}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5274,6 +5274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158170020724542600}
     m_Modifications:
+    - target: {fileID: -8785644345817237972, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5334,14 +5338,42 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2dc7b84ba33cb00449cceb3e8d4957ff, type: 2}
+    - target: {fileID: -7479280679464761496, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6303116636865536453, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6064602150142299441, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3956307403782531638, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 243041194690276544, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_Name
       value: EnemyTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5111525049225644375, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2dc7b84ba33cb00449cceb3e8d4957ff, type: 2}
+    - target: {fileID: 9104599533715919228, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
 --- !u!4 &1700139655837854505 stripped

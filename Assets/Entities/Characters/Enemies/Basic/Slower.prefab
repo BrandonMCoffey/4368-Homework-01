@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4410311682416842541}
   - component: {fileID: 6846720057664828789}
   - component: {fileID: 7499210337985913153}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6336303423944080387}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1982285133998452692}
   - component: {fileID: 1982285133998452695}
   - component: {fileID: 1982285133998452694}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Slower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8836204180868476679}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7707443774391209177}
   - component: {fileID: 7006362064811642694}
   - component: {fileID: 6313273337682101090}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SlowerImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}

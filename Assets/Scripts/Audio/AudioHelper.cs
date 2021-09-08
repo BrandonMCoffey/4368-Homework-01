@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Audio {
-    public static class AudioHelper {
+namespace Assets.Scripts.Audio
+{
+    public static class AudioHelper
+    {
         public static void PlayClip(AudioClip clip, float volume = 1, float pitch = 1, bool loop = false, float spacialBlend = 0)
         {
             var controller = PoolController();

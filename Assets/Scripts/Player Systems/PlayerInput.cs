@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Player {
-    public class PlayerInput : MonoBehaviour {
+namespace Assets.Scripts.Player_Systems
+{
+    public class PlayerInput : MonoBehaviour
+    {
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LayerMask _tankAimMask = 0;
         [SerializeField] private float _tankAimMaxDistance = 100;

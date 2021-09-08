@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6523776638727742142}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2127085657637716906}
   - component: {fileID: 6479549849956396766}
   - component: {fileID: 2108030850494969010}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7387073614073010187}
   - component: {fileID: 3988297105607785328}
   - component: {fileID: 337339854518919911}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FastBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 6111991882396690144}
   - component: {fileID: 5482093648681915668}
   - component: {fileID: 1029687951074340083}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

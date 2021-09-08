@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 175557336}
   - component: {fileID: 175557338}
   - component: {fileID: 175557337}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 254657730}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TurretEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616106121}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152765628}
   - component: {fileID: 1152765629}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 4852857176113043332}
   - component: {fileID: 2443084901792012873}
   - component: {fileID: 3083892140751789370}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TankDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5094,7 +5094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6401569966448361730}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5128,7 +5128,7 @@ GameObject:
   - component: {fileID: 6401569967214668282}
   - component: {fileID: 6401569967214668281}
   - component: {fileID: 6598843989206784239}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BrownTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5226,6 +5226,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6401569966448361730}
     m_Modifications:
+    - target: {fileID: -8785644345817237972, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5286,14 +5290,42 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: aa95409eda0231f4c9fdca65c097ba1d, type: 2}
+    - target: {fileID: -7479280679464761496, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6303116636865536453, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6064602150142299441, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3956307403782531638, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 243041194690276544, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_Name
       value: EnemyTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5111525049225644375, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: aa95409eda0231f4c9fdca65c097ba1d, type: 2}
+    - target: {fileID: 9104599533715919228, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45ea442183d2734f919d039e84a6f6b, type: 3}
 --- !u!4 &6871446891469006499 stripped

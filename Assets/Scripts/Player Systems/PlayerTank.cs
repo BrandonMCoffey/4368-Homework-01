@@ -4,9 +4,11 @@ using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Player {
+namespace Assets.Scripts.Player_Systems
+{
     [RequireComponent(typeof(TankHealth), typeof(Inventory), typeof(TankPowerup))]
-    public class PlayerTank : MonoBehaviour, IHealable, IInventory<Treasure> {
+    public class PlayerTank : MonoBehaviour, IHealable, IInventory<Treasure>
+    {
         private TankHealth _health;
         private TankMovement _movement;
         private Inventory _inventory;

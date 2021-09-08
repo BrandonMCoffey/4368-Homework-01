@@ -5,8 +5,10 @@ using Assets.Scripts.Projectiles;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
-    public class TankFire : MonoBehaviour {
+namespace Assets.Scripts.Tanks
+{
+    public class TankFire : MonoBehaviour
+    {
         [Header("Necessary Bullet Details")]
         [SerializeField] private Transform _turretFirePos = null;
         [SerializeField] private Bullet _bulletToFire = null;

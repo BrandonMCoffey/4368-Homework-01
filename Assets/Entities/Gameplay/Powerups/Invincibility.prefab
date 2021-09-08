@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 446099467}
   - component: {fileID: 446099469}
   - component: {fileID: 446099468}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Constant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4813,7 +4813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5275653436515419864}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4828,7 +4828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597658538345353824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 446099467}
@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 1147752332584877611}
   - component: {fileID: 4429730087452564749}
   - component: {fileID: 1973236867848848539}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4926,7 +4926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8511234985537671113}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4941,7 +4941,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5510914114543878286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1147752332584877611}
@@ -4960,7 +4960,7 @@ GameObject:
   - component: {fileID: 2664749927556953962}
   - component: {fileID: 2686371246087388736}
   - component: {fileID: 7544359831353787781}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: InvincibilityActivate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9836,7 +9836,7 @@ GameObject:
   - component: {fileID: 7446247150334773185}
   - component: {fileID: 7446247150334773199}
   - component: {fileID: 7446247150334773198}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Invincibility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9871,7 +9871,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.6, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &7446247150334773198
 MonoBehaviour:
   m_ObjectHideFlags: 0

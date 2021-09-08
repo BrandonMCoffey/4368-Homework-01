@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6028014184071556671}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 2594082793435537978}
   - component: {fileID: 7762584785027914549}
   - component: {fileID: 129932787}
-  m_Layer: 0
-  m_Name: Enemy
+  m_Layer: 12
+  m_Name: Weak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 8307856876020646216}
   - component: {fileID: 8284248735616354402}
   - component: {fileID: 4540344706305455015}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5041,7 +5041,7 @@ GameObject:
   - component: {fileID: 6377116665535932810}
   - component: {fileID: 9030460498431611520}
   - component: {fileID: 1107902199016932657}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5120,7 +5120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1336737563520398174}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5154,7 +5154,7 @@ GameObject:
   - component: {fileID: 4978979826345498566}
   - component: {fileID: 2786575889509368419}
   - component: {fileID: 8348285395338690060}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

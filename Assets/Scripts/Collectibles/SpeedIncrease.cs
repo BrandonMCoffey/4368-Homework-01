@@ -2,8 +2,10 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectibles {
-    public class SpeedIncrease : CollectibleBase {
+namespace Assets.Scripts.Collectibles
+{
+    public class SpeedIncrease : CollectibleBase
+    {
         [Header("Effect Settings")]
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
         [SerializeField] private float _amount = 1f;
@@ -20,10 +22,10 @@ namespace Assets.Scripts.Collectibles {
             return true;
         }
 
-        protected override void Movement(Rigidbody rb)
+        protected override void Movement(Transform obj)
         {
             Quaternion turnOffset = Quaternion.Euler(RotationSpeed, RotationSpeed, RotationSpeed);
-            rb.MoveRotation(rb.rotation * turnOffset);
+            obj.rotation *= turnOffset;
         }
     }
 }

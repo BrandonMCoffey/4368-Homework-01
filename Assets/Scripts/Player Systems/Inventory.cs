@@ -1,8 +1,10 @@
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Player {
-    public class Inventory : MonoBehaviour {
+namespace Assets.Scripts.Player_Systems
+{
+    public class Inventory : MonoBehaviour
+    {
         [SerializeField] private FloatReference _treasureCount = new FloatReference(0);
 
         private void OnEnable()
