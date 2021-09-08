@@ -3181,7 +3181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2584675887569654368, guid: bf70d4f5b08f27e4bbbbce251e5a7c00, type: 3}
       propertyPath: m_Name
-      value: Map
+      value: Sandbox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf70d4f5b08f27e4bbbbce251e5a7c00, type: 3}
@@ -3306,6 +3306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7918734153150944869, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
+      propertyPath: _bulletToFire
+      value: 
+      objectReference: {fileID: 7387073614073010187, guid: 12c2d10c1a56d8043a6a6a9ad781abc4, type: 3}
     - target: {fileID: 7918734153595252036, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.data[0]
       value: 

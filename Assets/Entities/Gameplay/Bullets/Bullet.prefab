@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reflectionTimes: 2
-  _maxDistance: 16
+  _maxDistance: 50
   _handleOffset: 0.1
   _handleLength: 0.3
   _handleColor: {r: 1, g: 0, b: 0, a: 1}

@@ -1,14 +1,22 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Projectiles {
-    public class ReflectionDebug : MonoBehaviour {
+namespace Assets.Scripts.Projectiles
+{
+    public class ReflectionDebug : MonoBehaviour
+    {
         [SerializeField] private int _reflectionTimes = 10;
         [SerializeField] private float _maxDistance = 100;
         [SerializeField] private float _handleOffset = 0.1f;
         [SerializeField] private float _handleLength = 0.3f;
         [SerializeField] private Color _handleColor = Color.red;
         [SerializeField] private Color _lineColor = Color.gray;
+
+        public int ReflectionTimes
+        {
+            get => _reflectionTimes;
+            set => _reflectionTimes = value;
+        }
 
         private void OnDrawGizmos()
         {

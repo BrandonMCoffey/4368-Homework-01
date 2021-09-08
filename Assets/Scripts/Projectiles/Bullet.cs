@@ -3,10 +3,12 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Projectiles {
+namespace Assets.Scripts.Projectiles
+{
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Collider))]
-    public class Bullet : MonoBehaviour {
+    public class Bullet : MonoBehaviour
+    {
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _bounceTimes = 1;
@@ -15,11 +17,16 @@ namespace Assets.Scripts.Projectiles {
         private Collider _collider;
         private int _currentBounces;
 
+        private ReflectionDebug _debug;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
             _collider.isTrigger = false;
+
+            _debug = GetComponent<ReflectionDebug>();
+            if (_debug != null) _debug.ReflectionTimes = _bounceTimes + 1;
         }
 
         private void FixedUpdate()
@@ -34,6 +41,8 @@ namespace Assets.Scripts.Projectiles {
                 health.OnBulletImpact(_damageAmount);
                 Kill();
             } else if (_currentBounces++ < _bounceTimes) {
+                if (_debug != null) _debug.ReflectionTimes = _bounceTimes - _currentBounces + 1;
+
                 var direction = transform.forward;
 
                 Ray ray = new Ray(transform.position, direction);
