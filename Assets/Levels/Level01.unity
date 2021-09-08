@@ -2101,18 +2101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3014748770691490348, guid: 770f2ae530ace9d40aae3540fb4460fe, type: 3}
-      propertyPath: _spawnableObjects.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014748770691490348, guid: 770f2ae530ace9d40aae3540fb4460fe, type: 3}
-      propertyPath: _spawnableObjects.Array.data[4]
-      value: 
-      objectReference: {fileID: 6401569967214668284, guid: 4877f5f8ee04a0e489e207a393c4bd18, type: 3}
-    - target: {fileID: 3014748770691490348, guid: 770f2ae530ace9d40aae3540fb4460fe, type: 3}
-      propertyPath: _spawnableObjects.Array.data[5]
-      value: 
-      objectReference: {fileID: 1158170019345884278, guid: 8e3642162fe9b70449c84d1d2c7109cc, type: 3}
     - target: {fileID: 6628902953932585024, guid: 770f2ae530ace9d40aae3540fb4460fe, type: 3}
       propertyPath: m_RootOrder
       value: 7

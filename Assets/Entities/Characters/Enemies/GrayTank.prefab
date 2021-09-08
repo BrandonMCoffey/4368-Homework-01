@@ -81,6 +81,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: e17505884484c69468e23a6400f73560, type: 2}
+  _lockObjects:
+  - {fileID: 5243408812585191261}
+  - {fileID: 5243408811549000497}
   _baseMaterialsToChange:
   - {fileID: 2209516120213148891}
   - {fileID: 6268286706108286357}

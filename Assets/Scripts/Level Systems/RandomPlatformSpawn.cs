@@ -6,20 +6,22 @@ namespace Assets.Scripts.Level_Systems
     public class RandomPlatformSpawn : MonoBehaviour
     {
         [SerializeField] private List<PlatformSpawner> _platforms = new List<PlatformSpawner>();
-        [SerializeField] private List<GameObject> _spawnableObjects = new List<GameObject>();
+        [SerializeField] private SpawnableObjectData _spawnableObjects = null;
 
         public void Spawn(int count)
         {
-            if (_spawnableObjects.Count == 0) return;
+            if (_spawnableObjects == null) return;
             int iterations = 0;
             for (int i = 0; i < count; ++i) {
                 int randPlatform = Random.Range(0, _platforms.Count);
                 if (_platforms[randPlatform].IsClear()) {
-                    int randObject = Random.Range(0, _spawnableObjects.Count);
-                    _platforms[randPlatform].PrepareToSpawn(_spawnableObjects[randObject]);
-                } else {
-                    i--;
+                    GameObject obj = _spawnableObjects.GetRandom();
+                    if (obj != null) {
+                        _platforms[randPlatform].PrepareToSpawn(obj);
+                        continue;
+                    }
                 }
+                --i;
                 if (++iterations > 100) {
                     break;
                 }

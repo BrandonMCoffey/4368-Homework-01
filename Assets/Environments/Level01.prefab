@@ -9495,11 +9495,7 @@ MonoBehaviour:
   - {fileID: 6222157086384585919}
   - {fileID: 2174344651542332319}
   - {fileID: 8190790667430124346}
-  _spawnableObjects:
-  - {fileID: 1803373369315612378, guid: 8ee70109884cd264596f35a18c7519e3, type: 3}
-  - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
-  - {fileID: 7446247150334773184, guid: fe0a23a0ac7c2fe4fbd79aa52dfd14c9, type: 3}
-  - {fileID: 7357065920650428947, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
+  _spawnableObjects: {fileID: 11400000, guid: ae32f689a004c5b45b4b6f9ab7918b93, type: 2}
 --- !u!1 &6628902953946902433
 GameObject:
   m_ObjectHideFlags: 0

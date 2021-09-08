@@ -5179,6 +5179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 48eb888653b4fbb4ab2401dc14c7f40a, type: 2}
+  _lockObjects:
+  - {fileID: 175557335}
+  - {fileID: 1152765627}
   _baseMaterialsToChange:
   - {fileID: 6227796298120042833}
   - {fileID: 2177834587103594527}

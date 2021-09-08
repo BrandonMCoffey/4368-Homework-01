@@ -1,14 +1,16 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
-    public class TankAim : MonoBehaviour {
+namespace Assets.Scripts.Tanks
+{
+    public class TankAim : MonoBehaviour
+    {
         [SerializeField] private Transform _turretPos = null;
         [SerializeField] private bool _smoothRotation = true;
         [SerializeField] private float _rotateSpeed = 5;
 
         private Vector3 _lookAtPos;
 
-        private void Awake()
+        private void OnEnable()
         {
             _lookAtPos = new Vector3(transform.position.x, _turretPos.position.y, transform.position.z + 2);
         }

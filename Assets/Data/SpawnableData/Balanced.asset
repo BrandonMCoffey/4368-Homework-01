@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e2cea1001a9d44db6aa9cca8a23117, type: 3}
+  m_Name: Balanced
+  m_EditorClassIdentifier: 
+  _weighted: 1
+  _field:
+  - Object: {fileID: 1803373369315612378, guid: 8ee70109884cd264596f35a18c7519e3, type: 3}
+    Weight: 1
+  - Object: {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
+    Weight: 3
+  - Object: {fileID: 7357065920650428947, guid: f3095d08660ae5c478b6ece6860544f6, type: 3}
+    Weight: 0
+  - Object: {fileID: 7446247150334773184, guid: fe0a23a0ac7c2fe4fbd79aa52dfd14c9, type: 3}
+    Weight: 2
+  - Object: {fileID: 6401569967214668284, guid: 4877f5f8ee04a0e489e207a393c4bd18, type: 3}
+    Weight: 4
+  - Object: {fileID: 1158170019345884278, guid: 8e3642162fe9b70449c84d1d2c7109cc, type: 3}
+    Weight: 4
