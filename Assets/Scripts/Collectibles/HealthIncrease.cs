@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectibles {
-    public class HealthIncrease : CollectibleBase {
+namespace Assets.Scripts.Collectibles
+{
+    public class HealthIncrease : CollectibleBase
+    {
         [Header("Effect Settings")]
         [SerializeField] private int _healthAdded = 1;
 

@@ -2,9 +2,11 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
+namespace Assets.Scripts.Tanks
+{
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class TankMovement : MonoBehaviour, IMoveable {
+    public abstract class TankMovement : MonoBehaviour, IMoveable
+    {
         [SerializeField] private float _baseMoveSpeed = 8f;
         [SerializeField] private float _turnSpeed = 10f;
         [SerializeField] private bool _onlyRotateArt = true;
@@ -19,8 +21,10 @@ namespace Assets.Scripts.Tanks {
         protected bool OnlyRotateArt => _onlyRotateArt && _artTransform != null;
         protected Transform ArtTransform => _artTransform;
 
-        protected Vector3 Forward {
-            get {
+        protected Vector3 Forward
+        {
+            get
+            {
                 if (_onlyRotateArt && _artTransform != null) {
                     return _artTransform.forward;
                 }

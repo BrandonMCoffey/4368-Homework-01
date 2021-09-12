@@ -32,8 +32,7 @@ namespace Assets.Scripts.Tanks
             if (_health == null) return;
             _health.Invincible = true;
             _regularMaterial = new List<Material>(_materialsToChangeWhenInvincible.Count);
-            foreach (var meshRenderer in _materialsToChangeWhenInvincible)
-            {
+            foreach (var meshRenderer in _materialsToChangeWhenInvincible) {
                 _regularMaterial.Add(meshRenderer.material);
                 meshRenderer.material = _invincibilityMaterial;
             }
@@ -43,8 +42,7 @@ namespace Assets.Scripts.Tanks
         {
             if (_health == null) return;
             _health.Invincible = false;
-            for (int i = 0; i < _materialsToChangeWhenInvincible.Count; ++i)
-            {
+            for (int i = 0; i < _materialsToChangeWhenInvincible.Count; ++i) {
                 _materialsToChangeWhenInvincible[i].material = _regularMaterial[i];
             }
             _regularMaterial.Clear();
@@ -52,12 +50,10 @@ namespace Assets.Scripts.Tanks
 
         public void OnRemoveInvisible()
         {
-            foreach (var obj in _invisibleArt)
-            {
+            foreach (var obj in _invisibleArt) {
                 obj.SetActive(false);
             }
-            foreach (var obj in _regularArt)
-            {
+            foreach (var obj in _regularArt) {
                 obj.SetActive(true);
             }
         }
@@ -65,12 +61,10 @@ namespace Assets.Scripts.Tanks
         // TODO: Does disabling object break Invincible MeshRenderers?
         public void OnSetInvisible()
         {
-            foreach (var obj in _invisibleArt)
-            {
+            foreach (var obj in _invisibleArt) {
                 obj.SetActive(true);
             }
-            foreach (var obj in _regularArt)
-            {
+            foreach (var obj in _regularArt) {
                 obj.SetActive(false);
             }
         }

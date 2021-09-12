@@ -4,8 +4,10 @@ using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.Utility {
-    public class GameManager : MonoBehaviour {
+namespace Assets.Scripts.Utility
+{
+    public class GameManager : MonoBehaviour
+    {
         [Header("Game Related Keys")]
         [SerializeField] private KeyCode _restartKey = KeyCode.Backspace;
         [SerializeField] private KeyCode _exitGameKey = KeyCode.Escape;

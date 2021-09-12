@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace Assets.Scripts.Utility.CustomFloats {
+namespace Assets.Scripts.Utility.CustomFloats
+{
     [Serializable]
-    public class FloatReference {
+    public class FloatReference
+    {
         public bool UseConstant;
         public float ConstantValue;
         public FloatVariable Variable = null;
@@ -19,9 +21,11 @@ namespace Assets.Scripts.Utility.CustomFloats {
             ConstantValue = value;
         }
 
-        public float Value {
+        public float Value
+        {
             get => UseConstant ? ConstantValue : Variable.Value;
-            set {
+            set
+            {
                 if (UseConstant) {
                     ConstantValue = value;
                 } else {

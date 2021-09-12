@@ -2,9 +2,11 @@ using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Utility {
+namespace Assets.Scripts.Utility
+{
     [RequireComponent(typeof(Text))]
-    public class VariableText : MonoBehaviour {
+    public class VariableText : MonoBehaviour
+    {
         [TextArea, SerializeField] private string _textBefore = "";
         [SerializeField] private FloatVariable _floatReference = null;
         [TextArea, SerializeField] private string _textAfter = "";

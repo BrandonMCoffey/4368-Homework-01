@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio {
+namespace Assets.Scripts.Audio
+{
     [Serializable]
-    public class SfxReference {
+    public class SfxReference
+    {
         public bool UseConstant;
         public AudioClip Clip;
         public SfxData Data;

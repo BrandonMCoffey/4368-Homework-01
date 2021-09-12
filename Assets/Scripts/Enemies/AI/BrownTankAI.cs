@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.AI {
-    public class BrownTankAI : EnemyAI {
+namespace Assets.Scripts.Enemies.AI
+{
+    public class BrownTankAI : EnemyAI
+    {
         [SerializeField] private Vector2 _fireTime = new Vector2(4, 6);
 
         private float _fireTimer;

@@ -1,8 +1,10 @@
 using Assets.Scripts.Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.Basic {
-    public abstract class Enemy : MonoBehaviour {
+namespace Assets.Scripts.Enemies.Basic
+{
+    public abstract class Enemy : MonoBehaviour
+    {
         [SerializeField] private ParticleSystem _impactParticles = null;
         [SerializeField] private SfxReference _impactSfx = new SfxReference();
 

@@ -1,8 +1,10 @@
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
-    public class TankParticleController : MonoBehaviour {
+namespace Assets.Scripts.Tanks
+{
+    public class TankParticleController : MonoBehaviour
+    {
         [SerializeField] private TankMovement _tankMovement = null;
         [SerializeField] private ParticleSystem _speedBoostEffects = null;
         [SerializeField] private ParticleSystem _slowedDownEffects = null;

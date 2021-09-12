@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectibles {
-    public class DamageBonusPickup : CollectibleBase {
+namespace Assets.Scripts.Collectibles
+{
+    public class DamageBonusPickup : CollectibleBase
+    {
         [SerializeField] private int _damageBonus = 1;
 
         protected override bool OnCollect(GameObject other)

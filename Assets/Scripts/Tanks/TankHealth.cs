@@ -5,8 +5,10 @@ using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Tanks {
-    public class TankHealth : MonoBehaviour, IDamageable {
+namespace Assets.Scripts.Tanks
+{
+    public class TankHealth : MonoBehaviour, IDamageable
+    {
         [Header("Health Settings")]
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();

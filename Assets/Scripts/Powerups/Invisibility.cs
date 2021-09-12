@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
-    public class Invisibility : PowerupBase {
+namespace Assets.Scripts.Powerups
+{
+    public class Invisibility : PowerupBase
+    {
         private IInvisibile _effected;
 
         protected override bool OnCollect(GameObject other)

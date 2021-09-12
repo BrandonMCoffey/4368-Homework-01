@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
-    public class RapidFire : PowerupBase {
+namespace Assets.Scripts.Powerups
+{
+    public class RapidFire : PowerupBase
+    {
         [SerializeField] private float _effectMultiplication = 2;
 
         private IIncreaseable _effected;

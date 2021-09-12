@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameEvents.Logic {
-    public class GameEventListener : MonoBehaviour {
+namespace Assets.Scripts.Utility.GameEvents.Logic
+{
+    public class GameEventListener : MonoBehaviour
+    {
         [SerializeField] private GameEvent _event = null;
 
         private void Awake()

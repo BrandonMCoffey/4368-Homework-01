@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Utility {
-    public static class DebugHelper {
+namespace Assets.Scripts.Utility
+{
+    public static class DebugHelper
+    {
         public static void Log(string message)
         {
             Debug.Log(message);

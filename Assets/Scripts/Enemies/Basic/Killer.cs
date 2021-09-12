@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.Basic {
-    public class Killer : Enemy {
+namespace Assets.Scripts.Enemies.Basic
+{
+    public class Killer : Enemy
+    {
         protected override bool OnImpact(GameObject other)
         {
             IDamageable damageableObject = other.GetComponent<IDamageable>();

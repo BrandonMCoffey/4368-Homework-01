@@ -2,9 +2,11 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.Basic {
+namespace Assets.Scripts.Enemies.Basic
+{
     [RequireComponent(typeof(TankHealth))]
-    public class WeakEnemy : Enemy {
+    public class WeakEnemy : Enemy
+    {
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _selfDamageAmount = 1;
 

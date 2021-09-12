@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.AI {
-    public class GrayTankAI : EnemyAI {
+namespace Assets.Scripts.Enemies.AI
+{
+    public class GrayTankAI : EnemyAI
+    {
         [SerializeField] private Vector2 _fireTime = new Vector2(4, 6);
         [SerializeField] private Vector2 _moveTime = new Vector2(4, 6);
         [SerializeField] private Vector2 _moveDistance = new Vector2(3, 4);

@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectibles {
-    public class FireRateIncrease : CollectibleBase {
+namespace Assets.Scripts.Collectibles
+{
+    public class FireRateIncrease : CollectibleBase
+    {
         [SerializeField] private float _fireRateIncrease = 2;
 
         protected override bool OnCollect(GameObject other)

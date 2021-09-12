@@ -1,14 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats {
-    public enum ValueAdjustType {
+namespace Assets.Scripts.Utility.CustomFloats
+{
+    public enum ValueAdjustType
+    {
         AddRaw,
         AddBase,
         Multiply,
     }
 
-    public class AdjustableFloat {
+    public class AdjustableFloat
+    {
         private float _baseValue;
         public float Value { get; private set; }
         public int ActivePositiveEffects { get; private set; }

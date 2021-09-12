@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
-    public class ForwardMovement : TankMovement {
+namespace Assets.Scripts.Tanks
+{
+    public class ForwardMovement : TankMovement
+    {
         private float _forwardAmount;
         private float _turnAmount;
 

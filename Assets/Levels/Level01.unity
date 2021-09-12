@@ -2300,7 +2300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7918734153150944869, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
       propertyPath: _bulletType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7918734153150944869, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
       propertyPath: _bulletToFire

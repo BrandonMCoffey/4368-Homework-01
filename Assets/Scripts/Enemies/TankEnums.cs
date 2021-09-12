@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies {
-    public enum EnemyTankType {
+namespace Assets.Scripts.Enemies
+{
+    public enum EnemyTankType
+    {
         Brown,
         Grey,
         Teal,
@@ -13,14 +15,8 @@ namespace Assets.Scripts.Enemies {
         Black
     }
 
-    [CreateAssetMenu]
-    public class EnemyTankData : ScriptableObject {
-        [SerializeField] private EnemyTankType _type = EnemyTankType.Brown;
-        [SerializeField] private Material _material = null;
-
-        public Color Color => GetColor(_type);
-        public Material Material => _material;
-
+    public class EnemyTankColors
+    {
         public static Color GetColor(EnemyTankType type)
         {
             return type switch

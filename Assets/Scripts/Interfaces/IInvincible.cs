@@ -1,5 +1,7 @@
-namespace Assets.Scripts.Interfaces {
-    public interface IInvincible {
+namespace Assets.Scripts.Interfaces
+{
+    public interface IInvincible
+    {
         void OnSetInvincible();
         void OnRemoveInvincible();
     }

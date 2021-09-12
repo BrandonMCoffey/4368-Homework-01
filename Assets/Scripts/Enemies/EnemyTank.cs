@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies
@@ -11,7 +9,9 @@ namespace Assets.Scripts.Enemies
     [RequireComponent(typeof(TankHealth))]
     public class EnemyTank : MonoBehaviour, ILockable
     {
-        [SerializeField] private EnemyTankData _enemyData = null;
+        [Header("Tank Settings")]
+        [SerializeField] private Material _tankMaterial = null;
+        [Header("References")]
         [SerializeField] private List<GameObject> _lockObjects = new List<GameObject>();
         [SerializeField] private List<MeshRenderer> _baseMaterialsToChange = new List<MeshRenderer>();
 
@@ -25,8 +25,6 @@ namespace Assets.Scripts.Enemies
             Health = GetComponent<TankHealth>();
             Movement = GetComponent<TankMovement>();
             _collider = GetComponent<Collider>();
-
-            if (_enemyData == null) DebugHelper.Error(gameObject, "No attached enemy data");
         }
 
         private void Start()
@@ -36,9 +34,9 @@ namespace Assets.Scripts.Enemies
 
         private void UpdateMaterial()
         {
-            if (_enemyData == null || _enemyData.Material == null) return;
+            if (_tankMaterial == null) return;
             foreach (var meshRenderer in _baseMaterialsToChange) {
-                meshRenderer.material = _enemyData.Material;
+                meshRenderer.material = _tankMaterial;
             }
         }
 

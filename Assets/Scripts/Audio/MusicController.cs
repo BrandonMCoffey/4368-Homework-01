@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio {
-    public class MusicController : MonoBehaviour {
+namespace Assets.Scripts.Audio
+{
+    public class MusicController : MonoBehaviour
+    {
         private AudioSource _source0;
         private AudioSource _source1;
 

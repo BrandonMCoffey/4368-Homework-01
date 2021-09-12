@@ -1,15 +1,19 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Tanks {
-    public class OrthogonalMovement : TankMovement {
+namespace Assets.Scripts.Tanks
+{
+    public class OrthogonalMovement : TankMovement
+    {
         [SerializeField] [Range(1, 90)] private float _slowEffectWhenTurning = 45f;
         [SerializeField] private float _reverseDirectionAngle = 90f;
 
         private bool _moveBackwards;
         private Vector3 _moveDir;
 
-        private Vector3 MoveDir {
-            get {
+        private Vector3 MoveDir
+        {
+            get
+            {
                 if (_moveBackwards) {
                     return -_moveDir;
                 }

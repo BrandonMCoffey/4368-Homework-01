@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Audio {
+namespace Assets.Scripts.Audio
+{
     [CreateAssetMenu]
-    public class SfxData : ScriptableObject {
+    public class SfxData : ScriptableObject
+    {
         [SerializeField] private AudioClip _clip = null;
         [SerializeField] private bool _loop = false;
 

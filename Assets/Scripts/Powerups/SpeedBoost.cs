@@ -2,8 +2,10 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
-    public class SpeedBoost : PowerupBase {
+namespace Assets.Scripts.Powerups
+{
+    public class SpeedBoost : PowerupBase
+    {
         [Header("Effect Settings")]
         [SerializeField] private ValueAdjustType _speedIncreaseType = ValueAdjustType.AddBase;
         [SerializeField] private float _amount = 1f;

@@ -2,9 +2,11 @@ using System.Collections;
 using Assets.Scripts.Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
+namespace Assets.Scripts.Powerups
+{
     [RequireComponent(typeof(Collider))]
-    public abstract class PowerupBase : MonoBehaviour {
+    public abstract class PowerupBase : MonoBehaviour
+    {
         [SerializeField] private float _powerupDuration = 5;
         [SerializeField] private GameObject _art = null;
         [SerializeField] private ParticleSystem _constantParticles = null;

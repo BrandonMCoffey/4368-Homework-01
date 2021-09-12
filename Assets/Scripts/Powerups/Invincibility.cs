@@ -1,8 +1,10 @@
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
-    public class Invincibility : PowerupBase {
+namespace Assets.Scripts.Powerups
+{
+    public class Invincibility : PowerupBase
+    {
         private IInvincible _effected;
 
         protected override bool OnCollect(GameObject other)

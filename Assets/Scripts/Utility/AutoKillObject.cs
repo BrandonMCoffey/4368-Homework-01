@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility {
-    public class AutoKillObject : MonoBehaviour {
+namespace Assets.Scripts.Utility
+{
+    public class AutoKillObject : MonoBehaviour
+    {
         [SerializeField] private float _lifespan = 1;
 
         private Coroutine _deathCoroutine;
