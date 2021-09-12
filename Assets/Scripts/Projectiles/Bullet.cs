@@ -1,6 +1,8 @@
 using System.Collections;
+using Assets.Scripts.Audio;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectiles
@@ -9,10 +11,14 @@ namespace Assets.Scripts.Projectiles
     [RequireComponent(typeof(Collider))]
     public class Bullet : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private BulletType _type = BulletType.Normal;
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _bounceTimes = 1;
+        [Header("Feedback")]
+        [SerializeField] private SfxReference _fireSfx = new SfxReference();
+        [SerializeField] private ParticleSystem _fireParticles = null;
 
         public BulletType Type => _type;
 
@@ -30,6 +36,11 @@ namespace Assets.Scripts.Projectiles
 
             _debug = GetComponent<ReflectionDebug>();
             if (_debug != null) _debug.ReflectionTimes = _bounceTimes + 1;
+
+            // Ensure collect particles don't play on awake or self destruct
+            if (_fireParticles != null && !_fireParticles.gameObject.activeInHierarchy) {
+                DebugHelper.Warn(gameObject, "Bullet Fire Particles should be under the Bullet Prefab");
+            }
         }
 
         private void OnEnable()
@@ -82,6 +93,15 @@ namespace Assets.Scripts.Projectiles
         private void Move()
         {
             _rb.velocity = transform.forward * _moveSpeed;
+        }
+
+        public void FireFeedback(Vector3 position, Quaternion rotation)
+        {
+            if (_fireParticles != null) {
+                _fireParticles.transform.SetPositionAndRotation(position, rotation);
+                _fireParticles.Play();
+            }
+            _fireSfx.Play();
         }
 
         private void Kill()
