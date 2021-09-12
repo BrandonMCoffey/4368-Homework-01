@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Audio {
+namespace Assets.Scripts.Audio
+{
     [RequireComponent(typeof(AudioSource))]
-    public class AudioSourceController : MonoBehaviour {
+    public class AudioSourceController : MonoBehaviour
+    {
         private Transform _parent;
         private AudioSource _source;
 
@@ -58,7 +60,7 @@ namespace Assets.Scripts.Audio {
         {
             _source.Stop();
             Reset();
-            AudioManager.Instance.PutController(this);
+            AudioManager.Instance.ReturnController(this);
         }
     }
 }

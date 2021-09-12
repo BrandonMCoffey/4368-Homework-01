@@ -9,9 +9,12 @@ namespace Assets.Scripts.Projectiles
     [RequireComponent(typeof(Collider))]
     public class Bullet : MonoBehaviour
     {
+        [SerializeField] private BulletType _type = BulletType.Normal;
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _bounceTimes = 1;
+
+        public BulletType Type => _type;
 
         private Rigidbody _rb;
         private Collider _collider;
@@ -27,6 +30,11 @@ namespace Assets.Scripts.Projectiles
 
             _debug = GetComponent<ReflectionDebug>();
             if (_debug != null) _debug.ReflectionTimes = _bounceTimes + 1;
+        }
+
+        private void OnEnable()
+        {
+            _currentBounces = 0;
         }
 
         private void FixedUpdate()
@@ -78,7 +86,7 @@ namespace Assets.Scripts.Projectiles
 
         private void Kill()
         {
-            Destroy(gameObject);
+            BulletPool.Instance.ReturnBullet(this);
         }
     }
 }

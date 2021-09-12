@@ -11,7 +11,7 @@ namespace Assets.Scripts.Tanks
     {
         [Header("Necessary Bullet Details")]
         [SerializeField] private Transform _turretFirePos = null;
-        [SerializeField] private Bullet _bulletToFire = null;
+        [SerializeField] private BulletType _bulletType = BulletType.Normal;
         [Header("Feedback")]
         [SerializeField] private SfxReference _fireSfx = new SfxReference();
         [SerializeField] private ParticleSystem _fireParticles = null;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Tanks
 
         private void Awake()
         {
-            if (_bulletToFire == null || _turretFirePos == null) {
+            if (_turretFirePos == null) {
                 DebugHelper.Error(gameObject, "Missing Bullet Information To Fire");
             }
             // Ensure collect particles don't play on awake or self destruct
@@ -42,12 +42,13 @@ namespace Assets.Scripts.Tanks
 
         public void Fire()
         {
-            if (_bulletToFire == null || _turretFirePos == null) return;
+            if (_turretFirePos == null) return;
 
-            _bullets = _bullets.Where(item => item != null).ToList();
+            _bullets = _bullets.Where(item => item != null && item.isActiveAndEnabled).ToList();
             if (_hasMaximumBullets && _bullets.Count >= _maximumBullets) return;
 
-            Bullet bullet = Instantiate(_bulletToFire.gameObject, _turretFirePos.position, _turretFirePos.rotation).GetComponent<Bullet>();
+            Bullet bullet = BulletPool.Instance.GetBullet(_bulletType);
+            bullet.transform.SetPositionAndRotation(_turretFirePos.position, _turretFirePos.rotation);
             if (_ignoreCollider != null) {
                 bullet.TemporaryIgnore(_ignoreCollider, _ignoreDuration);
             }

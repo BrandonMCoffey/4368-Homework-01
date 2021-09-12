@@ -399,7 +399,6 @@ MonoBehaviour:
   _audioPlayerName: SFX
   _poolParent: {fileID: 493410739}
   _initialPoolSize: 5
-  _pool: []
 --- !u!4 &143128282
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,6 +1323,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654200815}
   m_CullTransparentMesh: 1
+--- !u!1 &730742229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730742230}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &730742230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730742229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 734967553}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734967551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734967553}
+  - component: {fileID: 734967552}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &734967552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734967551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb883f5f63e02d14c973a045faecb2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalBullet: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
+  _fastBullet: {fileID: 7387073614073010187, guid: 12c2d10c1a56d8043a6a6a9ad781abc4, type: 3}
+  _poolParent: {fileID: 730742230}
+  _initialPoolSize: 4
+--- !u!4 &734967553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734967551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 730742230}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851116732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,6 +2297,10 @@ PrefabInstance:
     - target: {fileID: 7918734152587452187, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918734153150944869, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
+      propertyPath: _bulletType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7918734153150944869, guid: 5d7be7f9352d8bd43b2caf6b61254488, type: 3}
       propertyPath: _bulletToFire

@@ -1,24 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Utility.ObjectPool;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio {
-    public class AudioManager : MonoBehaviour {
+namespace Assets.Scripts.Audio
+{
+    public class AudioManager : MonoBehaviour
+    {
         [Header("Music Controller")]
         [SerializeField] private MusicController _musicController;
         [Header("Audio Pool")]
         [SerializeField] private string _audioPlayerName = "SFX Player";
         [SerializeField] private Transform _poolParent;
         [SerializeField] private int _initialPoolSize = 5;
-        [SerializeField] private List<AudioSourceController> _pool = new List<AudioSourceController>();
+
+        private PoolManager<AudioSourceController> _poolManager = new PoolManager<AudioSourceController>();
+        private static string _defaultObjectName = "Audio Manager";
+        private static string _defaultPoolName = "SFX Pool";
 
         #region Singleton
 
         private static AudioManager _instance;
 
-        public static AudioManager Instance {
-            get {
+        public static AudioManager Instance
+        {
+            get
+            {
                 if (_instance == null) {
-                    _instance = new GameObject("AudioManager", typeof(AudioManager)).GetComponent<AudioManager>();
+                    _instance = new GameObject(_defaultObjectName, typeof(AudioManager)).GetComponent<AudioManager>();
                 }
                 return _instance;
             }
@@ -46,11 +53,11 @@ namespace Assets.Scripts.Audio {
             }
             // SFX Pool
             if (_poolParent == null) {
-                Transform sfxPool = new GameObject("SFX Pool").transform;
-                sfxPool.SetParent(transform);
-                _poolParent = sfxPool;
+                Transform pool = new GameObject(_defaultPoolName).transform;
+                pool.SetParent(transform);
+                _poolParent = pool;
             }
-            BuildInitialPool(_initialPoolSize);
+            _poolManager.BuildInitialPool(_poolParent, _audioPlayerName, _initialPoolSize);
         }
 
         public void PlayMusic(SfxReference musicTrack, float fadeOut, bool crossFade, float fadeIn)
@@ -59,38 +66,12 @@ namespace Assets.Scripts.Audio {
 
         public AudioSourceController GetController()
         {
-            if (_pool.Count > 0) {
-                AudioSourceController output = _pool[0];
-                _pool.Remove(output);
-                output.gameObject.SetActive(true);
-                return output;
-            }
-            GameObject obj = new GameObject(_audioPlayerName);
-            obj.transform.SetParent(_poolParent);
-            return obj.AddComponent<AudioSourceController>();
+            return _poolManager.GetObjectFromPool();
         }
 
-        public void PutController(AudioSourceController controller)
+        public void ReturnController(AudioSourceController controller)
         {
-            if (_pool.Contains(controller)) return;
-            controller.Claimed = false;
-            AddToPool(controller);
-        }
-
-        private void BuildInitialPool(int size)
-        {
-            int currentSize = _pool.Count;
-            for (int i = currentSize; i < size; ++i) {
-                GameObject obj = new GameObject(_audioPlayerName);
-                obj.transform.SetParent(_poolParent);
-                AddToPool(obj.AddComponent<AudioSourceController>());
-            }
-        }
-
-        private void AddToPool(AudioSourceController controller)
-        {
-            _pool.Add(controller);
-            controller.gameObject.SetActive(false);
+            _poolManager.PutObjectIntoPool(controller);
         }
     }
 }

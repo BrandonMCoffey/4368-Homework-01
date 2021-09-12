@@ -6,10 +6,19 @@ namespace Assets.Scripts.Player_Systems
 {
     public class PlayerInput : MonoBehaviour
     {
+        [Header("Key Inputs")]
+        [SerializeField] private KeyCode _fireKey = KeyCode.Space;
+        [SerializeField] private bool _altFireLeftClick = true;
+
+        [Header("Axis Inputs")]
+        [SerializeField] private bool _axisRaw = true;
+        [SerializeField] private string _moveLeftRight = "Horizontal";
+        [SerializeField] private string _moveUpDown = "Vertical";
+
+        [Header("References")]
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LayerMask _tankAimMask = 0;
         [SerializeField] private float _tankAimMaxDistance = 100;
-        [SerializeField] private bool _axisRaw = true;
 
         public UnityEvent<Vector2> OnMoveBody = new UnityEvent<Vector2>();
         public UnityEvent<Vector2> OnAimTurret = new UnityEvent<Vector2>();
@@ -23,17 +32,14 @@ namespace Assets.Scripts.Player_Systems
         private void Update()
         {
             SetMovementDirection();
-
-            if (IsMouseOverUI()) return;
-
             SetAimPosition();
             Fire();
         }
 
         private void SetMovementDirection()
         {
-            float moveHorizontal = _axisRaw ? Input.GetAxisRaw("Horizontal") : Input.GetAxis("Horizontal");
-            float moveVertical = _axisRaw ? Input.GetAxisRaw("Vertical") : Input.GetAxis("Vertical");
+            float moveHorizontal = _axisRaw ? Input.GetAxisRaw(_moveLeftRight) : Input.GetAxis(_moveLeftRight);
+            float moveVertical = _axisRaw ? Input.GetAxisRaw(_moveUpDown) : Input.GetAxis(_moveUpDown);
 
             Vector2 moveDirection = new Vector2(moveHorizontal, moveVertical);
             OnMoveBody?.Invoke(moveDirection);
@@ -41,6 +47,7 @@ namespace Assets.Scripts.Player_Systems
 
         private void SetAimPosition()
         {
+            if (IsMouseOverUI()) return;
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out var hit, _tankAimMaxDistance, _tankAimMask);
             if (hit.collider == null) return;
@@ -51,7 +58,9 @@ namespace Assets.Scripts.Player_Systems
 
         private void Fire()
         {
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetKeyDown(_fireKey)) {
+                OnShoot.Invoke();
+            } else if (_altFireLeftClick && !IsMouseOverUI() && Input.GetMouseButtonDown(0)) {
                 OnShoot.Invoke();
             }
         }
