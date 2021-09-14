@@ -60,9 +60,10 @@ namespace Assets.Scripts.Tanks
             DecreaseHealth(damageTaken);
         }
 
-        public void OnBulletImpact(int damageTaken)
+        public bool OnBulletImpact(int damageTaken)
         {
             DecreaseHealth(damageTaken);
+            return true;
         }
 
         public void OnKill()

@@ -1,7 +1,6 @@
 using System.Collections;
 using Assets.Scripts.Audio;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Tanks;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -55,11 +54,16 @@ namespace Assets.Scripts.Projectiles
 
         private void OnCollisionEnter(Collision other)
         {
-            IDamageable health = other.gameObject.GetComponent<TankHealth>();
-            if (health != null) {
-                health.OnBulletImpact(_damageAmount);
-                Kill();
-            } else if (_currentBounces++ < _bounceTimes) {
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+            if (damageable != null) {
+                // Damage the object and kill bullet
+                if (damageable.OnBulletImpact(_damageAmount)) {
+                    Kill();
+                    return;
+                }
+            }
+            // If can bounce, bounce
+            if (_currentBounces++ < _bounceTimes) {
                 if (_debug != null) _debug.ReflectionTimes = _bounceTimes - _currentBounces + 1;
 
                 var direction = transform.forward;
@@ -69,13 +73,14 @@ namespace Assets.Scripts.Projectiles
                     direction = Vector3.Reflect(direction, hit.normal);
                 }
                 transform.forward = direction;
-            } else {
-                Bullet otherBullet = other.gameObject.GetComponent<Bullet>();
-                if (otherBullet != null) {
-                    otherBullet.Kill();
-                }
-                Kill();
+                return;
             }
+            // If hit another bullet, kill both
+            Bullet otherBullet = other.gameObject.GetComponent<Bullet>();
+            if (otherBullet != null) {
+                otherBullet.Kill();
+            }
+            Kill();
         }
 
         public void TemporaryIgnore(Collider objCollider, float duration)
