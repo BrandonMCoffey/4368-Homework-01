@@ -1,9 +1,10 @@
-using Assets.Scripts.Audio;
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Tanks.Feedback;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.Tanks
 {
@@ -14,9 +15,8 @@ namespace Assets.Scripts.Tanks
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
 
         [Header("Death Feedback")]
-        [SerializeField] private SfxReference _deathSfx = new SfxReference();
-        [SerializeField] private ParticleSystem _deathParticles = null;
-        [SerializeField] private UnityEvent _onDeath = new UnityEvent();
+        [SerializeField] private TankFeedback _deathFeedback = null;
+        [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
 
         public bool Invincible { get; set; }
 
@@ -26,10 +26,6 @@ namespace Assets.Scripts.Tanks
             if (!_currentHealth.UseConstant && _currentHealth.Variable == null) {
                 _currentHealth.UseConstant = true;
                 DebugHelper.Warn(gameObject, "Current Health has no assigned variable");
-            }
-            // Ensure death particles don't play on awake or self destruct
-            if (_deathParticles != null && _deathParticles.gameObject.activeInHierarchy) {
-                _deathParticles.gameObject.SetActive(false);
             }
         }
 
@@ -74,10 +70,13 @@ namespace Assets.Scripts.Tanks
 
         private void Kill()
         {
-            _onDeath?.Invoke();
-            _deathSfx.Play();
-            if (_deathParticles != null) {
-                Instantiate(_deathParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
+            foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
+                obj.SetActive(false);
+            }
+            if (_deathFeedback != null) {
+                _deathFeedback.DeathFeedback();
+            } else {
+                DebugHelper.Warn(gameObject, "No attached Death Feedback");
             }
         }
     }

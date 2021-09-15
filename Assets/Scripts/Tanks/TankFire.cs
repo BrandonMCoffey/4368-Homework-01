@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Projectiles;
+using Assets.Scripts.Tanks.Feedback;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace Assets.Scripts.Tanks
         [Header("Limits")]
         [SerializeField] private bool _hasMaximumBullets = false;
         [SerializeField] private float _maximumBullets = 5;
+        [Header("References")]
+        [SerializeField] private TankFeedback _tankFeedback = null;
 
         private List<Bullet> _bullets = new List<Bullet>();
 
@@ -44,8 +47,15 @@ namespace Assets.Scripts.Tanks
             if (_ignoreCollider != null) {
                 bullet.TemporaryIgnore(_ignoreCollider, _ignoreDuration);
             }
-            bullet.FireFeedback(_turretFirePos.position, _turretFirePos.rotation);
+            FireFeedback();
             _bullets.Add(bullet);
+        }
+
+        private void FireFeedback()
+        {
+            if (_tankFeedback != null) {
+                _tankFeedback.TurretFireFeedback(_turretFirePos.position, _turretFirePos.rotation);
+            }
         }
     }
 }

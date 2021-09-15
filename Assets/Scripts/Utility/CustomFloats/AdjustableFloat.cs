@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ namespace Assets.Scripts.Utility.CustomFloats
         public float Value { get; private set; }
         public int ActivePositiveEffects { get; private set; }
         public int ActiveNegativeEffects { get; private set; }
+
+        public event Action<int, int> ActiveEffects = delegate { };
 
         public void SetBaseValue(float baseValue)
         {
@@ -50,6 +53,7 @@ namespace Assets.Scripts.Utility.CustomFloats
                 ValueAdjustType.Multiply => Value * amount,
                 _                        => Value
             };
+            UpdateEffects();
         }
 
         public void DecreaseValue(ValueAdjustType type, float amount)
@@ -61,6 +65,12 @@ namespace Assets.Scripts.Utility.CustomFloats
                 ValueAdjustType.Multiply => Value / amount,
                 _                        => Value
             };
+            UpdateEffects();
+        }
+
+        private void UpdateEffects()
+        {
+            ActiveEffects?.Invoke(ActivePositiveEffects, ActiveNegativeEffects);
         }
     }
 }

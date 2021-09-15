@@ -9,40 +9,29 @@ namespace Assets.Scripts.Tanks
         [SerializeField] private bool _lookUpAtStart = true;
         [SerializeField] private float _rotateSpeed = 5;
         [Header("References")]
-        [SerializeField] private Transform _turretPos = null;
-        [Header("Debug")]
-        [SerializeField] private bool _debugLine = false;
-        [SerializeField] private Color _debugColor = Color.red;
+        [SerializeField] private Transform _turretPivot = null;
 
         private Vector3 _lookAtPos;
 
         private void OnEnable()
         {
-            _lookAtPos = new Vector3(transform.position.x, _turretPos.position.y, transform.position.z + (_lookUpAtStart ? 2 : -2));
+            _lookAtPos = new Vector3(transform.position.x, _turretPivot.position.y, transform.position.z + (_lookUpAtStart ? 2 : -2));
         }
 
         private void Update()
         {
-            Quaternion currentRotation = _turretPos.rotation;
-            _turretPos.LookAt(_lookAtPos);
+            Quaternion currentRotation = _turretPivot.rotation;
+            _turretPivot.LookAt(_lookAtPos);
             if (_smoothRotation) {
-                _turretPos.rotation = Quaternion.Slerp(currentRotation, _turretPos.rotation, _rotateSpeed * Time.deltaTime);
+                _turretPivot.rotation = Quaternion.Slerp(currentRotation, _turretPivot.rotation, _rotateSpeed * Time.deltaTime);
             } else {
-                _turretPos.rotation = Quaternion.RotateTowards(currentRotation, _turretPos.rotation, _rotateSpeed * Time.deltaTime * 10);
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_debugLine) {
-                Gizmos.color = _debugColor;
-                Gizmos.DrawLine(_turretPos.position, _lookAtPos);
+                _turretPivot.rotation = Quaternion.RotateTowards(currentRotation, _turretPivot.rotation, _rotateSpeed * Time.deltaTime * 10);
             }
         }
 
         public void SetAimPosition(Vector2 pos)
         {
-            _lookAtPos = new Vector3(pos.x, _turretPos.position.y, pos.y);
+            _lookAtPos = new Vector3(pos.x, _turretPivot.position.y, pos.y);
         }
     }
 }

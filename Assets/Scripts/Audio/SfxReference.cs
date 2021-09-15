@@ -42,6 +42,17 @@ namespace Assets.Scripts.Audio
             }
         }
 
+        public void Play(AudioSourceController controller)
+        {
+            if (NullTest()) return;
+            if (UseConstant) {
+                controller.SetSourceProperties(Clip, 1, 1, true, 0);
+                controller.Play();
+            } else {
+                Data.Play(controller);
+            }
+        }
+
         public void PlayAtPosition(Vector3 position)
         {
             if (NullTest()) return;
@@ -62,7 +73,7 @@ namespace Assets.Scripts.Audio
             }
         }
 
-        private bool NullTest()
+        public bool NullTest()
         {
             if (UseConstant) {
                 return Clip == null;
