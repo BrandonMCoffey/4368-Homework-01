@@ -69,9 +69,6 @@ MonoBehaviour:
   _rightPlatform: {fileID: 0}
   _turnTime: 1
   _chargeSpeed: 0.5
-  _state: 2
-  _chargeTimer: 0
-  _chargeTime: 0
 --- !u!114 &377688368167014275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,9 +558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04f13fec6f5760458693ea56cea0f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turretPos: {fileID: 2177471139376206846}
   _smoothRotation: 0
+  _lookUpAtStart: 0
   _rotateSpeed: 4
+  _turretPos: {fileID: 2177471139376206846}
+  _debugLine: 0
+  _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &9068872267376456481
 MonoBehaviour:
   m_ObjectHideFlags: 0

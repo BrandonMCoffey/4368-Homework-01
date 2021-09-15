@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Level_Systems;
 using Assets.Scripts.Player_Systems;
@@ -21,6 +22,8 @@ namespace Assets.Scripts.Game
 
     public class BossIntroSequence : MonoBehaviour
     {
+        [SerializeField] private bool _skipCutscene = false;
+
         [Header("Time of Events")]
         [SerializeField] private float _fadeIn = 1;
         [SerializeField] private float _playerEnter = 1;
@@ -68,16 +71,27 @@ namespace Assets.Scripts.Game
                 DebugHelper.Error(gameObject, "No assigned Player Tank");
             }
 
+            if (_skipCutscene) {
+                _directionalLight.intensity = _directionalMax;
+                foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
+                    redLight.gameObject.SetActive(false);
+                }
+                foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
+                    backRedLight.gameObject.SetActive(true);
+                    backRedLight.SetIntensityDelta(1);
+                }
+                return;
+            }
             _boss.Disable();
             _player.gameObject.SetActive(false);
             _tempPlayerArt.gameObject.SetActive(true);
             _fadeInPanel.gameObject.SetActive(true);
             _directionalLight.intensity = _directionalMin;
-            foreach (var redLight in _redLights) {
+            foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                 redLight.gameObject.SetActive(true);
                 redLight.SetDelta(0);
             }
-            foreach (var backRedLight in _backingRedLights) {
+            foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
                 backRedLight.gameObject.SetActive(true);
                 backRedLight.SetIntensityDelta(0);
             }
@@ -86,7 +100,7 @@ namespace Assets.Scripts.Game
 
         private void Update()
         {
-            if (_finished) return;
+            if (_skipCutscene || _finished) return;
 
             _timer += Time.deltaTime;
 
@@ -110,11 +124,11 @@ namespace Assets.Scripts.Game
                     }
                     break;
                 case IntroState.EnableLights:
-                    foreach (var redLight in _redLights) {
+                    foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                         redLight.SetDelta(_timer / _brightenLights);
                     }
                     if (_timer > _playerEnter) {
-                        foreach (var redLight in _redLights) {
+                        foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                             redLight.SetDelta(1);
                         }
                         _state = IntroState.BossEnter;
@@ -135,18 +149,18 @@ namespace Assets.Scripts.Game
                     }
                     break;
                 case IntroState.DimLights:
-                    foreach (var redLight in _redLights) {
+                    foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                         redLight.SetDelta(1 - _timer / _brightenLights);
                     }
-                    foreach (var backRedLight in _backingRedLights) {
+                    foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
                         backRedLight.SetIntensityDelta(_timer / _brightenLights);
                     }
                     _directionalLight.intensity = _directionalMax - (_directionalMax - _directionalMin) * (1 - _timer / _brightenLights);
                     if (_timer > _dimLights) {
-                        foreach (var redLight in _redLights) {
+                        foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                             redLight.gameObject.SetActive(false);
                         }
-                        foreach (var backRedLight in _backingRedLights) {
+                        foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
                             backRedLight.SetIntensityDelta(1);
                         }
                         _state = IntroState.StartGame;

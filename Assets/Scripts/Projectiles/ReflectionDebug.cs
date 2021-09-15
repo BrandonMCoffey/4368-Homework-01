@@ -1,15 +1,12 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectiles
 {
     public class ReflectionDebug : MonoBehaviour
     {
+        [SerializeField] private bool _active = false;
         [SerializeField] private int _reflectionTimes = 10;
         [SerializeField] private float _maxDistance = 100;
-        [SerializeField] private float _handleOffset = 0.1f;
-        [SerializeField] private float _handleLength = 0.3f;
-        [SerializeField] private Color _handleColor = Color.red;
         [SerializeField] private Color _lineColor = Color.gray;
 
         public int ReflectionTimes
@@ -20,7 +17,9 @@ namespace Assets.Scripts.Projectiles
 
         private void OnDrawGizmos()
         {
-            DrawPredictedReflectionPattern(transform.position + transform.forward * (_handleOffset + _handleLength), transform.forward, _reflectionTimes);
+            if (_active) {
+                DrawPredictedReflectionPattern(transform.position + transform.forward, transform.forward, _reflectionTimes);
+            }
         }
 
         private void DrawPredictedReflectionPattern(Vector3 position, Vector3 direction, int reflectionsRemaining)

@@ -4873,6 +4873,7 @@ GameObject:
   - component: {fileID: 5838628985766365920}
   - component: {fileID: 868327929690809843}
   - component: {fileID: 2554755473772494421}
+  - component: {fileID: 7644070862066480838}
   m_Layer: 0
   m_Name: DeathParticles
   m_TagString: Untagged
@@ -4910,7 +4911,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9724,6 +9725,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &7644070862066480838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948500483624556379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048e3adaa7ca0fe47aed20a229e85b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifespan: 0.5
 --- !u!1 &978851960527787744
 GameObject:
   m_ObjectHideFlags: 0
@@ -9958,11 +9972,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99708e9abca54064db4b6ec78eeaa195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _active: 0
   _reflectionTimes: 2
   _maxDistance: 50
-  _handleOffset: 0.1
-  _handleLength: 0.3
-  _handleColor: {r: 1, g: 0, b: 0, a: 1}
   _lineColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &6573763469520190780
 GameObject:
