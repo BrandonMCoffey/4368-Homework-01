@@ -1,6 +1,6 @@
 using System.Collections;
-using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Mechanics.Enemies.Boss;
 using UnityEngine;
 
 namespace Assets.Scripts.Level_Systems

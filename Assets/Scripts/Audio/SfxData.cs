@@ -18,6 +18,13 @@ namespace Assets.Scripts.Audio
             AudioHelper.PlayClip(_clip, _volume, _pitch, _loop, _spacialBlend);
         }
 
+        public void Play(AudioSourceController controller)
+        {
+            if (_clip == null) return;
+            controller.SetSourceProperties(_clip, _volume, _pitch, _loop, _spacialBlend);
+            controller.Play();
+        }
+
         public void PlayAtPosition(Vector3 position)
         {
             if (_clip == null) return;

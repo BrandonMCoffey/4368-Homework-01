@@ -7,6 +7,7 @@ namespace Assets.Scripts.Audio
     {
         private Transform _parent;
         private AudioSource _source;
+        private float _originalVolume;
 
         public bool Claimed { get; set; } = false;
 
@@ -36,9 +37,16 @@ namespace Assets.Scripts.Audio
         {
             _source.clip = clip;
             _source.volume = volume;
+            _originalVolume = volume;
             _source.pitch = pitch;
             _source.loop = loop;
             _source.spatialBlend = spacialBlend;
+        }
+
+        public void SetCustomVolume(float volume)
+        {
+            if (volume < 0) return;
+            _source.volume = _originalVolume * volume;
         }
 
         public void SetPosition(Vector3 position)

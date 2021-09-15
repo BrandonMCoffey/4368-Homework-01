@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Level_Systems;
-using Assets.Scripts.Player_Systems;
-using Assets.Scripts.Utility;
+using Assets.Scripts.Mechanics.Enemies.Boss;
+using Assets.Scripts.Mechanics.Player_Systems;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,26 +48,30 @@ namespace Assets.Scripts.Game
         private IntroState _state = IntroState.FadeIn;
         private float _bossEnterTime;
         private float _timer;
-        private bool _finished = false;
+        private bool _finished;
+        private bool _hasError;
 
         private void Start()
         {
             if (_player == null) {
                 _player = FindObjectOfType<PlayerTank>();
                 if (_player == null) {
-                    DebugHelper.Error(gameObject, "No assigned Player Tank");
+                    _hasError = true;
+                    throw new MissingComponentException("No assigned Player Tank on " + gameObject);
                 }
             }
             if (_boss == null) {
                 _boss = FindObjectOfType<BossTank>();
                 if (_boss == null) {
-                    DebugHelper.Error(gameObject, "No assigned Player Tank");
+                    _hasError = true;
+                    throw new MissingComponentException("No assigned Boss Tank on " + gameObject);
                 }
             }
             if (_bossSpawnPlatform != null) {
                 _bossEnterTime = _bossSpawnPlatform.TotalTime;
             } else {
-                DebugHelper.Error(gameObject, "No assigned Player Tank");
+                _hasError = true;
+                throw new MissingComponentException("No assigned Boss Tank Spawn Platform on " + gameObject);
             }
 
             if (_skipCutscene) {
@@ -100,7 +103,7 @@ namespace Assets.Scripts.Game
 
         private void Update()
         {
-            if (_skipCutscene || _finished) return;
+            if (_hasError || _skipCutscene || _finished) return;
 
             _timer += Time.deltaTime;
 
