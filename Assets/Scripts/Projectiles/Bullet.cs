@@ -15,7 +15,6 @@ namespace Assets.Scripts.Projectiles
         [Header("References")]
         [SerializeField] private Collider _collider;
         [SerializeField] private BulletFeedback _feedback;
-        [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
 
         public BulletType Type => _type;
 
@@ -41,6 +40,11 @@ namespace Assets.Scripts.Projectiles
                 }
             }
             _collider.isTrigger = false;
+        }
+
+        private void OnEnable()
+        {
+            _currentBounces = 0;
         }
 
         private void OnCollisionEnter(Collision other)
@@ -93,21 +97,6 @@ namespace Assets.Scripts.Projectiles
         {
             _feedback.DestroyFeedback(transform.position, transform.rotation);
             BulletPool.Instance.ReturnBullet(this);
-        }
-
-        private void Enable()
-        {
-            foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
-                obj.SetActive(true);
-            }
-            _currentBounces = 0;
-        }
-
-        private void Disable()
-        {
-            foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
-                obj.SetActive(false);
-            }
         }
     }
 }
