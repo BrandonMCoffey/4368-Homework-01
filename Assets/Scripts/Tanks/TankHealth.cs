@@ -73,6 +73,15 @@ namespace Assets.Scripts.Tanks
             foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
                 obj.SetActive(false);
             }
+            Collider c = GetComponent<Collider>();
+            if (c != null) {
+                c.enabled = false;
+            }
+            Rigidbody r = GetComponent<Rigidbody>();
+            if (r != null) {
+                r.useGravity = false;
+                r.velocity = Vector3.zero;
+            }
             if (_deathFeedback != null) {
                 _deathFeedback.DeathFeedback();
             } else {

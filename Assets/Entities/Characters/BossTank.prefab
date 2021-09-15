@@ -5154,7 +5154,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9936,7 +9936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7325661560489923884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7325661561032971008}
@@ -10078,7 +10078,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
+      scalar: 6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10194,7 +10194,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.25
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10885,7 +10885,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 240
+        scalar: 320
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -15138,15 +15138,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 200
+  _maxHealth: 1
   _currentHealth:
     UseConstant: 1
-    ConstantValue: 200
+    ConstantValue: 1
     Variable: {fileID: 0}
   _deathFeedback: {fileID: 7325661561032971021}
   _objsToDisable:
   - {fileID: 7325661559495869878}
   - {fileID: 263924130341688030}
+  - {fileID: 7325661559825202138}
 --- !u!1 &7325661561199266965
 GameObject:
   m_ObjectHideFlags: 0

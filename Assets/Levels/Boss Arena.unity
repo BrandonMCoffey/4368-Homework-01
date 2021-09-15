@@ -30498,10 +30498,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 103708950865759589, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 103708951577875986, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: _mainCamera
       value: 
@@ -30584,10 +30580,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7325661561084492703, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9125354454648506741, guid: 9ea3df64531408243be395cb6531f111, type: 3}
-      propertyPath: _currentHealth.UseConstant
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
