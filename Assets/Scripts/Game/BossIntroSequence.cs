@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Level_Systems;
-using Assets.Scripts.Player_Systems;
+using Assets.Scripts.Mechanics.Enemies.Boss;
+using Assets.Scripts.Mechanics.Player_Systems;
 using UnityEngine;
 using UnityEngine.UI;
 
