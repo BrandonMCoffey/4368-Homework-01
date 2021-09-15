@@ -3,7 +3,7 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies
+namespace Assets.Scripts.Enemies.Tanks
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(TankHealth))]

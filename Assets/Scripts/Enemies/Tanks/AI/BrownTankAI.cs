@@ -1,15 +1,12 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Enemies.AI
+namespace Assets.Scripts.Enemies.Tanks.AI
 {
-    public class GrayTankAI : EnemyAI
+    public class BrownTankAI : EnemyAI
     {
         [SerializeField] private Vector2 _fireTime = new Vector2(4, 6);
-        [SerializeField] private Vector2 _moveTime = new Vector2(4, 6);
-        [SerializeField] private Vector2 _moveDistance = new Vector2(3, 4);
 
         private float _fireTimer;
-        private float _moveTimer;
 
         private void Start()
         {
@@ -19,11 +16,6 @@ namespace Assets.Scripts.Enemies.AI
 
         protected override void SetMovementDirection()
         {
-            _moveTimer -= Time.deltaTime;
-            if (_moveTimer <= 0) {
-                _moveTimer = RandomMinMax(_moveTime);
-                OnMoveBody.Invoke(NewMovePosition());
-            }
         }
 
         protected override void SetAimPosition()
@@ -45,16 +37,6 @@ namespace Assets.Scripts.Enemies.AI
             Vector2 pos = new Vector2(transform.position.x, transform.position.z);
             Vector2 offset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             return pos + offset.normalized;
-        }
-
-        private Vector2 NewMovePosition()
-        {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.z);
-            bool n1 = Random.value > 0.5f;
-            bool n2 = Random.value > 0.5f;
-            float x = (n1 ? -1 : 1) * RandomMinMax(_moveDistance);
-            float y = (n2 ? -1 : 1) * RandomMinMax(_moveDistance);
-            return pos + new Vector2(x, y);
         }
 
         private static float RandomMinMax(Vector2 minMax)

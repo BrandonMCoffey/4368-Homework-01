@@ -1,28 +1,26 @@
 using System.Collections;
+using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Level_Systems
 {
-    public class PlatformSpawner : MonoBehaviour
+    public class BossPlatform : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private float _timeToLower = 1;
         [SerializeField] private float _timeToRaise = 1;
         [SerializeField] private Vector3 _lowerOffset = new Vector3(0, -1, 0);
-        [Header("Obstacle Checks")]
-        [SerializeField] private float _checkHeight = 0.5f;
-        [SerializeField] private float _checkRadius = 1;
-        [SerializeField] private LayerMask _checkLayer = 1;
         [Header("References")]
-        [SerializeField] private Collider _spawningCollider = null;
         [SerializeField] private Transform _platformToMove = null;
 
         private Vector3 _startPos;
         private Vector3 _endPos;
 
-        private Coroutine _routine = null;
-        private GameObject _objectToSpawn;
+        private BossTank _bossTank;
+        private bool _lower;
+
+        public float TotalTime => _timeToLower + _timeToRaise;
 
         private void OnEnable()
         {
@@ -30,22 +28,25 @@ namespace Assets.Scripts.Level_Systems
             _endPos = _platformToMove.position + _lowerOffset;
         }
 
-        public bool IsClear()
-        {
-            return _routine == null && !Physics.CheckSphere(transform.position + Vector3.up * _checkHeight, _checkRadius, _checkLayer);
-        }
-
-        public void PrepareToSpawn(GameObject spawnableObject)
+        public void PrepareToLower(BossTank bossTank)
         {
             if (_platformToMove == null) return;
-            if (_spawningCollider != null) {
-                _spawningCollider.enabled = true;
-            }
-            _objectToSpawn = spawnableObject;
-            _routine = StartCoroutine(Lower());
+            _lower = true;
+            _bossTank = bossTank;
+            _bossTank.Lock();
+            StartCoroutine(Lower(_bossTank.transform));
         }
 
-        private IEnumerator Lower()
+        public void PrepareToRaise(BossTank bossTank)
+        {
+            if (_platformToMove == null) return;
+            _lower = false;
+            _bossTank = bossTank;
+            _bossTank.Disable();
+            StartCoroutine(Lower(null));
+        }
+
+        private IEnumerator Lower(Transform bossTransform)
         {
             for (float t = 0; t < _timeToLower; t += Time.deltaTime) {
                 float delta = t / _timeToLower;
@@ -58,34 +59,35 @@ namespace Assets.Scripts.Level_Systems
 
         private void Spawn()
         {
-            GameObject obj = Instantiate(_objectToSpawn, _endPos, Quaternion.identity);
-            LockObject(obj);
-            _routine = StartCoroutine(Raise(obj));
+            if (_lower) {
+                _bossTank.Disable();
+                StartCoroutine(Raise(null));
+            } else {
+                _bossTank.Enable();
+                _bossTank.Lock();
+                StartCoroutine(Raise(_bossTank.transform));
+            }
         }
 
-        private IEnumerator Raise(GameObject objToRaise)
+        private IEnumerator Raise(Transform bossTransform)
         {
             for (float t = 0; t < _timeToRaise; t += Time.deltaTime) {
                 float delta = t / _timeToRaise;
                 Vector3 pos = Vector3.Lerp(_endPos, _startPos, delta);
                 _platformToMove.position = pos;
-                objToRaise.transform.position = pos;
+                bossTransform.position = pos;
                 yield return null;
             }
             _platformToMove.position = _startPos;
-            Finish(objToRaise);
+            Finish();
         }
 
-        private void Finish(GameObject obj)
+        private void Finish()
         {
-            _routine = null;
-            if (_spawningCollider != null) {
-                _spawningCollider.enabled = false;
-            }
-            LockObject(obj, false);
+            _bossTank.Unlock();
         }
 
-        private void LockObject(GameObject obj, bool active = true)
+        private void LockObject(BossTank obj, bool active = true)
         {
             ILockable lockableObject = obj.GetComponent<ILockable>();
             if (lockableObject != null) {

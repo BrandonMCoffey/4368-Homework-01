@@ -4,7 +4,7 @@ using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Game
 {
     public class GameManager : MonoBehaviour
     {
@@ -17,10 +17,6 @@ namespace Assets.Scripts.Utility
         [SerializeField] private FloatVariable _treasureCount = null;
         [SerializeField] private int _treasureToWin = 10;
         [SerializeField] private GameEvent _onWin = null;
-
-        private void Start()
-        {
-        }
 
         private void Update()
         {

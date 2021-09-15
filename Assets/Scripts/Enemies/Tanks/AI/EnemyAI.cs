@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Enemies.AI
+namespace Assets.Scripts.Enemies.Tanks.AI
 {
     public abstract class EnemyAI : MonoBehaviour
     {
