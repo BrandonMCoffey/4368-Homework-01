@@ -1,17 +1,31 @@
-using Assets.Scripts.Entities;
+using Assets.Scripts.Interfaces;
+using UnityEngine;
 
-namespace Assets.Scripts.Powerups {
-    public class Invincibility : PowerupBase {
-        protected override void ActivatePowerup(EntityHealth health)
+namespace Assets.Scripts.Powerups
+{
+    public class Invincibility : PowerupBase
+    {
+        private IInvincible _effected;
+
+        protected override bool OnCollect(GameObject other)
         {
-            base.ActivatePowerup(health);
-            health.SetInvincible();
+            IInvincible invincibleObject = other.GetComponent<IInvincible>();
+            if (invincibleObject == null) {
+                return false;
+            }
+            _effected = invincibleObject;
+
+            return true;
         }
 
-        protected override void DeactivatePowerup(EntityHealth health)
+        protected override void Activate()
         {
-            base.DeactivatePowerup(health);
-            health.RemoveInvincible();
+            _effected.OnSetInvincible();
+        }
+
+        protected override void Deactivate()
+        {
+            _effected.OnRemoveInvincible();
         }
     }
 }

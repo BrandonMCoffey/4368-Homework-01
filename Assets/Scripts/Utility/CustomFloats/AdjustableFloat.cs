@@ -1,17 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats {
-    public enum ValueAdjustType {
+namespace Assets.Scripts.Utility.CustomFloats
+{
+    public enum ValueAdjustType
+    {
         AddRaw,
         AddBase,
         Multiply,
     }
 
-    public class AdjustableFloat {
+    public class AdjustableFloat
+    {
         private float _baseValue;
         public float Value { get; private set; }
-        public int ActiveEffects { get; private set; }
+        public int ActivePositiveEffects { get; private set; }
+        public int ActiveNegativeEffects { get; private set; }
 
         public void SetBaseValue(float baseValue)
         {
@@ -19,13 +23,22 @@ namespace Assets.Scripts.Utility.CustomFloats {
             Value = baseValue;
         }
 
-        public IEnumerator AdjustValueOverTime(ValueAdjustType type, float amount, float timer)
+        public IEnumerator TemporaryIncrease(ValueAdjustType type, float amount, float timer)
         {
-            ActiveEffects++;
+            ActivePositiveEffects++;
             IncreaseValue(type, amount);
             yield return new WaitForSecondsRealtime(timer);
-            ActiveEffects--;
+            ActivePositiveEffects--;
             DecreaseValue(type, amount);
+        }
+
+        public IEnumerator TemporaryDecrease(ValueAdjustType type, float amount, float timer)
+        {
+            ActiveNegativeEffects++;
+            DecreaseValue(type, amount);
+            yield return new WaitForSecondsRealtime(timer);
+            ActiveNegativeEffects--;
+            IncreaseValue(type, amount);
         }
 
         public void IncreaseValue(ValueAdjustType type, float amount)

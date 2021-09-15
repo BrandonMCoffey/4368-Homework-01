@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameEvents.Logic {
-    public class GameEventListener : MonoBehaviour {
-        public GameEvent Event;
+namespace Assets.Scripts.Utility.GameEvents.Logic
+{
+    public class GameEventListener : MonoBehaviour
+    {
+        [SerializeField] private GameEvent _event = null;
+
+        private void Awake()
+        {
+            if (_event == null) DebugHelper.Warn(gameObject, "No Attached Event");
+        }
 
         private void OnEnable()
         {
-            if (Event != null) Event.RegisterListener(this);
+            if (_event != null) _event.RegisterListener(this);
         }
 
         private void OnDisable()
         {
-            if (Event != null) Event.UnRegisterListener(this);
+            if (_event != null) _event.UnRegisterListener(this);
         }
 
         public virtual void OnEventRaised()

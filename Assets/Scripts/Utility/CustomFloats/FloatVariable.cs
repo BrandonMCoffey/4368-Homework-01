@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats {
+namespace Assets.Scripts.Utility.CustomFloats
+{
     [CreateAssetMenu]
-    public class FloatVariable : ScriptableObject {
+    public class FloatVariable : ScriptableObject
+    {
         public float Value;
 
         public void SetValue(float value)

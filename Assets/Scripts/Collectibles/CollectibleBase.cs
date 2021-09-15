@@ -1,48 +1,53 @@
-using Assets.Scripts.Utility;
+using Assets.Scripts.Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Collectibles {
-    [RequireComponent(typeof(Rigidbody))]
-    public abstract class CollectibleBase : MonoBehaviour {
-        [SerializeField] private float _movementSpeed = 1;
+namespace Assets.Scripts.Collectibles
+{
+    [RequireComponent(typeof(Collider))]
+    public abstract class CollectibleBase : MonoBehaviour
+    {
+        [Header("Feedback")]
         [SerializeField] private ParticleSystem _collectParticles = null;
-        [SerializeField] private AudioClip _collectSound = null;
+        [SerializeField] private SfxReference _collectSfx = new SfxReference();
+        [Header("Movement")]
+        [SerializeField] private Transform _transformToRotate = null;
+        [SerializeField] private float _rotationSpeed = 1;
 
-        protected float MovementSpeed => _movementSpeed;
-
-        private Rigidbody _rb;
+        protected Collider Collider { get; private set; }
+        protected float RotationSpeed => _rotationSpeed;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
+            Collider = GetComponent<Collider>();
+            Collider.isTrigger = true;
+            // Ensure collect particles don't play on awake or self destruct
+            if (_collectParticles != null && _collectParticles.gameObject.activeInHierarchy) {
+                _collectParticles.gameObject.SetActive(false);
+            }
+            if (_transformToRotate == null) _transformToRotate = transform;
         }
 
         private void FixedUpdate()
         {
-            Movement(_rb);
+            Movement(_transformToRotate);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Player player = other.gameObject.GetComponent<Player>();
-            if (player == null) return;
-            bool wasCollected = Collect(player);
-            if (!wasCollected) return;
-            Feedback();
-            DisableObject();
+            if (OnCollect(other.gameObject)) {
+                Feedback();
+                DisableObject();
+            }
         }
 
-        protected abstract bool Collect(Player player);
+        protected abstract bool OnCollect(GameObject other);
 
         protected virtual void Feedback()
         {
             if (_collectParticles != null) {
-                Instantiate(_collectParticles, transform.position, Quaternion.identity);
+                Instantiate(_collectParticles, transform.position, Quaternion.identity).gameObject.SetActive(true);
             }
-            // Audio (TODO: Consider Object Pooling for performance)
-            if (_collectSound != null) {
-                AudioHelper.PlayClip2D(_collectSound);
-            }
+            _collectSfx.Play();
         }
 
         protected virtual void DisableObject()
@@ -50,10 +55,10 @@ namespace Assets.Scripts.Collectibles {
             gameObject.SetActive(false);
         }
 
-        protected virtual void Movement(Rigidbody rb)
+        protected virtual void Movement(Transform obj)
         {
-            Quaternion turnOffset = Quaternion.Euler(0, _movementSpeed, 0);
-            rb.MoveRotation(_rb.rotation * turnOffset);
+            Quaternion turnOffset = Quaternion.Euler(0, _rotationSpeed, 0);
+            obj.rotation *= turnOffset;
         }
     }
 }

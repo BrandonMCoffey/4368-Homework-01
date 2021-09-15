@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Utility {
-    public class FollowTransform : MonoBehaviour {
+namespace Assets.Scripts.Utility
+{
+    public class FollowTransform : MonoBehaviour
+    {
         [SerializeField] internal Transform ObjectToFollow = null;
         [SerializeField] internal float SmoothSpeed = 4;
 
