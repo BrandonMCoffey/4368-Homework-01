@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Audio;
 using Assets.Scripts.Level_Systems;
 using Assets.Scripts.Mechanics.Enemies.Boss;
 using Assets.Scripts.Mechanics.Player_Systems;
+using Assets.Scripts.Mechanics.Tanks.Feedback;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,12 +46,17 @@ namespace Assets.Scripts.Game
         [SerializeField] private BossTank _boss;
         [SerializeField] private BossPlatform _bossSpawnPlatform = null;
         [SerializeField] private Image _fadeInPanel = null;
+        [SerializeField] private SfxReference _tankSfx = new SfxReference();
+        [SerializeField] private SfxReference _sirenSfx = new SfxReference();
 
         private IntroState _state = IntroState.FadeIn;
         private float _bossEnterTime;
         private float _timer;
         private bool _finished;
         private bool _hasError;
+
+        private AudioSourceController _tankSfxController;
+        private AudioSourceController _sirenController;
 
         private void Start()
         {
@@ -99,6 +106,8 @@ namespace Assets.Scripts.Game
                 backRedLight.SetIntensityDelta(0);
             }
             _timer = 0;
+            _tankSfxController = AudioManager.Instance.GetController();
+            _sirenController = AudioManager.Instance.GetController();
         }
 
         private void Update()
@@ -116,6 +125,7 @@ namespace Assets.Scripts.Game
                         _fadeInPanel.gameObject.SetActive(false);
                         _state = IntroState.PlayerMoveIn;
                         _timer = 0;
+                        _tankSfx.Play(_tankSfxController);
                     }
                     break;
                 case IntroState.PlayerMoveIn:
@@ -124,12 +134,17 @@ namespace Assets.Scripts.Game
                         _tempPlayerArt.position = _artEndPos;
                         _state = IntroState.EnableLights;
                         _timer = 0;
+                        _sirenSfx.Play(_sirenController);
+                        _sirenController.SetCustomVolume(0);
+                        _tankSfxController.SetCustomVolume(0);
                     }
                     break;
                 case IntroState.EnableLights:
                     foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                         redLight.SetDelta(_timer / _brightenLights);
                     }
+
+                    _sirenController.SetCustomVolume(_timer / _brightenLights);
                     if (_timer > _playerEnter) {
                         foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                             redLight.SetDelta(1);
@@ -137,6 +152,7 @@ namespace Assets.Scripts.Game
                         _state = IntroState.BossEnter;
                         _bossSpawnPlatform.PrepareToRaise(_boss);
                         _timer = 0;
+                        _tankSfxController.SetCustomVolume(1);
                     }
                     break;
                 case IntroState.BossEnter:
@@ -149,16 +165,19 @@ namespace Assets.Scripts.Game
                     if (_timer > _pauseTime) {
                         _state = IntroState.DimLights;
                         _timer = 0;
+                        _tankSfxController.Stop();
                     }
                     break;
                 case IntroState.DimLights:
+                    float delta = _timer / _brightenLights;
                     foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
-                        redLight.SetDelta(1 - _timer / _brightenLights);
+                        redLight.SetDelta(1 - delta);
                     }
                     foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
-                        backRedLight.SetIntensityDelta(_timer / _brightenLights);
+                        backRedLight.SetIntensityDelta(delta);
                     }
-                    _directionalLight.intensity = _directionalMax - (_directionalMax - _directionalMin) * (1 - _timer / _brightenLights);
+                    _directionalLight.intensity = _directionalMax - (_directionalMax - _directionalMin) * (1 - delta);
+                    _sirenController.SetCustomVolume(1 - delta);
                     if (_timer > _dimLights) {
                         foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
                             redLight.gameObject.SetActive(false);
@@ -168,6 +187,7 @@ namespace Assets.Scripts.Game
                         }
                         _state = IntroState.StartGame;
                         _timer = 0;
+                        _sirenController.Stop();
                     }
                     break;
                 case IntroState.StartGame:

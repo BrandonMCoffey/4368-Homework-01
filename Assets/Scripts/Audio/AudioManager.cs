@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility.ObjectPool;
+﻿using System.Collections;
+using Assets.Scripts.Utility.ObjectPool;
 using UnityEngine;
 
 namespace Assets.Scripts.Audio
@@ -6,7 +7,7 @@ namespace Assets.Scripts.Audio
     public class AudioManager : MonoBehaviour
     {
         [Header("Music Controller")]
-        [SerializeField] private MusicController _musicController;
+        [SerializeField] private AudioSourceController _musicController;
         [Header("Audio Pool")]
         [SerializeField] private string _audioPlayerName = "SFX Player";
         [SerializeField] private Transform _poolParent;
@@ -49,7 +50,7 @@ namespace Assets.Scripts.Audio
             if (_musicController == null) {
                 GameObject musicController = new GameObject("Music Controller");
                 musicController.transform.SetParent(transform);
-                _musicController = musicController.AddComponent<MusicController>();
+                _musicController = musicController.AddComponent<AudioSourceController>();
             }
             // SFX Pool
             if (_poolParent == null) {
@@ -60,8 +61,24 @@ namespace Assets.Scripts.Audio
             _poolManager.BuildInitialPool(_poolParent, _audioPlayerName, _initialPoolSize);
         }
 
-        public void PlayMusic(SfxReference musicTrack, float fadeOut, bool crossFade, float fadeIn)
+        public void PlayMusic(SfxReference musicTrack, float fadeIn)
         {
+            musicTrack.Play(_musicController);
+            StartCoroutine(FadeIn(_musicController, fadeIn));
+        }
+
+        public void PlayMusic(SfxData musicTrack, float fadeOut, bool crossFade, float fadeIn)
+        {
+            // TODO: Cross fade?
+        }
+
+        public IEnumerator FadeIn(AudioSourceController controller, float fadeIn)
+        {
+            for (float t = 0; t < fadeIn; t += Time.deltaTime) {
+                controller.SetCustomVolume(t / fadeIn);
+                yield return null;
+            }
+            controller.SetCustomVolume(1);
         }
 
         public AudioSourceController GetController()

@@ -5727,7 +5727,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 388409702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6bb78ea849c83747a3bb9e6c71ae0cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 82df8e6cc141c0145bf60342b4a65b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &388409704
@@ -18239,6 +18239,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2286728541386115774, guid: bb1f74a7cd901f54ba7f0cab47c359b2, type: 3}
   m_PrefabInstance: {fileID: 1243060086}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1244062031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 103708950323900254, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
+  m_PrefabInstance: {fileID: 103708951409062879}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7deae910b21a2142adfc1132501442e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1246395252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23075,8 +23086,8 @@ MonoBehaviour:
   _skipCutscene: 0
   _fadeIn: 4
   _playerEnter: 2
-  _brightenLights: 1.5
-  _pauseTime: 1
+  _brightenLights: 2.5
+  _pauseTime: 2
   _dimLights: 1.5
   _tempPlayerArt: {fileID: 758176712}
   _artStartPos: {x: 0, y: 0, z: -8}
@@ -23099,10 +23110,18 @@ MonoBehaviour:
   - {fileID: 1843982276}
   - {fileID: 1177326598}
   - {fileID: 159298414}
-  _player: {fileID: 0}
+  _player: {fileID: 1244062031}
   _boss: {fileID: 6730114464693707689}
   _bossSpawnPlatform: {fileID: 785361679}
   _fadeInPanel: {fileID: 337537824}
+  _tankSfx:
+    UseConstant: 0
+    Clip: {fileID: 0}
+    Data: {fileID: 11400000, guid: 1459d651a155180409a1f9eb083927ad, type: 2}
+  _sirenSfx:
+    UseConstant: 0
+    Clip: {fileID: 0}
+    Data: {fileID: 11400000, guid: b8a630c8822f6974a8d38c9d797348a3, type: 2}
 --- !u!1001 &1593510600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27252,9 +27271,9 @@ MonoBehaviour:
   _restartKey: 8
   _exitGameKey: 27
   _musicToPlay:
-    UseConstant: 1
+    UseConstant: 0
     Clip: {fileID: 0}
-    Data: {fileID: 0}
+    Data: {fileID: 11400000, guid: f901a50a8a5d18841b0134da99a8cf5d, type: 2}
   _treasureCount: {fileID: 11400000, guid: 888bc9b021792594c9aaafc34f5b4d9f, type: 2}
   _treasureToWin: 10
   _onWin: {fileID: 11400000, guid: 2c13f3e2cc6dc294c8e49a3e58ba58cb, type: 2}

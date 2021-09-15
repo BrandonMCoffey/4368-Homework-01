@@ -18,6 +18,11 @@ namespace Assets.Scripts.Game
         [SerializeField] private int _treasureToWin = 10;
         [SerializeField] private GameEvent _onWin = null;
 
+        private void Start()
+        {
+            AudioManager.Instance.PlayMusic(_musicToPlay, 2);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(_restartKey)) {

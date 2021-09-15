@@ -11,11 +11,13 @@ namespace Assets.Scripts.Mechanics.Tanks.Feedback
 
         private AudioSourceController _movementSfxController;
 
-        private void Start()
+        private void OnEnable()
         {
-            if (_movementSfx.NullTest()) return;
-            _movementSfxController = AudioManager.Instance.GetController();
-            _movementSfx.Play(_movementSfxController);
+            if (!_movementSfx.NullTest()) {
+                _movementSfxController = AudioManager.Instance.GetController();
+                _movementSfx.Play(_movementSfxController);
+            }
+            SetMoveVolume(0);
         }
 
         public void SetMoveVolume(float volume)
