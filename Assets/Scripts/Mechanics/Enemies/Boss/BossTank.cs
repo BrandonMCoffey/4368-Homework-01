@@ -102,8 +102,8 @@ namespace Assets.Scripts.Mechanics.Enemies.Boss
                 transform.position = pos;
                 yield return null;
             }
-            for (float t = 0; t < _chargeSpeed; t += Time.deltaTime) {
-                float delta = t / _chargeSpeed;
+            for (float t = 0; t < _chargeSpeed * 2; t += Time.deltaTime) {
+                float delta = t / _chargeSpeed * 2;
                 float zPos = -5 + delta * 12;
                 Vector3 pos = transform.position;
                 pos.z = zPos;

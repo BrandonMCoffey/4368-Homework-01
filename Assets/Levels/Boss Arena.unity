@@ -2149,7 +2149,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 60.000004, y: 0, z: 0}
 --- !u!1001 &139998899
 PrefabInstance:
@@ -11177,7 +11177,7 @@ Transform:
   m_Children:
   - {fileID: 730742230}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &740191723
 PrefabInstance:
@@ -13033,7 +13033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &851626593
 PrefabInstance:
@@ -13280,7 +13280,7 @@ RectTransform:
   - {fileID: 577488786}
   - {fileID: 337537823}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23072,7 +23072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1640446519ab1478e6367451fe04b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skipCutscene: 1
+  _skipCutscene: 0
   _fadeIn: 4
   _playerEnter: 2
   _brightenLights: 1.5
@@ -30452,7 +30452,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 103708950323900251, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 103708950323900251, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30540,7 +30540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7325661561084492703, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7325661561084492703, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_LocalPosition.x
