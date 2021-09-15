@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks.Feedback;
-using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
@@ -25,7 +24,6 @@ namespace Assets.Scripts.Tanks
             // Check if mis-assigned current health
             if (!_currentHealth.UseConstant && _currentHealth.Variable == null) {
                 _currentHealth.UseConstant = true;
-                DebugHelper.Warn(gameObject, "Current Health has no assigned variable");
             }
         }
 
@@ -84,8 +82,6 @@ namespace Assets.Scripts.Tanks
             }
             if (_deathFeedback != null) {
                 _deathFeedback.DeathFeedback();
-            } else {
-                DebugHelper.Warn(gameObject, "No attached Death Feedback");
             }
         }
     }

@@ -12,14 +12,25 @@ namespace Assets.Scripts.Tanks
         [SerializeField] private Transform _turretPivot = null;
 
         private Vector3 _lookAtPos;
+        private bool _missingTurret;
+
+        private void Awake()
+        {
+            if (_turretPivot == null) {
+                _missingTurret = true;
+                throw new MissingComponentException("No Turret Pivot attached to TankAim on " + gameObject);
+            }
+        }
 
         private void OnEnable()
         {
+            if (_missingTurret) return;
             _lookAtPos = new Vector3(transform.position.x, _turretPivot.position.y, transform.position.z + (_lookUpAtStart ? 2 : -2));
         }
 
         private void Update()
         {
+            if (_missingTurret) return;
             Quaternion currentRotation = _turretPivot.rotation;
             _turretPivot.LookAt(_lookAtPos);
             if (_smoothRotation) {

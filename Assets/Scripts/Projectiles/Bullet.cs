@@ -1,7 +1,6 @@
 using System.Collections;
 using Assets.Scripts.Audio;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectiles
@@ -16,8 +15,6 @@ namespace Assets.Scripts.Projectiles
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _bounceTimes = 1;
         [Header("Feedback")]
-        [SerializeField] private SfxReference _fireSfx = new SfxReference();
-        [SerializeField] private ParticleSystem _fireParticles = null;
         [SerializeField] private SfxReference _bounceSfx = new SfxReference();
         [SerializeField] private ParticleSystem _bounceParticles = null;
         [SerializeField] private SfxReference _destroySfx = new SfxReference();
@@ -41,14 +38,13 @@ namespace Assets.Scripts.Projectiles
             if (_debug != null) _debug.ReflectionTimes = _bounceTimes + 1;
 
             // Ensure collect particles don't play on awake or self destruct
-            if (_fireParticles != null && !_fireParticles.gameObject.activeInHierarchy) {
-                DebugHelper.Warn(gameObject, "Bullet Fire Particles should be under the Bullet Prefab");
-            }
-            if (_bounceParticles != null && !_bounceParticles.gameObject.activeInHierarchy) {
-                DebugHelper.Warn(gameObject, "Bullet Bounce Particles should be under the Bullet Prefab");
+            if (_bounceParticles != null && _bounceParticles.gameObject.activeInHierarchy) {
+                var main = _bounceParticles.main;
+                main.playOnAwake = false;
             }
             if (_destroyParticles != null && _destroyParticles.gameObject.activeInHierarchy) {
-                _destroyParticles.gameObject.SetActive(false);
+                var main = _destroyParticles.main;
+                main.playOnAwake = false;
             }
         }
 
@@ -109,15 +105,6 @@ namespace Assets.Scripts.Projectiles
         private void Move()
         {
             _rb.velocity = transform.forward * _moveSpeed;
-        }
-
-        public void FireFeedback(Vector3 position, Quaternion rotation)
-        {
-            if (_fireParticles != null) {
-                _fireParticles.transform.SetPositionAndRotation(position, rotation);
-                _fireParticles.Play();
-            }
-            _fireSfx.Play();
         }
 
         public void BounceFeedback(Vector3 position, Quaternion rotation)

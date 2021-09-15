@@ -1,6 +1,5 @@
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Tanks.Feedback;
-using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
@@ -42,7 +41,7 @@ namespace Assets.Scripts.Tanks
             if (Rb == null) {
                 _rigidbody = GetComponent<Rigidbody>();
                 if (Rb == null) {
-                    DebugHelper.Error(gameObject, "No assigned rigidbody");
+                    throw new MissingComponentException("No Rigidbody Attached to  Tank Movement on " + gameObject);
                 }
             }
             if (OnlyRotateArt) {
@@ -63,6 +62,7 @@ namespace Assets.Scripts.Tanks
 
         private void FixedUpdate()
         {
+            if (Rb == null) return;
             Turn(_turnSpeed);
             Move(MoveSpeed.Value);
             MovementFeedback();

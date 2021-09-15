@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Projectiles;
 using Assets.Scripts.Tanks.Feedback;
-using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Tanks
@@ -22,11 +21,13 @@ namespace Assets.Scripts.Tanks
         [SerializeField] private TankFeedback _tankFeedback = null;
 
         private List<Bullet> _bullets = new List<Bullet>();
+        private bool _missingTurret;
 
         private void Awake()
         {
             if (_turretFirePos == null) {
-                DebugHelper.Error(gameObject, "Missing Bullet Information To Fire");
+                _missingTurret = true;
+                throw new MissingComponentException("Missing Turret Fire Transform reference on " + gameObject);
             }
         }
 
@@ -37,7 +38,7 @@ namespace Assets.Scripts.Tanks
 
         public void Fire()
         {
-            if (_turretFirePos == null) return;
+            if (_missingTurret) return;
 
             _bullets = _bullets.Where(item => item != null && item.isActiveAndEnabled).ToList();
             if (_hasMaximumBullets && _bullets.Count >= _maximumBullets) return;
