@@ -28,6 +28,11 @@ namespace Assets.Scripts.Level_Systems
             _endPos = _platformToMove.position + _lowerOffset;
         }
 
+        public Vector3 GetCenter()
+        {
+            return transform.position;
+        }
+
         public void PrepareToLower(BossTank bossTank)
         {
             if (_platformToMove == null) return;

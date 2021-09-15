@@ -18,6 +18,10 @@ namespace Assets.Scripts.Projectiles
         [Header("Feedback")]
         [SerializeField] private SfxReference _fireSfx = new SfxReference();
         [SerializeField] private ParticleSystem _fireParticles = null;
+        [SerializeField] private SfxReference _bounceSfx = new SfxReference();
+        [SerializeField] private ParticleSystem _bounceParticles = null;
+        [SerializeField] private SfxReference _destroySfx = new SfxReference();
+        [SerializeField] private ParticleSystem _destroyParticles = null;
 
         public BulletType Type => _type;
 
@@ -39,6 +43,12 @@ namespace Assets.Scripts.Projectiles
             // Ensure collect particles don't play on awake or self destruct
             if (_fireParticles != null && !_fireParticles.gameObject.activeInHierarchy) {
                 DebugHelper.Warn(gameObject, "Bullet Fire Particles should be under the Bullet Prefab");
+            }
+            if (_bounceParticles != null && !_bounceParticles.gameObject.activeInHierarchy) {
+                DebugHelper.Warn(gameObject, "Bullet Bounce Particles should be under the Bullet Prefab");
+            }
+            if (_destroyParticles != null && _destroyParticles.gameObject.activeInHierarchy) {
+                _destroyParticles.gameObject.SetActive(false);
             }
         }
 
@@ -73,6 +83,7 @@ namespace Assets.Scripts.Projectiles
                     direction = Vector3.Reflect(direction, hit.normal);
                 }
                 transform.forward = direction;
+                BounceFeedback(hit.point, Quaternion.Euler(hit.normal));
                 return;
             }
             // If hit another bullet, kill both
@@ -109,8 +120,27 @@ namespace Assets.Scripts.Projectiles
             _fireSfx.Play();
         }
 
+        public void BounceFeedback(Vector3 position, Quaternion rotation)
+        {
+            if (_bounceParticles != null) {
+                _bounceParticles.gameObject.SetActive(true);
+                _bounceParticles.transform.SetPositionAndRotation(position, rotation);
+                _bounceParticles.Play();
+            }
+            _bounceSfx.Play();
+        }
+
+        public void DestroyFeedback(Vector3 position, Quaternion rotation)
+        {
+            if (_destroyParticles != null) {
+                Instantiate(_destroyParticles, position, rotation).gameObject.SetActive(true);
+            }
+            _destroySfx.Play();
+        }
+
         private void Kill()
         {
+            DestroyFeedback(transform.position, transform.rotation);
             BulletPool.Instance.ReturnBullet(this);
         }
     }

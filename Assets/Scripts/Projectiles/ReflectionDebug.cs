@@ -20,9 +20,6 @@ namespace Assets.Scripts.Projectiles
 
         private void OnDrawGizmos()
         {
-            Handles.color = _handleColor;
-            Handles.ArrowHandleCap(0, transform.position + transform.forward * _handleOffset, transform.rotation, _handleLength, EventType.Repaint);
-
             DrawPredictedReflectionPattern(transform.position + transform.forward * (_handleOffset + _handleLength), transform.forward, _reflectionTimes);
         }
 

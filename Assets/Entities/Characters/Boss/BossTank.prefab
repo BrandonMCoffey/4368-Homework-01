@@ -60,7 +60,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edad4f0dd2a469419c957ce0b019f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _idleTimeMinMax: {x: 6, y: 12}
+  _chargeTimeMinMax: {x: 15, y: 30}
+  _moveSpeed: 2
   _art: {fileID: 2177471138880449935}
+  _leftPlatform: {fileID: 0}
+  _centerPlatform: {fileID: 0}
+  _rightPlatform: {fileID: 0}
+  _turnTime: 1
+  _chargeSpeed: 0.5
+  _state: 2
+  _chargeTimer: 0
+  _chargeTime: 0
 --- !u!114 &377688368167014275
 MonoBehaviour:
   m_ObjectHideFlags: 0
