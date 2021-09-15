@@ -11160,8 +11160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb883f5f63e02d14c973a045faecb2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalBullet: {fileID: 7387073614073010187, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
-  _fastBullet: {fileID: 7387073614073010187, guid: 12c2d10c1a56d8043a6a6a9ad781abc4, type: 3}
+  _normalBullet: {fileID: 7510040909555904575, guid: 7f2a85bace81a5f4c8ca55d966712abd, type: 3}
+  _fastBullet: {fileID: 7510040909555904575, guid: afa337c0001c52f4289e27fbaeda034f, type: 3}
   _poolParent: {fileID: 730742230}
   _initialPoolSize: 4
 --- !u!4 &734967553

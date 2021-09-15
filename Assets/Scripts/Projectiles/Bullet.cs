@@ -1,65 +1,51 @@
 using System.Collections;
-using Assets.Scripts.Audio;
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectiles
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Collider))]
     public class Bullet : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private BulletType _type = BulletType.Normal;
-        [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private int _damageAmount = 1;
         [SerializeField] private int _bounceTimes = 1;
-        [Header("Feedback")]
-        [SerializeField] private SfxReference _bounceSfx = new SfxReference();
-        [SerializeField] private ParticleSystem _bounceParticles = null;
-        [SerializeField] private SfxReference _destroySfx = new SfxReference();
-        [SerializeField] private ParticleSystem _destroyParticles = null;
+        [Header("References")]
+        [SerializeField] private Collider _collider;
+        [SerializeField] private BulletFeedback _feedback;
+        [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
 
         public BulletType Type => _type;
 
-        private Rigidbody _rb;
-        private Collider _collider;
         private int _currentBounces;
+        private bool _hasError;
 
         private ReflectionDebug _debug;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
-            _collider = GetComponent<Collider>();
+            if (_collider == null) {
+                _collider = GetComponent<Collider>();
+                if (_collider == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Rigidbody for Bullet on " + gameObject);
+                }
+            }
+            if (_feedback == null) {
+                _feedback = transform.parent.GetComponentInChildren<BulletFeedback>();
+                if (_feedback == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Feedback for Bullet on " + gameObject);
+                }
+            }
             _collider.isTrigger = false;
-
-            _debug = GetComponent<ReflectionDebug>();
-            if (_debug != null) _debug.ReflectionTimes = _bounceTimes + 1;
-
-            // Ensure collect particles don't play on awake or self destruct
-            if (_bounceParticles != null && _bounceParticles.gameObject.activeInHierarchy) {
-                var main = _bounceParticles.main;
-                main.playOnAwake = false;
-            }
-            if (_destroyParticles != null && _destroyParticles.gameObject.activeInHierarchy) {
-                var main = _destroyParticles.main;
-                main.playOnAwake = false;
-            }
-        }
-
-        private void OnEnable()
-        {
-            _currentBounces = 0;
-        }
-
-        private void FixedUpdate()
-        {
-            Move();
         }
 
         private void OnCollisionEnter(Collision other)
         {
+            if (_hasError) return;
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (damageable != null) {
                 // Damage the object and kill bullet
@@ -79,7 +65,7 @@ namespace Assets.Scripts.Projectiles
                     direction = Vector3.Reflect(direction, hit.normal);
                 }
                 transform.forward = direction;
-                BounceFeedback(hit.point, Quaternion.Euler(hit.normal));
+                _feedback.BounceFeedback(hit.point, Quaternion.Euler(hit.normal));
                 return;
             }
             // If hit another bullet, kill both
@@ -92,6 +78,7 @@ namespace Assets.Scripts.Projectiles
 
         public void TemporaryIgnore(Collider objCollider, float duration)
         {
+            if (_hasError) return;
             StartCoroutine(Ignore(objCollider, duration));
         }
 
@@ -102,33 +89,25 @@ namespace Assets.Scripts.Projectiles
             Physics.IgnoreCollision(_collider, objCollider, false);
         }
 
-        private void Move()
-        {
-            _rb.velocity = transform.forward * _moveSpeed;
-        }
-
-        public void BounceFeedback(Vector3 position, Quaternion rotation)
-        {
-            if (_bounceParticles != null) {
-                _bounceParticles.gameObject.SetActive(true);
-                _bounceParticles.transform.SetPositionAndRotation(position, rotation);
-                _bounceParticles.Play();
-            }
-            _bounceSfx.Play();
-        }
-
-        public void DestroyFeedback(Vector3 position, Quaternion rotation)
-        {
-            if (_destroyParticles != null) {
-                Instantiate(_destroyParticles, position, rotation).gameObject.SetActive(true);
-            }
-            _destroySfx.Play();
-        }
-
         private void Kill()
         {
-            DestroyFeedback(transform.position, transform.rotation);
+            _feedback.DestroyFeedback(transform.position, transform.rotation);
             BulletPool.Instance.ReturnBullet(this);
+        }
+
+        private void Enable()
+        {
+            foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
+                obj.SetActive(true);
+            }
+            _currentBounces = 0;
+        }
+
+        private void Disable()
+        {
+            foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
+                obj.SetActive(false);
+            }
         }
     }
 }
