@@ -19,12 +19,15 @@ namespace Assets.Scripts.Mechanics.Tanks.Feedback
         private void Awake()
         {
             if (_movementParticles != null) {
+                _movementParticles.gameObject.SetActive(true);
                 _movementParticleAmount = _movementParticles.emission.rateOverTime.constant;
             }
             if (_speedBoostEffects != null) {
+                _speedBoostEffects.gameObject.SetActive(true);
                 _speedBoostParticleAmount = _speedBoostEffects.emission.rateOverTime.constant;
             }
             if (_slowedDownEffects != null) {
+                _slowedDownEffects.gameObject.SetActive(true);
                 _slowedDownParticleAmount = _slowedDownEffects.emission.rateOverTime.constant;
             }
         }

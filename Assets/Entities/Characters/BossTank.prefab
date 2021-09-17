@@ -108,6 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325661559495869879}
+  - component: {fileID: 7928012434638989222}
   m_Layer: 0
   m_Name: BossAI
   m_TagString: Untagged
@@ -129,6 +130,23 @@ Transform:
   m_Father: {fileID: 7325661561084492703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7928012434638989222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325661559495869878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf26c882462b12349a0bdaa868a78004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugState: 1
+  _platformController: {fileID: 0}
+  _mainTransform: {fileID: 7325661561084492703}
+  _art: {fileID: 7325661559825202138}
+  _onEndCutscene: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
 --- !u!1 &7325661559717051125
 GameObject:
   m_ObjectHideFlags: 0
@@ -15065,7 +15083,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7325661561084492703}
   - component: {fileID: 7325661561084492702}
-  - component: {fileID: 4093720465820875491}
   - component: {fileID: 9125354454648506741}
   m_Layer: 0
   m_Name: BossTank
@@ -15105,27 +15122,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.385, y: 1.85, z: 2.96}
   m_Center: {x: 0, y: 0.9065, z: 0}
---- !u!114 &4093720465820875491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7325661561084492697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2edad4f0dd2a469419c957ce0b019f32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _idleTimeMinMax: {x: 6, y: 12}
-  _chargeTimeMinMax: {x: 15, y: 30}
-  _moveSpeed: 2
-  _art: {fileID: 7325661559825202138}
-  _leftPlatform: {fileID: 0}
-  _centerPlatform: {fileID: 0}
-  _rightPlatform: {fileID: 0}
-  _turnTime: 1
-  _chargeSpeed: 0.5
 --- !u!114 &9125354454648506741
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using Assets.Scripts.Utility.ObjectPool;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Mechanics.Projectiles

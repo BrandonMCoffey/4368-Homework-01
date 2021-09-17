@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.ObjectPool
+namespace Assets.Scripts.Utility
 {
     public class PoolManager<T> where T : Component
     {

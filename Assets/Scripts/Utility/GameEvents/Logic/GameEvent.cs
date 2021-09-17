@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility.GameEvents.Logic
@@ -7,9 +8,11 @@ namespace Assets.Scripts.Utility.GameEvents.Logic
     public class GameEvent : ScriptableObject
     {
         private List<GameEventListener> _eventListeners = new List<GameEventListener>();
+        public event Action OnEvent = delegate { };
 
         public void Invoke()
         {
+            OnEvent?.Invoke();
             for (int i = _eventListeners.Count - 1; i >= 0; i--) {
                 _eventListeners[i].OnEventRaised();
             }

@@ -1,3 +1,4 @@
+using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 
 namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
@@ -10,7 +11,7 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
 
         private void Start()
         {
-            _fireTimer = RandomMinMax(_fireTime);
+            _fireTimer = RandomFloat.MinMax(_fireTime);
             OnAimTurret.Invoke(NewAimPosition());
         }
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
         {
             _fireTimer -= Time.deltaTime;
             if (_fireTimer <= 0) {
-                _fireTimer = RandomMinMax(_fireTime);
+                _fireTimer = RandomFloat.MinMax(_fireTime);
                 OnAimTurret.Invoke(NewAimPosition());
                 Fire();
             }
@@ -37,11 +38,6 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
             Vector2 pos = new Vector2(transform.position.x, transform.position.z);
             Vector2 offset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
             return pos + offset.normalized;
-        }
-
-        private static float RandomMinMax(Vector2 minMax)
-        {
-            return Random.Range(minMax.x, Mathf.Max(minMax.x, minMax.y));
         }
     }
 }
