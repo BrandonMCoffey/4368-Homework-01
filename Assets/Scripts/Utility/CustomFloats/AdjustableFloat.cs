@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats
+namespace Utility.CustomFloats
 {
     public enum ValueAdjustType
     {

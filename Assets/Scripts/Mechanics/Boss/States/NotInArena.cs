@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility.StateMachine;
 using UnityEngine;
+using Utility.StateMachine;
 
-namespace Assets.Scripts.Mechanics.Boss.States
+namespace Mechanics.Boss.States
 {
     public class NotInArena : IState
     {

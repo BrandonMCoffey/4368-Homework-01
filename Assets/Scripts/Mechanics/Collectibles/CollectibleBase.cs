@@ -1,7 +1,7 @@
-using Assets.Scripts.Audio;
+using Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Collectibles
+namespace Mechanics.Collectibles
 {
     [RequireComponent(typeof(Collider))]
     public abstract class CollectibleBase : MonoBehaviour

@@ -1,10 +1,13 @@
-﻿using UnityEditor;
+﻿using Audio;
+using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio.Editor {
+namespace Assets.Scripts.Audio.Editor
+{
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SfxReference))]
-    public class SfxReferenceDrawer : PropertyDrawer {
+    public class SfxReferenceDrawer : PropertyDrawer
+    {
         private readonly string[] _popupOptions =
             { "Use Audio Clip", "Use Sfx Data" };
 

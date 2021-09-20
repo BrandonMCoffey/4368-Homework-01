@@ -1,9 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Boss;
+using Mechanics.Boss;
 using UnityEngine;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     public class BossPlatform : MonoBehaviour
     {

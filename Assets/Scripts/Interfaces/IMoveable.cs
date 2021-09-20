@@ -1,6 +1,6 @@
-using Assets.Scripts.Utility.CustomFloats;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Interfaces
+namespace Interfaces
 {
     public interface IMoveable
     {

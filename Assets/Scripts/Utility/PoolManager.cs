@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility
+namespace Utility
 {
     public class PoolManager<T> where T : Component
     {

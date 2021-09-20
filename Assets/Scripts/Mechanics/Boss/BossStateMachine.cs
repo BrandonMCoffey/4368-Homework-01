@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Game;
-using Assets.Scripts.Mechanics.Boss.States;
-using Assets.Scripts.Utility.GameEvents.Logic;
-using Assets.Scripts.Utility.StateMachine;
+using Mechanics.Boss.States;
 using UnityEngine;
+using Utility.GameEvents.Logic;
+using Utility.StateMachine;
 
-namespace Assets.Scripts.Mechanics.Boss
+namespace Mechanics.Boss
 {
     public enum BossStage
     {

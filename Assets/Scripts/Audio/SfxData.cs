@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Audio
+namespace Audio
 {
     [CreateAssetMenu]
     public class SfxData : ScriptableObject

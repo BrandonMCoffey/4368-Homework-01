@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Mechanics.Player_Systems
+namespace Mechanics.Player_Systems
 {
     public class PlayerInput : MonoBehaviour
     {

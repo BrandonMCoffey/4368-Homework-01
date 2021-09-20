@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats
+namespace Utility.CustomFloats
 {
     public static class RandomFloat
     {

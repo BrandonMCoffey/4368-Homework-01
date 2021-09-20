@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     public class RedLight : MonoBehaviour
     {

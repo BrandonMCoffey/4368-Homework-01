@@ -1,8 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Interfaces;
 using UnityEngine;
+using Interfaces;
 
-namespace Assets.Scripts.Mechanics.Projectiles
+namespace Mechanics.Projectiles
 {
     public class Bullet : MonoBehaviour
     {

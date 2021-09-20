@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameEvents.Logic
+namespace Utility.GameEvents.Logic
 {
 #if UNITY_EDITOR
     [CustomEditor(typeof(GameEvent), true)]

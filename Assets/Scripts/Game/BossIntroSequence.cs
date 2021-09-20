@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Audio;
-using Assets.Scripts.Level_Systems;
-using Assets.Scripts.Mechanics.Boss;
-using Assets.Scripts.Mechanics.Player_Systems;
-using Assets.Scripts.Utility.GameEvents.Logic;
+using Audio;
+using Level_Systems;
+using Mechanics.Boss;
+using Mechanics.Player_Systems;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.GameEvents.Logic;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     public enum IntroState
     {

@@ -1,7 +1,7 @@
-using Assets.Scripts.Audio;
+using Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Enemies.Basic
+namespace Mechanics.Enemies.Basic
 {
     public abstract class Enemy : MonoBehaviour
     {

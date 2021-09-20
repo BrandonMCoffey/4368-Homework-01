@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Utility.StateMachine
+namespace Utility.StateMachine
 {
     public interface IState
     {

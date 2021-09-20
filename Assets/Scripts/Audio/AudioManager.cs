@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Assets.Scripts.Utility;
 using UnityEngine;
+using Utility;
 
-namespace Assets.Scripts.Audio
+namespace Audio
 {
     public class AudioManager : MonoBehaviour
     {

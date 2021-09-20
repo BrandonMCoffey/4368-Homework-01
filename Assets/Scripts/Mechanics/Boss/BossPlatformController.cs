@@ -1,8 +1,8 @@
 using System.ComponentModel;
-using Assets.Scripts.Level_Systems;
+using Level_Systems;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Boss
+namespace Mechanics.Boss
 {
     public enum PlatformOptions
     {

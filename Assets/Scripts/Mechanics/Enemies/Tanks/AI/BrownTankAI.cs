@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
+namespace Mechanics.Enemies.Tanks.AI
 {
     public class BrownTankAI : EnemyAI
     {

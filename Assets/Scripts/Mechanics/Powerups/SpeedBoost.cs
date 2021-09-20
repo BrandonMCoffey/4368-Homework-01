@@ -1,8 +1,8 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Utility.CustomFloats;
+using Interfaces;
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Powerups
+namespace Mechanics.Powerups
 {
     public class SpeedBoost : PowerupBase
     {

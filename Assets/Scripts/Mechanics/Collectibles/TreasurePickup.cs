@@ -1,7 +1,7 @@
-using Assets.Scripts.Interfaces;
+using Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Collectibles
+namespace Mechanics.Collectibles
 {
     public class TreasurePickup : CollectibleBase, ILockable
     {

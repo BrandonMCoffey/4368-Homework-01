@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Tanks
+namespace Mechanics.Tanks
 {
     public class DestinationMovement : TankMovement
     {

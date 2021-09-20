@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     public class RandomPlatformSpawn : MonoBehaviour
     {

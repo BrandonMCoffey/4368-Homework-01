@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Tanks.Feedback;
-using Assets.Scripts.Utility.CustomFloats;
+using Mechanics.Tanks.Feedback;
 using UnityEngine;
+using Interfaces;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Tanks
+namespace Mechanics.Tanks
 {
     public class TankHealth : MonoBehaviour, IDamageable
     {

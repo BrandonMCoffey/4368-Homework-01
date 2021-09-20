@@ -1,9 +1,9 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Collectibles;
-using Assets.Scripts.Mechanics.Tanks;
+using Interfaces;
+using Mechanics.Collectibles;
+using Mechanics.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Player_Systems
+namespace Mechanics.Player_Systems
 {
     [RequireComponent(typeof(TankHealth), typeof(Inventory), typeof(TankPowerup))]
     public class PlayerTank : MonoBehaviour, IHealable, IInventory<Treasure>

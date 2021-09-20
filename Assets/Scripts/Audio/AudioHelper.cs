@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Audio
+namespace Audio
 {
     public static class AudioHelper
     {

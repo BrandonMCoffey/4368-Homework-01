@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameEvents.Logic
+namespace Utility.GameEvents.Logic
 {
     [CreateAssetMenu]
     public class GameEvent : ScriptableObject

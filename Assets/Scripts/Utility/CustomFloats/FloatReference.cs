@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.Utility.CustomFloats
+namespace Utility.CustomFloats
 {
     [Serializable]
     public class FloatReference

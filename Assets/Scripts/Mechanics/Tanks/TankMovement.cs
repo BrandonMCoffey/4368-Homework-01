@@ -1,9 +1,9 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Tanks.Feedback;
-using Assets.Scripts.Utility.CustomFloats;
+using Interfaces;
+using Mechanics.Tanks.Feedback;
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Tanks
+namespace Mechanics.Tanks
 {
     public abstract class TankMovement : MonoBehaviour, IMoveable
     {

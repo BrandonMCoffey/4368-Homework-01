@@ -1,8 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Interfaces;
+using Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     public class PlatformSpawner : MonoBehaviour
     {

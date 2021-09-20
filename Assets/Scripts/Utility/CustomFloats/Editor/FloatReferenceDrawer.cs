@@ -1,10 +1,13 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Utility.CustomFloats.Editor {
+namespace Assets.Scripts.Utility.CustomFloats.Editor
+{
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(FloatReference))]
-    public class FloatReferenceDrawer : PropertyDrawer {
+    public class FloatReferenceDrawer : PropertyDrawer
+    {
         private readonly string[] _popupOptions =
             { "Use Constant", "Use Variable" };
 

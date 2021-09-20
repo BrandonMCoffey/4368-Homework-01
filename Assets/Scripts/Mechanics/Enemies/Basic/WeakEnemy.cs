@@ -1,8 +1,8 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Tanks;
+using Mechanics.Tanks;
 using UnityEngine;
+using Interfaces;
 
-namespace Assets.Scripts.Mechanics.Enemies.Basic
+namespace Mechanics.Enemies.Basic
 {
     [RequireComponent(typeof(TankHealth))]
     public class WeakEnemy : Enemy
