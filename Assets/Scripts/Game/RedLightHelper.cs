@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     [RequireComponent(typeof(Light))]
     public class RedLightHelper : MonoBehaviour

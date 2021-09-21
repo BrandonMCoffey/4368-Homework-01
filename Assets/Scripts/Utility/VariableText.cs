@@ -1,8 +1,8 @@
-using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Utility
+namespace Utility
 {
     [RequireComponent(typeof(Text))]
     public class VariableText : MonoBehaviour

@@ -1,8 +1,8 @@
-using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
 using UnityEngine.Events;
+using Utility.GameEvents.Logic;
 
-namespace Assets.Scripts.Utility.GameEvents
+namespace Utility.GameEvents
 {
     public class ActionOnEvent : GameEventListener
     {

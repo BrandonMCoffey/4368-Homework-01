@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Mechanics.Collectibles
+namespace Mechanics.Collectibles
 {
     public class Treasure
     {

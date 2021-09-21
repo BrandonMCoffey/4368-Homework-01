@@ -1,7 +1,7 @@
-using Assets.Scripts.Interfaces;
+using Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Powerups
+namespace Mechanics.Powerups
 {
     public class Invincibility : PowerupBase
     {

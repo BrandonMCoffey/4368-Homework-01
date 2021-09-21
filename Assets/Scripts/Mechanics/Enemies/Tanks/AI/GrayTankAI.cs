@@ -1,6 +1,7 @@
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
+namespace Mechanics.Enemies.Tanks.AI
 {
     public class GrayTankAI : EnemyAI
     {
@@ -13,7 +14,7 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
 
         private void Start()
         {
-            _fireTimer = RandomMinMax(_fireTime);
+            _fireTimer = RandomFloat.MinMax(_fireTime);
             OnAimTurret.Invoke(NewAimPosition());
         }
 
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
         {
             _moveTimer -= Time.deltaTime;
             if (_moveTimer <= 0) {
-                _moveTimer = RandomMinMax(_moveTime);
+                _moveTimer = RandomFloat.MinMax(_fireTime);
                 OnMoveBody.Invoke(NewMovePosition());
             }
         }
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
         {
             _fireTimer -= Time.deltaTime;
             if (_fireTimer <= 0) {
-                _fireTimer = RandomMinMax(_fireTime);
+                _fireTimer = RandomFloat.MinMax(_fireTime);
                 OnAimTurret.Invoke(NewAimPosition());
                 Fire();
             }
@@ -52,14 +53,9 @@ namespace Assets.Scripts.Mechanics.Enemies.Tanks.AI
             Vector2 pos = new Vector2(transform.position.x, transform.position.z);
             bool n1 = Random.value > 0.5f;
             bool n2 = Random.value > 0.5f;
-            float x = (n1 ? -1 : 1) * RandomMinMax(_moveDistance);
-            float y = (n2 ? -1 : 1) * RandomMinMax(_moveDistance);
+            float x = (n1 ? -1 : 1) * RandomFloat.MinMax(_moveDistance);
+            float y = (n2 ? -1 : 1) * RandomFloat.MinMax(_moveDistance);
             return pos + new Vector2(x, y);
-        }
-
-        private static float RandomMinMax(Vector2 minMax)
-        {
-            return Random.Range(minMax.x, Mathf.Max(minMax.x, minMax.y));
         }
     }
 }

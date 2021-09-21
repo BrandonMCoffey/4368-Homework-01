@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility
+namespace Utility
 {
     public class AutoKillObject : MonoBehaviour
     {

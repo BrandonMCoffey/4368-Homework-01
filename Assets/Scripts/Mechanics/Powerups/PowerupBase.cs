@@ -1,8 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Audio;
+using Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Powerups
+namespace Mechanics.Powerups
 {
     [RequireComponent(typeof(Collider))]
     public abstract class PowerupBase : MonoBehaviour

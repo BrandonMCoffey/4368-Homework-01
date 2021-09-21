@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Audio
+namespace Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class AudioSourceController : MonoBehaviour

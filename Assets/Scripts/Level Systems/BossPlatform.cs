@@ -1,9 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Enemies.Boss;
+using Mechanics.Boss;
 using UnityEngine;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     public class BossPlatform : MonoBehaviour
     {
@@ -17,7 +16,7 @@ namespace Assets.Scripts.Level_Systems
         private Vector3 _startPos;
         private Vector3 _endPos;
 
-        private BossTank _bossTank;
+        private BossStateMachine _bossStateMachine;
         private bool _lower;
 
         public float TotalTime => _timeToLower + _timeToRaise;
@@ -33,21 +32,19 @@ namespace Assets.Scripts.Level_Systems
             return transform.position;
         }
 
-        public void PrepareToLower(BossTank bossTank)
+        public void PrepareToLower(BossStateMachine bossTank)
         {
             if (_platformToMove == null) return;
             _lower = true;
-            _bossTank = bossTank;
-            _bossTank.Lock();
-            StartCoroutine(Lower(_bossTank.transform));
+            _bossStateMachine = bossTank;
+            StartCoroutine(Lower(_bossStateMachine.MainTransform));
         }
 
-        public void PrepareToRaise(BossTank bossTank)
+        public void PrepareToRaise(BossStateMachine bossTank)
         {
             if (_platformToMove == null) return;
             _lower = false;
-            _bossTank = bossTank;
-            _bossTank.Disable();
+            _bossStateMachine = bossTank;
             StartCoroutine(Lower(null));
         }
 
@@ -65,12 +62,11 @@ namespace Assets.Scripts.Level_Systems
         private void Spawn()
         {
             if (_lower) {
-                _bossTank.Disable();
+                _bossStateMachine.SetVisuals(false);
                 StartCoroutine(Raise(null));
             } else {
-                _bossTank.Enable();
-                _bossTank.Lock();
-                StartCoroutine(Raise(_bossTank.transform));
+                _bossStateMachine.SetVisuals(true);
+                StartCoroutine(Raise(_bossStateMachine.MainTransform));
             }
         }
 
@@ -89,19 +85,8 @@ namespace Assets.Scripts.Level_Systems
 
         private void Finish()
         {
-            _bossTank.Unlock();
-        }
-
-        private void LockObject(BossTank obj, bool active = true)
-        {
-            ILockable lockableObject = obj.GetComponent<ILockable>();
-            if (lockableObject != null) {
-                lockableObject.Lock(active);
-            } else {
-                Collider col = obj.GetComponent<Collider>();
-                if (col != null) {
-                    col.enabled = !active;
-                }
+            if (!_lower) {
+                _bossStateMachine.BossReachedPlatform();
             }
         }
     }

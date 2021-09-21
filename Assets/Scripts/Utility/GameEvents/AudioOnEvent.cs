@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility.GameEvents.Logic;
 using UnityEngine;
+using Utility.GameEvents.Logic;
 
-namespace Assets.Scripts.Utility.GameEvents
+namespace Utility.GameEvents
 {
     [RequireComponent(typeof(AudioSource))]
     public class AudioOnEvent : GameEventListener

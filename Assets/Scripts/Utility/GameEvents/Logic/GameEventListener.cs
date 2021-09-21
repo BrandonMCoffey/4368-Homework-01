@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameEvents.Logic
+namespace Utility.GameEvents.Logic
 {
     public class GameEventListener : MonoBehaviour
     {

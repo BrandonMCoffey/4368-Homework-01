@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Mechanics.Projectiles;
-using Assets.Scripts.Mechanics.Tanks.Feedback;
+using Mechanics.Projectiles;
+using Mechanics.Tanks.Feedback;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Tanks
+namespace Mechanics.Tanks
 {
     public class TankFire : MonoBehaviour
     {

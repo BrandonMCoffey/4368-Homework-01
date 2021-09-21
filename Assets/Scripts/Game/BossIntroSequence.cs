@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Audio;
-using Assets.Scripts.Level_Systems;
-using Assets.Scripts.Mechanics.Enemies.Boss;
-using Assets.Scripts.Mechanics.Player_Systems;
-using Assets.Scripts.Mechanics.Tanks.Feedback;
+using Audio;
+using Level_Systems;
+using Mechanics.Boss;
+using Mechanics.Player_Systems;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility.GameEvents.Logic;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     public enum IntroState
     {
@@ -43,11 +43,12 @@ namespace Assets.Scripts.Game
         [SerializeField] private List<RedLightHelper> _backingRedLights = new List<RedLightHelper>();
         [Header("References")]
         [SerializeField] private PlayerTank _player;
-        [SerializeField] private BossTank _boss;
+        [SerializeField] private BossStateMachine _boss;
         [SerializeField] private BossPlatform _bossSpawnPlatform = null;
         [SerializeField] private Image _fadeInPanel = null;
         [SerializeField] private SfxReference _tankSfx = new SfxReference();
         [SerializeField] private SfxReference _sirenSfx = new SfxReference();
+        [SerializeField] private GameEvent _startGame = null;
 
         private IntroState _state = IntroState.FadeIn;
         private float _bossEnterTime;
@@ -68,7 +69,7 @@ namespace Assets.Scripts.Game
                 }
             }
             if (_boss == null) {
-                _boss = FindObjectOfType<BossTank>();
+                _boss = FindObjectOfType<BossStateMachine>();
                 if (_boss == null) {
                     _hasError = true;
                     throw new MissingComponentException("No assigned Boss Tank on " + gameObject);
@@ -90,9 +91,10 @@ namespace Assets.Scripts.Game
                     backRedLight.gameObject.SetActive(true);
                     backRedLight.SetIntensityDelta(1);
                 }
+                _startGame.Invoke();
                 return;
             }
-            _boss.Disable();
+            _boss.SetVisuals(false);
             _player.gameObject.SetActive(false);
             _tempPlayerArt.gameObject.SetActive(true);
             _fadeInPanel.gameObject.SetActive(true);
@@ -195,6 +197,7 @@ namespace Assets.Scripts.Game
                     _player.gameObject.SetActive(true);
                     _tempPlayerArt.gameObject.SetActive(false);
                     _finished = true;
+                    _startGame.Invoke();
                     break;
             }
         }

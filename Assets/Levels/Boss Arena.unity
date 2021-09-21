@@ -2149,7 +2149,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 60.000004, y: 0, z: 0}
 --- !u!1001 &139998899
 PrefabInstance:
@@ -10713,7 +10713,7 @@ Transform:
   - {fileID: 1832083829}
   - {fileID: 1212324580}
   m_Father: {fileID: 1592727950}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &718509525
 PrefabInstance:
@@ -11177,7 +11177,7 @@ Transform:
   m_Children:
   - {fileID: 730742230}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &740191723
 PrefabInstance:
@@ -13033,7 +13033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &851626593
 PrefabInstance:
@@ -23066,10 +23066,9 @@ Transform:
   - {fileID: 533589913}
   - {fileID: 1696663573}
   - {fileID: 367848449}
-  - {fileID: 1780183614}
   - {fileID: 710197853}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1592727951
 MonoBehaviour:
@@ -23083,7 +23082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1640446519ab1478e6367451fe04b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skipCutscene: 0
+  _skipCutscene: 1
   _fadeIn: 4
   _playerEnter: 2
   _brightenLights: 2.5
@@ -23111,7 +23110,7 @@ MonoBehaviour:
   - {fileID: 1177326598}
   - {fileID: 159298414}
   _player: {fileID: 1244062031}
-  _boss: {fileID: 6730114464693707689}
+  _boss: {fileID: 0}
   _bossSpawnPlatform: {fileID: 785361679}
   _fadeInPanel: {fileID: 337537824}
   _tankSfx:
@@ -23122,6 +23121,7 @@ MonoBehaviour:
     UseConstant: 0
     Clip: {fileID: 0}
     Data: {fileID: 11400000, guid: b8a630c8822f6974a8d38c9d797348a3, type: 2}
+  _startGame: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
 --- !u!1001 &1593510600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23530,7 +23530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Name
-      value: 4 PlatformSpawner (1)
+      value: CenterBossPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Layer
@@ -23713,7 +23713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Name
-      value: 4 PlatformSpawner
+      value: LeftBossPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Layer
@@ -25749,6 +25749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780183614}
+  - component: {fileID: 1780183615}
   m_Layer: 0
   m_Name: Boss Platforms
   m_TagString: Untagged
@@ -25763,16 +25764,31 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780183613}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1648675353}
   - {fileID: 1646067663}
   - {fileID: 1918258707}
-  m_Father: {fileID: 1592727950}
+  m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780183615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780183613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e81fb06259d9b4409704e6520129984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftBossPlatform: {fileID: 1181474202}
+  _centerBossPlatform: {fileID: 785361679}
+  _rightBossPlatform: {fileID: 1154218857}
 --- !u!1 &1780404460
 GameObject:
   m_ObjectHideFlags: 0
@@ -27614,14 +27630,14 @@ PrefabInstance:
     - target: {fileID: 2188137063880341266, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: _bossTank
       value: 
-      objectReference: {fileID: 6730114464693707689}
+      objectReference: {fileID: 0}
     - target: {fileID: 3793862080454619655, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Name
-      value: 4 PlatformSpawner (2)
+      value: RightBossPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 3793862081544434084, guid: 8f6c61cfa495771469d5b4b61523fac3, type: 3}
       propertyPath: m_Layer
@@ -30469,6 +30485,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 103708950055092585, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 103708950323900251, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -30517,23 +30537,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 103708950865759590, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 103708951577875986, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 139571742}
+    - target: {fileID: 103708951585440622, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
---- !u!114 &6730114464693707689 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4093720465820875491, guid: 9ea3df64531408243be395cb6531f111, type: 3}
-  m_PrefabInstance: {fileID: 7325661560514713930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2edad4f0dd2a469419c957ce0b019f32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7325661560514713930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30541,18 +30558,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4093720465820875491, guid: 9ea3df64531408243be395cb6531f111, type: 3}
-      propertyPath: _leftPlatform
-      value: 
-      objectReference: {fileID: 1181474202}
-    - target: {fileID: 4093720465820875491, guid: 9ea3df64531408243be395cb6531f111, type: 3}
-      propertyPath: _rightPlatform
-      value: 
-      objectReference: {fileID: 1154218857}
-    - target: {fileID: 4093720465820875491, guid: 9ea3df64531408243be395cb6531f111, type: 3}
-      propertyPath: _centerPlatform
-      value: 
-      objectReference: {fileID: 785361679}
     - target: {fileID: 7325661561084492697, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_Name
       value: BossTank
@@ -30601,5 +30606,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7928012434638989222, guid: 9ea3df64531408243be395cb6531f111, type: 3}
+      propertyPath: _platformController
+      value: 
+      objectReference: {fileID: 1780183615}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea3df64531408243be395cb6531f111, type: 3}

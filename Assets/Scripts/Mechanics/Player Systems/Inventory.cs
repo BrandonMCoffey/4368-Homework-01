@@ -1,7 +1,7 @@
-using Assets.Scripts.Utility.CustomFloats;
 using UnityEngine;
+using Utility.CustomFloats;
 
-namespace Assets.Scripts.Mechanics.Player_Systems
+namespace Mechanics.Player_Systems
 {
     public class Inventory : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio
+namespace Audio
 {
     [Serializable]
     public class SfxReference

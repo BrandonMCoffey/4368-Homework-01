@@ -1,8 +1,8 @@
 using System.ComponentModel;
-using Assets.Scripts.Utility.ObjectPool;
 using UnityEngine;
+using Utility;
 
-namespace Assets.Scripts.Mechanics.Projectiles
+namespace Mechanics.Projectiles
 {
     public enum BulletType
     {

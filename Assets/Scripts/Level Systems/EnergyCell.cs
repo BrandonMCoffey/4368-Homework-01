@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Assets.Scripts.Interfaces;
 using UnityEngine;
+using Interfaces;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     public class EnergyCell : MonoBehaviour, IDamageable
     {

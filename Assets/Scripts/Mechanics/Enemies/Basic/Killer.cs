@@ -1,7 +1,7 @@
-using Assets.Scripts.Interfaces;
 using UnityEngine;
+using Interfaces;
 
-namespace Assets.Scripts.Mechanics.Enemies.Basic
+namespace Mechanics.Enemies.Basic
 {
     public class Killer : Enemy
     {

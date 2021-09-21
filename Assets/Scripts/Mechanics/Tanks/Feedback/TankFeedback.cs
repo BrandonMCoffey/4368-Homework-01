@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Tanks.Feedback
+namespace Mechanics.Tanks.Feedback
 {
     [RequireComponent(typeof(TankSoundEffects))]
     [RequireComponent(typeof(TankParticles))]

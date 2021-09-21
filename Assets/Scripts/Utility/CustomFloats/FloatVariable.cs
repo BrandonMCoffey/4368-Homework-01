@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility.CustomFloats
+namespace Utility.CustomFloats
 {
     [CreateAssetMenu]
     public class FloatVariable : ScriptableObject

@@ -1,10 +1,10 @@
-using Assets.Scripts.Audio;
-using Assets.Scripts.Utility.CustomFloats;
-using Assets.Scripts.Utility.GameEvents.Logic;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utility.CustomFloats;
+using Utility.GameEvents.Logic;
 
-namespace Assets.Scripts.Game
+namespace Game
 {
     public class GameManager : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Mechanics.Tanks;
+using Interfaces;
+using Mechanics.Tanks;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Enemies.Tanks
+namespace Mechanics.Enemies.Tanks
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(TankHealth))]

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Projectiles
+namespace Mechanics.Projectiles
 {
     public class BulletMotor : MonoBehaviour
     {

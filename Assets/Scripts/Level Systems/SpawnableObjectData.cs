@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Level_Systems
+namespace Level_Systems
 {
     [CreateAssetMenu]
     public class SpawnableObjectData : ScriptableObject

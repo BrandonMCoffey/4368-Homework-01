@@ -1,7 +1,7 @@
-using Assets.Scripts.Audio;
+using Audio;
 using UnityEngine;
 
-namespace Assets.Scripts.Mechanics.Projectiles
+namespace Mechanics.Projectiles
 {
     public class BulletFeedback : MonoBehaviour
     {
