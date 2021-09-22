@@ -3,7 +3,7 @@ using Mechanics.Tanks.Feedback;
 using UnityEngine;
 using Utility.CustomFloats;
 
-namespace Mechanics.Tanks
+namespace Mechanics.Tanks.Movement
 {
     public abstract class TankMovement : MonoBehaviour, IMoveable
     {

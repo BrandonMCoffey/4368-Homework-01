@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utility.CustomFloats;
 
-namespace Mechanics.Enemies.Tanks.AI
+namespace Mechanics.Enemies.AI
 {
     public class GrayTankAI : EnemyAI
     {
@@ -12,7 +12,7 @@ namespace Mechanics.Enemies.Tanks.AI
         private float _fireTimer;
         private float _moveTimer;
 
-        private void Start()
+        private void OnEnable()
         {
             _fireTimer = RandomFloat.MinMax(_fireTime);
             OnAimTurret.Invoke(NewAimPosition());
@@ -22,8 +22,8 @@ namespace Mechanics.Enemies.Tanks.AI
         {
             _moveTimer -= Time.deltaTime;
             if (_moveTimer <= 0) {
-                _moveTimer = RandomFloat.MinMax(_fireTime);
-                OnMoveBody.Invoke(NewMovePosition());
+                _moveTimer = RandomFloat.MinMax(_moveTime);
+                OnMoveBody.Invoke(NewMovePosition(_moveDistance));
             }
         }
 
@@ -41,21 +41,8 @@ namespace Mechanics.Enemies.Tanks.AI
         {
         }
 
-        private Vector2 NewAimPosition()
+        protected override void SetBombDrop()
         {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.z);
-            Vector2 offset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            return pos + offset.normalized;
-        }
-
-        private Vector2 NewMovePosition()
-        {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.z);
-            bool n1 = Random.value > 0.5f;
-            bool n2 = Random.value > 0.5f;
-            float x = (n1 ? -1 : 1) * RandomFloat.MinMax(_moveDistance);
-            float y = (n2 ? -1 : 1) * RandomFloat.MinMax(_moveDistance);
-            return pos + new Vector2(x, y);
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Mechanics.Enemies.Tanks
+namespace Mechanics.Enemies
 {
     public enum EnemyTankType
     {

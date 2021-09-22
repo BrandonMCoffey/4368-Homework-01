@@ -1,6 +1,6 @@
+using Interfaces;
 using Mechanics.Tanks;
 using UnityEngine;
-using Interfaces;
 
 namespace Mechanics.Enemies.Basic
 {

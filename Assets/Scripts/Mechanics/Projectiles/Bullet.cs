@@ -1,6 +1,6 @@
 using System.Collections;
-using UnityEngine;
 using Interfaces;
+using UnityEngine;
 
 namespace Mechanics.Projectiles
 {

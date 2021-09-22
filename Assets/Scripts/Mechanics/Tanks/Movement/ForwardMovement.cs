@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Mechanics.Tanks
+namespace Mechanics.Tanks.Movement
 {
     public class ForwardMovement : TankMovement
     {

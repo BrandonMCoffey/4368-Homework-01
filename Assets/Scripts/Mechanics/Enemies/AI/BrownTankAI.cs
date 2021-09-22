@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utility.CustomFloats;
 
-namespace Mechanics.Enemies.Tanks.AI
+namespace Mechanics.Enemies.AI
 {
     public class BrownTankAI : EnemyAI
     {
@@ -33,11 +33,8 @@ namespace Mechanics.Enemies.Tanks.AI
         {
         }
 
-        private Vector2 NewAimPosition()
+        protected override void SetBombDrop()
         {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.z);
-            Vector2 offset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            return pos + offset.normalized;
         }
     }
 }
