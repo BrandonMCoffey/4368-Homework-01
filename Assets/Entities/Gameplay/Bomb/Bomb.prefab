@@ -169,7 +169,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 20
-      minScalar: 10
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 75
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4952,7 +4952,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1569839722029181718}
-  - component: {fileID: 995560532849017791}
   - component: {fileID: 1569839722029181713}
   m_Layer: 0
   m_Name: Bomb
@@ -4969,7 +4968,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569839722029181712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1569839721524587853}
@@ -4977,19 +4976,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &995560532849017791
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569839722029181712}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1569839722029181713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,6 +4988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d3bdbe0e2a6034eaefb01229e28bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _range: 1
+  _damage: 2
   _speed: 0.7
   _accel: 0.04
   _tooFast: 0

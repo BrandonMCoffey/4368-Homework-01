@@ -34,6 +34,13 @@ namespace Level_Systems
         {
         }
 
+        public void OnBombDealDamage(int damageTaken)
+        {
+            if (_isAlive) {
+                Damage();
+            }
+        }
+
         public bool OnBulletImpact(int damageTaken)
         {
             if (!_isAlive) return !_bulletsBounceWhenDead;

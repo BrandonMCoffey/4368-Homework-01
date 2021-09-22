@@ -1,9 +1,13 @@
+using Interfaces;
 using UnityEngine;
 
 namespace Mechanics.Enemies
 {
     public class Bomb : MonoBehaviour
     {
+        [Header("Bomb settings")]
+        [SerializeField] private float _range = 1;
+        [SerializeField] private int _damage = 1;
         [Header("Timer Settings")]
         [SerializeField] private float _speed = 5;
         [SerializeField] private float _accel = 0.2f;
@@ -62,6 +66,7 @@ namespace Mechanics.Enemies
             if (_visualsToDisable != null) {
                 _visualsToDisable.SetActive(false);
             }
+            DealDamage();
             if (_explosionParticles != null) {
                 _explosionParticles.Play();
                 _lastTime = Time.time;
@@ -69,6 +74,15 @@ namespace Mechanics.Enemies
                 _hasExploded = true;
             } else {
                 Destroy(gameObject);
+            }
+        }
+
+        private void DealDamage()
+        {
+            var colliders = Physics.OverlapSphere(transform.position, _range);
+            foreach (var col in colliders) {
+                IDamageable damageableObj = col.GetComponent<IDamageable>();
+                damageableObj?.OnBombDealDamage(_damage);
             }
         }
     }

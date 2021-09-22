@@ -54,6 +54,11 @@ namespace Mechanics.Tanks
             DecreaseHealth(damageTaken);
         }
 
+        public void OnBombDealDamage(int damageTaken)
+        {
+            DecreaseHealth(damageTaken);
+        }
+
         public bool OnBulletImpact(int damageTaken)
         {
             DecreaseHealth(damageTaken);
