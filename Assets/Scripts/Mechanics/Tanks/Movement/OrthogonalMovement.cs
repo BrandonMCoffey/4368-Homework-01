@@ -6,6 +6,10 @@ namespace Mechanics.Tanks.Movement
     {
         [SerializeField] [Range(1, 90)] private float _slowEffectWhenTurning = 45f;
         [SerializeField] private float _reverseDirectionAngle = 90f;
+        [Header("Force")]
+        [SerializeField] private float _forceMultiplier = 8;
+        [SerializeField] [Range(1f, 2f)] private float _forceDrag = 1.2f;
+        [SerializeField] [Range(0.01f, 0.25f)] private float _forceCancel = 0.1f;
 
         private bool _moveBackwards;
         private Vector3 _moveDir;
@@ -32,6 +36,15 @@ namespace Mechanics.Tanks.Movement
             if (transform.position.y > DistFromGround) {
                 moveOffset -= Vector3.up;
             }
+
+            if (Force.magnitude > 0) {
+                moveOffset += Force * _forceMultiplier;
+                Force /= _forceDrag;
+                if (Force.magnitude <= _forceCancel) {
+                    Force = Vector3.zero;
+                }
+            }
+
             Rb.velocity = moveOffset;
         }
 

@@ -7,15 +7,16 @@ namespace Mechanics.Boss.States
     public class Idle : IState
     {
         private BossStateMachine _stateMachine;
+        private Vector2 _idleTimeMinMax;
 
-        public Idle(BossStateMachine stateMachine)
-        {
-            _stateMachine = stateMachine;
-        }
-
-        private Vector2 _idleTimeMinMax = new Vector2(2f, 6f);
         private float _idleTime;
         private float _timer;
+
+        public Idle(BossStateMachine stateMachine, Vector2 idleMinMax)
+        {
+            _stateMachine = stateMachine;
+            _idleTimeMinMax = idleMinMax;
+        }
 
         public void Enter()
         {

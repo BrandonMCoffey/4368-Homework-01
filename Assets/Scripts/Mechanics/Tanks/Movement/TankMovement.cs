@@ -16,6 +16,8 @@ namespace Mechanics.Tanks.Movement
         [SerializeField] private float _baseMoveSpeed = 5;
         [SerializeField] private float _turnSpeed = 8;
 
+        protected Vector3 Force { get; set; }
+
         public AdjustableFloat MoveSpeed { get; } = new AdjustableFloat();
 
         protected const float DistFromGround = 0.05f;
@@ -71,6 +73,11 @@ namespace Mechanics.Tanks.Movement
         protected abstract void Move(float speed);
         protected abstract void Turn(float speed);
         public abstract void SetMovementDirection(Vector2 dir);
+
+        public void SetForce(Vector3 force)
+        {
+            Force = force;
+        }
 
         public void OnSpeedIncrease(float amount, float duration, ValueAdjustType type = ValueAdjustType.AddRaw)
         {

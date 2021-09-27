@@ -4879,7 +4879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &103708950055092584
 Transform:
   m_ObjectHideFlags: 0
@@ -9990,7 +9990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  _maxHealth: 15
   _currentHealth:
     UseConstant: 0
     ConstantValue: 0
@@ -10083,6 +10083,9 @@ MonoBehaviour:
   _turnSpeed: 8
   _slowEffectWhenTurning: 45
   _reverseDirectionAngle: 90
+  _forceMultiplier: 8
+  _forceDrag: 1.15
+  _forceCancel: 0.1
 --- !u!114 &103708950631574488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10097,7 +10100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _smoothRotation: 1
   _lookUpAtStart: 1
-  _rotateSpeed: 5
+  _rotateSpeed: 8
   _turretPivot: {fileID: 103708951433960353}
 --- !u!114 &103708950631574489
 MonoBehaviour:
@@ -10112,7 +10115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turretFirePos: {fileID: 103708950600378882}
-  _bulletType: 0
+  _bulletType: 1
   _ignoreCollider: {fileID: 103708950323900252}
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
@@ -10135,7 +10138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &103708950865759587
 Transform:
   m_ObjectHideFlags: 0
@@ -20106,7 +20109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &103708951585440621
 Transform:
   m_ObjectHideFlags: 0

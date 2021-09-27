@@ -7,15 +7,13 @@ namespace Mechanics.Boss.States
     {
         private BossStateMachine _bossStateMachine;
         private BossPlatformController _platformController;
-        private Transform _bossTransform;
+        private BossMovement _bossMovement;
 
-        private float _speed = 10;
-
-        public MoveToPlatform(BossStateMachine bossStateMachine, BossPlatformController platformController, Transform bossTransform)
+        public MoveToPlatform(BossStateMachine bossStateMachine, BossPlatformController platformController, BossMovement bossMovement)
         {
             _bossStateMachine = bossStateMachine;
             _platformController = platformController;
-            _bossTransform = bossTransform;
+            _bossMovement = bossMovement;
         }
 
         private Vector3 _destination;
@@ -32,10 +30,9 @@ namespace Mechanics.Boss.States
 
         public void Tick()
         {
-            Vector3 newPosition = Vector3.MoveTowards(_bossTransform.position, _destination, _speed * Time.deltaTime);
-            _bossTransform.position = newPosition;
+            bool reachedDestination = _bossMovement.MoveTowards(_destination);
 
-            if (Vector3.Distance(_bossTransform.position, _destination) < 0.01f) {
+            if (reachedDestination) {
                 _bossStateMachine.BossReachedPlatform();
             }
         }

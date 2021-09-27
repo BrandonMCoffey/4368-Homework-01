@@ -42,21 +42,33 @@ namespace Mechanics.Boss
             }
         }
 
-        public void Lower(BossStateMachine boss, PlatformOptions option)
+        public float Lower(BossStateMachine boss)
         {
-            BossPlatform platform = GetPlatform(option);
-            if (platform != null) platform.PrepareToLower(boss);
+            BossPlatform platform = GetPlatform(_currentPlatformOption);
+            if (platform == null) return 0;
+
+            platform.PrepareToLower(boss);
             _currentPlatformOption = PlatformOptions.Null;
+            return platform.LowerTimer;
         }
 
-        public void Raise(BossStateMachine boss, PlatformOptions option)
+        public float Raise(BossStateMachine boss)
+        {
+            int rand = Random.Range(0, 90);
+            return rand < 30 ? Raise(boss, PlatformOptions.Left) : Raise(boss, rand < 60 ? PlatformOptions.Center : PlatformOptions.Right);
+        }
+
+        public float Raise(BossStateMachine boss, PlatformOptions option)
         {
             if (_currentPlatformOption != PlatformOptions.Null) {
-                return;
+                return 0;
             }
             BossPlatform platform = GetPlatform(option);
-            if (platform != null) platform.PrepareToRaise(boss);
+            if (platform == null) return 0;
+
+            platform.PrepareToRaise(boss);
             _currentPlatformOption = option;
+            return platform.RaiseTime;
         }
 
         private BossPlatform GetPlatform(PlatformOptions option)

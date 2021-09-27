@@ -1,4 +1,5 @@
 using Interfaces;
+using Mechanics.Projectiles;
 using UnityEngine;
 
 namespace Mechanics.Enemies
@@ -29,6 +30,10 @@ namespace Mechanics.Enemies
             if (_baseMaterial == null && _meshRenderer != null) {
                 _baseMaterial = _meshRenderer.material;
             }
+            Collider c = GetComponent<Collider>();
+            if (c != null) {
+                c.isTrigger = true;
+            }
         }
 
         private void OnEnable()
@@ -52,6 +57,14 @@ namespace Mechanics.Enemies
                     Explode();
                 }
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            if (bullet == null) return;
+            bullet.Kill();
+            Explode();
         }
 
         private void ToggleFlash()

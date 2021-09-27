@@ -21,12 +21,14 @@ namespace Mechanics.Boss
     public class BossStateMachine : StateMachine
     {
         [SerializeField] private BossPlatformController _platformController;
-        [SerializeField] private Transform _mainTransform;
+        [SerializeField] private BossMovement _bossMovement;
         [SerializeField] private GameObject _art = null;
         [SerializeField] private GameEvent _onEndCutscene = null;
+        private Vector2 _idleTimeMinMax = new Vector2(2f, 6f);
+        private Vector2 _outsideArenaMinMax = new Vector2(2f, 6f);
 
         public NullState CutsceneState { get; private set; }
-        public Idle NotInArenaState { get; private set; }
+        public NotInArena NotInArenaState { get; private set; }
         public Idle IdleState { get; private set; }
         public MoveToPlatform MoveToPlatformState { get; private set; }
         public ChargeAttack ChargeAttackState { get; private set; }
@@ -37,39 +39,16 @@ namespace Mechanics.Boss
         private List<IState> _availableAttacks = new List<IState>();
         private List<IState> _availableMovements = new List<IState>();
 
-        public Transform MainTransform => _mainTransform;
-
-        #region NullTest
-
-        private bool _hasError;
-
-        private void NullTest()
-        {
-            if (_platformController == null) {
-                _platformController = FindObjectOfType<BossPlatformController>();
-                if (_platformController == null) {
-                    _hasError = true;
-                    throw new MissingComponentException("Missing Boss Platform Controller for Boss AI - " + gameObject);
-                }
-            }
-            if (_mainTransform == null) {
-                _mainTransform = transform.parent;
-                if (_mainTransform == null) {
-                    _mainTransform = transform;
-                }
-            }
-        }
-
-        #endregion
+        public Transform MainTransform => _bossMovement.MainTransform;
 
         private void Awake()
         {
             NullTest();
             CutsceneState = new NullState();
-            NotInArenaState = new Idle(this);
-            IdleState = new Idle(this);
-            MoveToPlatformState = new MoveToPlatform(this, _platformController, _mainTransform);
-            ChargeAttackState = new ChargeAttack(this, _mainTransform);
+            NotInArenaState = new NotInArena(this, _platformController, _outsideArenaMinMax);
+            IdleState = new Idle(this, _idleTimeMinMax);
+            MoveToPlatformState = new MoveToPlatform(this, _platformController, _bossMovement);
+            ChargeAttackState = new ChargeAttack(this, _bossMovement);
             LaserAttackState = new LaserAttack(this);
             PlatformSummoningState = new PlatformSummoning(this);
 
@@ -135,7 +114,7 @@ namespace Mechanics.Boss
             if (_hasError) return;
             switch (_stage) {
                 case BossStage.Basic:
-                    RandomMovementOrAttack(30, 70, 0);
+                    RandomMovementOrAttack(70, 30, 0);
                     break;
                 case BossStage.Escalation:
                     RandomMovementOrAttack(10, 40, 50);
@@ -206,5 +185,30 @@ namespace Mechanics.Boss
         {
             if (_art != null) _art.SetActive(active);
         }
+
+        #region NullTest
+
+        private bool _hasError;
+
+        private void NullTest()
+        {
+            if (_platformController == null) {
+                _platformController = FindObjectOfType<BossPlatformController>();
+                if (_platformController == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Boss Platform Controller for Boss AI - " + gameObject);
+                }
+            }
+            if (_bossMovement == null) {
+                Transform parent = transform.parent;
+                _bossMovement = parent != null ? parent.GetComponentInChildren<BossMovement>() : GetComponent<BossMovement>();
+                if (_bossMovement == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Boss Movement Controller for Boss AI - " + gameObject);
+                }
+            }
+        }
+
+        #endregion
     }
 }

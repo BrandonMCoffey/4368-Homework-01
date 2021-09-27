@@ -19,6 +19,8 @@ namespace Level_Systems
         private BossStateMachine _bossStateMachine;
         private bool _lower;
 
+        public float LowerTimer => _timeToLower;
+        public float RaiseTime => _timeToRaise;
         public float TotalTime => _timeToLower + _timeToRaise;
 
         private void OnEnable()

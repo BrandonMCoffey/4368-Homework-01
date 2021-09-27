@@ -91,7 +91,7 @@ namespace Mechanics.Projectiles
             Physics.IgnoreCollision(_collider, objCollider, false);
         }
 
-        private void Kill()
+        public void Kill()
         {
             _feedback.DestroyFeedback(transform.position, transform.rotation);
             BulletPool.Instance.ReturnBullet(this);

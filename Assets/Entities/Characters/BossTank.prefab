@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8397871705817114653}
   - component: {fileID: 5356475668981379608}
   - component: {fileID: 451784181826155991}
+  - component: {fileID: 779128534518501593}
   m_Layer: 12
   m_Name: Motor
   m_TagString: Untagged
@@ -67,6 +68,20 @@ MonoBehaviour:
   _hasMaximumBullets: 0
   _maximumBullets: 5
   _tankFeedback: {fileID: 7325661561032971021}
+--- !u!114 &779128534518501593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263924130341688030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388ffde1975ad614ca29d32f6de379cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainTransform: {fileID: 7325661561084492703}
+  _movementSpeed: 2
 --- !u!1 &7325661559279129867
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugState: 1
   _platformController: {fileID: 0}
-  _mainTransform: {fileID: 7325661561084492703}
+  _bossMovement: {fileID: 779128534518501593}
   _art: {fileID: 7325661559825202138}
   _onEndCutscene: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
 --- !u!1 &7325661559717051125
@@ -15084,6 +15099,7 @@ GameObject:
   - component: {fileID: 7325661561084492703}
   - component: {fileID: 7325661561084492702}
   - component: {fileID: 9125354454648506741}
+  - component: {fileID: 433473513}
   m_Layer: 0
   m_Name: BossTank
   m_TagString: Untagged
@@ -15144,6 +15160,20 @@ MonoBehaviour:
   - {fileID: 7325661559495869878}
   - {fileID: 263924130341688030}
   - {fileID: 7325661559825202138}
+--- !u!114 &433473513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325661561084492697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ca6d3b57502e34495a83e717dfc987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageOnTouch: 4
+  _pushBackForce: 4
 --- !u!1 &7325661561199266965
 GameObject:
   m_ObjectHideFlags: 0

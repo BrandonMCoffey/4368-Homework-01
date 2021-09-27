@@ -1,40 +1,60 @@
 using UnityEngine;
+using Utility.CustomFloats;
 using Utility.StateMachine;
 
 namespace Mechanics.Boss.States
 {
     public class NotInArena : IState
     {
-        private BossStateMachine _bossStateMachine;
+        private BossStateMachine _stateMachine;
         private BossPlatformController _platformController;
 
-        public NotInArena(BossStateMachine bossStateMachine, BossPlatformController platformController)
-        {
-            _bossStateMachine = bossStateMachine;
-            _platformController = platformController;
-        }
-
-        private Vector2 _idleTimeMinMax = new Vector2(2f, 6f);
+        private Vector2 _idleTimeMinMax;
         private float _idleTime;
         private float _timer;
+        private bool _finishedIdle;
+
+        public NotInArena(BossStateMachine bossStateMachine, BossPlatformController platformController, Vector2 idleMinMax)
+        {
+            _stateMachine = bossStateMachine;
+            _platformController = platformController;
+            _idleTimeMinMax = idleMinMax;
+        }
 
         public void Enter()
         {
+            if (!_platformController.IsOnPlatform) {
+                _stateMachine.RevertToPreviousState();
+                return;
+            }
+            float timeToLower = _platformController.Lower(_stateMachine);
+
+            _idleTime = RandomFloat.MinMax(_idleTimeMinMax);
+            _timer = -timeToLower;
+            _finishedIdle = false;
         }
 
         public void Tick()
         {
-            throw new System.NotImplementedException();
+            _timer += Time.deltaTime;
+            if (_timer < _idleTime) return;
+
+            if (!_finishedIdle) {
+                float timeToRaise = _platformController.Raise(_stateMachine);
+                _timer = 0;
+                _idleTime = timeToRaise;
+                _finishedIdle = true;
+            } else {
+                _stateMachine.BossReachedPlatform();
+            }
         }
 
         public void FixedTick()
         {
-            throw new System.NotImplementedException();
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

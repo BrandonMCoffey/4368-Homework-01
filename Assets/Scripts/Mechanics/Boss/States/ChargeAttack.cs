@@ -1,4 +1,3 @@
-using UnityEngine;
 using Utility.StateMachine;
 
 namespace Mechanics.Boss.States
@@ -6,12 +5,12 @@ namespace Mechanics.Boss.States
     public class ChargeAttack : IState
     {
         private BossStateMachine _stateMachine;
-        private Transform _bossTransform;
+        private BossMovement _bossMovement;
 
-        public ChargeAttack(BossStateMachine stateMachine, Transform bossTransform)
+        public ChargeAttack(BossStateMachine stateMachine, BossMovement bossMovement)
         {
             _stateMachine = stateMachine;
-            _bossTransform = bossTransform;
+            _bossMovement = bossMovement;
         }
 
         public void Enter()
