@@ -8093,7 +8093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 513186641}
   - component: {fileID: 513186642}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11027,7 +11027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730782145}
   - component: {fileID: 730782146}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13113,6 +13113,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3793862081544434091, guid: 67211fa92a8d2064992774b2deb9415c, type: 3}
   m_PrefabInstance: {fileID: 851626593}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &871488189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 103708950323900251, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
+  m_PrefabInstance: {fileID: 103708951409062879}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &876789801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13375,6 +13380,10 @@ PrefabInstance:
     - target: {fileID: 1137177702644822162, guid: e116ba1c774894245b75a2fbfa7d655f, type: 3}
       propertyPath: m_Name
       value: YellowTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137177702644822162, guid: e116ba1c774894245b75a2fbfa7d655f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1137177702644822163, guid: e116ba1c774894245b75a2fbfa7d655f, type: 3}
       propertyPath: m_RootOrder
@@ -17078,7 +17087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145211152}
   - component: {fileID: 1145211153}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17962,6 +17971,10 @@ PrefabInstance:
     - target: {fileID: 6716787742468327471, guid: 192c561cc16cc1045a56592e2bc09f33, type: 3}
       propertyPath: m_Name
       value: GrayTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716787742468327471, guid: 192c561cc16cc1045a56592e2bc09f33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192c561cc16cc1045a56592e2bc09f33, type: 3}
@@ -18916,6 +18929,10 @@ PrefabInstance:
     - target: {fileID: 958444668537484405, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
       propertyPath: m_Name
       value: BrownTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 958444668537484405, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
@@ -20061,7 +20078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1335842675}
   - component: {fileID: 1335842676}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25970,7 +25987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780404461}
   - component: {fileID: 1780404462}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27128,7 +27145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854649994}
   - component: {fileID: 1854649995}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28548,7 +28565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978166409}
   - component: {fileID: 1978166410}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30257,7 +30274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116752991}
   - component: {fileID: 2116752992}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30656,10 +30673,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 103708950055092585, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 103708950323900251, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -30704,38 +30717,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 103708950323900255, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: _maxHealth
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 103708950323900322, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 103708950631574487, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: _forceDrag
-      value: 1.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 103708950631574487, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: _forceCancel
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 103708950631574489, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: _bulletType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 103708950865759590, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 103708951577875986, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 139571742}
-    - target: {fileID: 103708951585440622, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
 --- !u!1001 &7325661560514713930
@@ -30745,6 +30734,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 356106726, guid: 9ea3df64531408243be395cb6531f111, type: 3}
+      propertyPath: _playerTransform
+      value: 
+      objectReference: {fileID: 871488189}
     - target: {fileID: 7325661561084492697, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_Name
       value: BossTank
@@ -30792,6 +30785,14 @@ PrefabInstance:
     - target: {fileID: 7325661561084492703, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868129092032501205, guid: 9ea3df64531408243be395cb6531f111, type: 3}
+      propertyPath: _maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868129092032501205, guid: 9ea3df64531408243be395cb6531f111, type: 3}
+      propertyPath: _currentHealth.ConstantValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7928012434638989222, guid: 9ea3df64531408243be395cb6531f111, type: 3}
       propertyPath: _platformController

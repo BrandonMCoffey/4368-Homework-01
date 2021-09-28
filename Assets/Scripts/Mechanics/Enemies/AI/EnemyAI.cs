@@ -34,7 +34,6 @@ namespace Mechanics.Enemies.AI
             OnDropBomb.Invoke();
         }
 
-
         protected Vector2 NewAimPosition()
         {
             Vector2 pos = new Vector2(transform.position.x, transform.position.z);

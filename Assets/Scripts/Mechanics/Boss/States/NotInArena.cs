@@ -13,23 +13,27 @@ namespace Mechanics.Boss.States
         private float _idleTime;
         private float _timer;
         private bool _finishedIdle;
+        private bool _debug;
 
-        public NotInArena(BossStateMachine bossStateMachine, BossPlatformController platformController, Vector2 idleMinMax)
+        public NotInArena(BossStateMachine bossStateMachine, BossPlatformController platformController, BossAiData data)
         {
             _stateMachine = bossStateMachine;
             _platformController = platformController;
-            _idleTimeMinMax = idleMinMax;
+            _idleTimeMinMax = data.OutsideArenaMinMax;
+            _debug = data.Debug;
         }
 
         public void Enter()
         {
             if (!_platformController.IsOnPlatform) {
+                if (_debug) Debug.Log("Idle: Not on Platform, Reverting...");
                 _stateMachine.RevertToPreviousState();
                 return;
             }
             float timeToLower = _platformController.Lower(_stateMachine);
 
             _idleTime = RandomFloat.MinMax(_idleTimeMinMax);
+            if (_debug) Debug.Log("NotInArenaIdle: Idle for " + _idleTime);
             _timer = -timeToLower;
             _finishedIdle = false;
         }

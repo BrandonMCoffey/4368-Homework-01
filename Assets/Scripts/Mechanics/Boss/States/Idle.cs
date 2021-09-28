@@ -11,16 +11,19 @@ namespace Mechanics.Boss.States
 
         private float _idleTime;
         private float _timer;
+        private bool _debug;
 
-        public Idle(BossStateMachine stateMachine, Vector2 idleMinMax)
+        public Idle(BossStateMachine stateMachine, BossAiData data)
         {
             _stateMachine = stateMachine;
-            _idleTimeMinMax = idleMinMax;
+            _idleTimeMinMax = data.IdleTimeMinMax;
+            _debug = data.Debug;
         }
 
         public void Enter()
         {
             _idleTime = RandomFloat.MinMax(_idleTimeMinMax);
+            if (_debug) Debug.Log("Idle: Idle for " + _idleTime);
             _timer = 0;
         }
 

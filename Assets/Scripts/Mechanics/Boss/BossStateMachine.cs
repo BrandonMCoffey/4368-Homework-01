@@ -21,11 +21,12 @@ namespace Mechanics.Boss
     public class BossStateMachine : StateMachine
     {
         [SerializeField] private BossPlatformController _platformController;
-        [SerializeField] private BossMovement _bossMovement;
+        [SerializeField] private BossMovement _movement;
+        [SerializeField] private BossFeedback _feedback;
+        [SerializeField] private BossTurret _turret;
         [SerializeField] private GameObject _art = null;
         [SerializeField] private GameEvent _onEndCutscene = null;
-        private Vector2 _idleTimeMinMax = new Vector2(2f, 6f);
-        private Vector2 _outsideArenaMinMax = new Vector2(2f, 6f);
+        [SerializeField] private BossAiData _aiData;
 
         public NullState CutsceneState { get; private set; }
         public NotInArena NotInArenaState { get; private set; }
@@ -39,20 +40,20 @@ namespace Mechanics.Boss
         private List<IState> _availableAttacks = new List<IState>();
         private List<IState> _availableMovements = new List<IState>();
 
-        public Transform MainTransform => _bossMovement.MainTransform;
+        public Transform MainTransform => _movement.MainTransform;
 
         private void Awake()
         {
             NullTest();
             CutsceneState = new NullState();
-            NotInArenaState = new NotInArena(this, _platformController, _outsideArenaMinMax);
-            IdleState = new Idle(this, _idleTimeMinMax);
-            MoveToPlatformState = new MoveToPlatform(this, _platformController, _bossMovement);
-            ChargeAttackState = new ChargeAttack(this, _bossMovement);
+            NotInArenaState = new NotInArena(this, _platformController, _aiData);
+            IdleState = new Idle(this, _aiData);
+            MoveToPlatformState = new MoveToPlatform(this, _platformController, _movement, _aiData);
+            ChargeAttackState = new ChargeAttack(this, _movement, _aiData);
             LaserAttackState = new LaserAttack(this);
             PlatformSummoningState = new PlatformSummoning(this);
 
-            _availableMovements = new List<IState> { IdleState, MoveToPlatformState };
+            _availableMovements = new List<IState> { MoveToPlatformState };
 
             ChangeState(CutsceneState);
         }
@@ -73,8 +74,15 @@ namespace Mechanics.Boss
             }
         }
 
+        protected override void OnStateChanged()
+        {
+            bool canShoot = CurrentState == IdleState || CurrentState == MoveToPlatformState;
+            _turret.SetCanShoot(canShoot);
+        }
+
         public void UpdateBossStage(BossStage stage)
         {
+            if (_aiData.Debug) Debug.LogWarning("Set Stage: " + stage);
             _availableAttacks.Clear();
             _stage = stage;
             switch (_stage) {
@@ -83,8 +91,17 @@ namespace Mechanics.Boss
                     ChangeState(MoveToPlatformState);
                     break;
                 case BossStage.Escalation:
+                    _feedback.EscalationFeedback();
+                    _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
+                    break;
+                case BossStage.MidpointCutscene:
+                    _feedback.MidpointFeedback();
+                    break;
                 case BossStage.Enraged:
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
+                    break;
+                case BossStage.KillSequence:
+                    _feedback.KillSequenceFeedback();
                     break;
             }
             _availableAttacks = _availableAttacks.Where(item => item != null).ToList();
@@ -112,6 +129,12 @@ namespace Mechanics.Boss
         public void BossFinishedAttack()
         {
             if (_hasError) return;
+
+            if (PreviousState == MoveToPlatformState) {
+                ChangeState(MoveToPlatformState);
+                return;
+            }
+
             switch (_stage) {
                 case BossStage.Basic:
                     RandomMovementOrAttack(70, 30, 0);
@@ -133,7 +156,7 @@ namespace Mechanics.Boss
             if (_hasError) return;
             switch (_stage) {
                 case BossStage.Basic:
-                    RandomMovementOrAttack(15, 35, 50);
+                    RandomMovementOrAttack(5, 55, 40);
                     break;
                 case BossStage.Escalation:
                     RandomMovementOrAttack(0, 40, 60);
@@ -149,12 +172,16 @@ namespace Mechanics.Boss
 
         private void RandomAttack()
         {
-            ChangeState(_availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState);
+            IState attack = _availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState;
+            if (_aiData.Debug) Debug.Log("Set Attack: " + attack);
+            ChangeState(attack);
         }
 
         private void RandomMovement()
         {
-            ChangeState(_availableMovements[Random.Range(0, _availableMovements.Count)]);
+            IState movement = _availableMovements[Random.Range(0, _availableMovements.Count)];
+            if (_aiData.Debug) Debug.Log("Set Attack: " + movement);
+            ChangeState(movement);
         }
 
         private void RandomMovementOrAttack(int idle, int move, int attack)
@@ -192,6 +219,9 @@ namespace Mechanics.Boss
 
         private void NullTest()
         {
+            if (_aiData == null) {
+                _aiData = ScriptableObject.CreateInstance<BossAiData>();
+            }
             if (_platformController == null) {
                 _platformController = FindObjectOfType<BossPlatformController>();
                 if (_platformController == null) {
@@ -199,13 +229,20 @@ namespace Mechanics.Boss
                     throw new MissingComponentException("Missing Boss Platform Controller for Boss AI - " + gameObject);
                 }
             }
-            if (_bossMovement == null) {
+            if (_turret == null) {
+                _turret = GetComponent<BossTurret>();
+            }
+            if (_movement == null) {
                 Transform parent = transform.parent;
-                _bossMovement = parent != null ? parent.GetComponentInChildren<BossMovement>() : GetComponent<BossMovement>();
-                if (_bossMovement == null) {
+                _movement = parent != null ? parent.GetComponentInChildren<BossMovement>() : GetComponent<BossMovement>();
+                if (_movement == null) {
                     _hasError = true;
                     throw new MissingComponentException("Missing Boss Movement Controller for Boss AI - " + gameObject);
                 }
+            }
+            if (_feedback == null) {
+                Transform parent = transform.parent != null ? transform.parent : transform;
+                _feedback = parent.GetComponentInChildren<BossFeedback>();
             }
         }
 

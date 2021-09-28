@@ -36,7 +36,13 @@ namespace Mechanics.Boss
                 case PlatformOptions.Center:
                     // TODO: Better way to do this?
                     int rand = Random.Range(0, 100);
-                    return rand < 50 ? _leftBossPlatform.transform : _rightBossPlatform.transform;
+                    if (rand < 50) {
+                        _currentPlatformOption = PlatformOptions.Left;
+                        return _leftBossPlatform.transform;
+                    } else {
+                        _currentPlatformOption = PlatformOptions.Right;
+                        return _rightBossPlatform.transform;
+                    }
                 default:
                     return null;
             }

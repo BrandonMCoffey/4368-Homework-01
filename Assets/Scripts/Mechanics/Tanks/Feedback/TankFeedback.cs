@@ -19,10 +19,6 @@ namespace Mechanics.Tanks.Feedback
             _tankParticles = GetComponent<TankParticles>();
         }
 
-        private void Start()
-        {
-        }
-
         public void SetMovementSpeed(float speed)
         {
             // Smoothly adjust speed

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5356475668981379608}
   - component: {fileID: 451784181826155991}
   - component: {fileID: 779128534518501593}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: Motor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainTransform: {fileID: 7325661561084492703}
+  _feedback: {fileID: 3630243160658723953}
   _movementSpeed: 2
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 131072
+  _chargeDirection: {x: 0, y: 0, z: -1}
 --- !u!1 &7325661559279129867
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325661559279129864}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: TurretPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7325661559495869879}
   - component: {fileID: 7928012434638989222}
-  m_Layer: 0
+  - component: {fileID: 356106726}
+  m_Layer: 16
   m_Name: BossAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,9 +165,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugState: 1
   _platformController: {fileID: 0}
-  _bossMovement: {fileID: 779128534518501593}
+  _movement: {fileID: 0}
+  _turret: {fileID: 0}
   _art: {fileID: 7325661559825202138}
   _onEndCutscene: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
+  _aiData: {fileID: 11400000, guid: 75d30567186521843bf333b29736ab99, type: 2}
+--- !u!114 &356106726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325661559495869878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61ab6ae38d509f42a60e11566844543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAimTurret:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5356475668981379608}
+        m_TargetAssemblyTypeName: Mechanics.Tanks.TankAim, Assembly-CSharp
+        m_MethodName: SetAimPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 451784181826155991}
+        m_TargetAssemblyTypeName: Mechanics.Tanks.TankFire, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _playerTransform: {fileID: 0}
+  _fireTime: {x: 0.1, y: 2.5}
 --- !u!1 &7325661559717051125
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +225,7 @@ GameObject:
   - component: {fileID: 7325661559717051018}
   - component: {fileID: 7325661559717051016}
   - component: {fileID: 7325661559717051019}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Tread_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325661559825202139}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +340,7 @@ GameObject:
   - component: {fileID: 7325661559889481248}
   - component: {fileID: 7325661559889481251}
   - component: {fileID: 7325661559889481250}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FireParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5150,7 +5202,7 @@ GameObject:
   - component: {fileID: 7325661560388812951}
   - component: {fileID: 7325661560388812950}
   - component: {fileID: 7325661560388812945}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: MovementParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9954,7 +10006,7 @@ GameObject:
   - component: {fileID: 7325661560489923875}
   - component: {fileID: 7325661560489923874}
   - component: {fileID: 7325661560489923885}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: BossDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14817,7 +14869,7 @@ GameObject:
   - component: {fileID: 7325661560522640111}
   - component: {fileID: 7325661560522640109}
   - component: {fileID: 7325661560522640108}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14898,7 +14950,7 @@ GameObject:
   - component: {fileID: 7325661560591526085}
   - component: {fileID: 7325661560591526107}
   - component: {fileID: 7325661560591526106}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Tread_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14977,7 +15029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325661560680430279}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: TurretEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15007,10 +15059,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325661561032971008}
+  - component: {fileID: 3630243160658723953}
   - component: {fileID: 7325661561032971021}
   - component: {fileID: 7325661561032971011}
   - component: {fileID: 7325661561032971010}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15034,6 +15087,20 @@ Transform:
   m_Father: {fileID: 7325661561084492703}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3630243160658723953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325661561032971020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae546c0ccd215ac47a057d2ae2e3e04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _screenShakeIntensity: 0.5
+  _screenShakeDuration: 0.8
 --- !u!114 &7325661561032971021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15098,9 +15165,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7325661561084492703}
   - component: {fileID: 7325661561084492702}
-  - component: {fileID: 9125354454648506741}
+  - component: {fileID: 7868129092032501205}
   - component: {fileID: 433473513}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BossTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15138,7 +15205,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.385, y: 1.85, z: 2.96}
   m_Center: {x: 0, y: 0.9065, z: 0}
---- !u!114 &9125354454648506741
+--- !u!114 &7868129092032501205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15147,7 +15214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7325661561084492697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c0500809dffb6e4099e6f3c0746bb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 200
@@ -15160,6 +15227,7 @@ MonoBehaviour:
   - {fileID: 7325661559495869878}
   - {fileID: 263924130341688030}
   - {fileID: 7325661559825202138}
+  _stateMachine: {fileID: 7928012434638989222}
 --- !u!114 &433473513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15185,7 +15253,7 @@ GameObject:
   - component: {fileID: 7325661561199266986}
   - component: {fileID: 7325661561199266984}
   - component: {fileID: 7325661561199266987}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}

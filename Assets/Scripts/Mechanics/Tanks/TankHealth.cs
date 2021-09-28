@@ -18,6 +18,8 @@ namespace Mechanics.Tanks
         [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
 
         public bool Invincible { get; set; }
+        public float Health => _currentHealth;
+        public int MaxHealth => _maxHealth;
 
         private void Awake()
         {
@@ -37,16 +39,22 @@ namespace Mechanics.Tanks
             if (_currentHealth >= _maxHealth) return false;
             _currentHealth.Value = _currentHealth + amount;
             _currentHealth.Value = Mathf.Clamp(_currentHealth.Value, 0, _maxHealth);
+            OnHealthChanged();
             return true;
         }
 
-        private void DecreaseHealth(int amount)
+        protected void DecreaseHealth(int amount)
         {
             if (Invincible) return;
             _currentHealth.Value -= amount;
             if (_currentHealth <= 0) {
                 OnKill();
             }
+            OnHealthChanged();
+        }
+
+        protected virtual void OnHealthChanged()
+        {
         }
 
         public void OnTankImpact(int damageTaken)

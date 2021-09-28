@@ -13,7 +13,6 @@ namespace Mechanics.Boss
         [SerializeField] private float _pushBackForce = 4;
 
         private Collider _collider;
-        private bool _reachedWall;
 
         private void Awake()
         {
@@ -44,14 +43,11 @@ namespace Mechanics.Boss
             CollectibleBase collectible = other.gameObject.GetComponent<CollectibleBase>();
             if (collectible != null) {
                 Destroy(other.gameObject);
-                return;
             }
             PowerupBase powerup = other.gameObject.GetComponent<PowerupBase>();
             if (powerup != null) {
                 Destroy(other.gameObject);
-                return;
             }
-            _reachedWall = true;
         }
     }
 }
