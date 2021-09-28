@@ -7,6 +7,8 @@ namespace Mechanics.Boss
     {
         [SerializeField] private float _screenShakeIntensity = 0.5f;
         [SerializeField] private float _screenShakeDuration = 0.5f;
+        [SerializeField] private ParticleSystem _escalationParticles = null;
+        [SerializeField] private ParticleSystem _enragedParticles = null;
 
         private Transform _mainCamera;
 
@@ -22,10 +24,16 @@ namespace Mechanics.Boss
 
         public void EscalationFeedback()
         {
+            if (_escalationParticles != null) {
+                _escalationParticles.Play();
+            }
         }
 
         public void MidpointFeedback()
         {
+            if (_enragedParticles != null) {
+                _enragedParticles.Play();
+            }
         }
 
         public void KillSequenceFeedback()

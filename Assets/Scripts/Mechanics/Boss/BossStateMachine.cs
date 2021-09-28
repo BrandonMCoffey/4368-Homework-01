@@ -88,10 +88,12 @@ namespace Mechanics.Boss
             switch (_stage) {
                 case BossStage.Basic:
                     _availableAttacks = new List<IState> { ChargeAttackState };
-                    ChangeState(MoveToPlatformState);
+                    RandomMovementOrAttack(40, 60, 0);
                     break;
                 case BossStage.Escalation:
                     _feedback.EscalationFeedback();
+                    _movement.SetEscalation();
+                    ChangeState(ChargeAttackState, true);
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
                 case BossStage.MidpointCutscene:
@@ -140,7 +142,7 @@ namespace Mechanics.Boss
                     RandomMovementOrAttack(70, 30, 0);
                     break;
                 case BossStage.Escalation:
-                    RandomMovementOrAttack(10, 40, 50);
+                    RandomMovementOrAttack(20, 40, 40);
                     break;
                 case BossStage.Enraged:
                     RandomMovementOrAttack(0, 70, 30);

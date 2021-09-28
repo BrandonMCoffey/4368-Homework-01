@@ -12,9 +12,10 @@ namespace Utility.StateMachine
 
         private bool _inTransition;
 
-        public void ChangeState(IState newState)
+        public void ChangeState(IState newState, bool canBeSame = false)
         {
-            if (CurrentState == newState || _inTransition || newState == null) return;
+            if (_inTransition || newState == null) return;
+            if (CurrentState == newState && !canBeSame) return;
 
             ChangeStateRoutine(newState);
         }

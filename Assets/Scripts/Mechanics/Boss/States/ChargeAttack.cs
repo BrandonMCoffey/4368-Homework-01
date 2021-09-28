@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Utility.StateMachine;
@@ -14,6 +15,9 @@ namespace Mechanics.Boss.States
         private float _retreatSpeed;
         private float _impactHold;
         private bool _debug;
+        private Coroutine _chargeRoutine = null;
+        private bool _isRotated;
+        private bool _isRetreating;
 
         public ChargeAttack(BossStateMachine stateMachine, BossMovement bossMovement, BossAiData data)
         {
@@ -29,13 +33,21 @@ namespace Mechanics.Boss.States
         public void Enter()
         {
             _velocity = 0;
-            _bossMovement.StartCharge();
-            NextEvent(Rotate());
+            if (_chargeRoutine != null) {
+                _stateMachine.StopCoroutine(_chargeRoutine);
+            }
+            if (_isRotated) {
+                if (_isRetreating) _bossMovement.StartSecondCharge();
+                NextEvent(Charge());
+            } else {
+                _bossMovement.StartCharge();
+                NextEvent(Rotate());
+            }
         }
 
         private void NextEvent(IEnumerator nextEvent)
         {
-            _stateMachine.StartCoroutine(nextEvent);
+            _chargeRoutine = _stateMachine.StartCoroutine(nextEvent);
         }
 
         private IEnumerator Rotate()
@@ -46,6 +58,7 @@ namespace Mechanics.Boss.States
                 _bossMovement.Rotate(90f * delta);
                 yield return null;
             }
+            _isRotated = true;
             NextEvent(Charge());
         }
 
@@ -73,6 +86,7 @@ namespace Mechanics.Boss.States
 
         private IEnumerator Retreat()
         {
+            _isRetreating = true;
             if (_debug) Debug.Log("ChargeAttack: Retreat");
             while (true) {
                 bool finished = _bossMovement.Retreat(_retreatSpeed * Time.deltaTime);
@@ -81,6 +95,7 @@ namespace Mechanics.Boss.States
                 }
                 yield return null;
             }
+            _isRetreating = false;
             NextEvent(EndRotate());
         }
 
@@ -92,6 +107,7 @@ namespace Mechanics.Boss.States
                 _bossMovement.Rotate(90f - 90f * delta);
                 yield return null;
             }
+            _isRotated = false;
             _stateMachine.BossFinishedAttack();
         }
 
@@ -105,6 +121,9 @@ namespace Mechanics.Boss.States
 
         public void Exit()
         {
+            if (_chargeRoutine != null) {
+                _stateMachine.StopCoroutine(_chargeRoutine);
+            }
         }
     }
 }
