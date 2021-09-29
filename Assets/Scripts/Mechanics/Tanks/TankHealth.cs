@@ -4,6 +4,7 @@ using Interfaces;
 using Mechanics.Tanks.Feedback;
 using UnityEngine;
 using Utility.CustomFloats;
+using Utility.GameEvents.Logic;
 
 namespace Mechanics.Tanks
 {
@@ -12,6 +13,7 @@ namespace Mechanics.Tanks
         [Header("Health Settings")]
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
+        [SerializeField] private GameEvent _onDamaged = null;
 
         [Header("Death Feedback")]
         [SerializeField] private TankFeedback _deathFeedback = null;
@@ -47,6 +49,10 @@ namespace Mechanics.Tanks
         {
             if (Invincible) return false;
             _currentHealth.Value -= amount;
+            if (_onDamaged != null) {
+                _onDamaged.Invoke();
+            }
+            _deathFeedback.DamageFeedback();
             if (_currentHealth <= 0) {
                 OnKill();
                 return true;

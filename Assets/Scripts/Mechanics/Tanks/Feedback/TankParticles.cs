@@ -10,6 +10,7 @@ namespace Mechanics.Tanks.Feedback
         [SerializeField] private ParticleSystem _slowedDownEffects = null;
         [Header("Other Particles")]
         [SerializeField] private ParticleSystem _turretFireParticles = null;
+        [SerializeField] private ParticleSystem _damageParticles = null;
         [SerializeField] private ParticleSystem _deathParticles = null;
 
         private float _movementParticleAmount;
@@ -62,12 +63,20 @@ namespace Mechanics.Tanks.Feedback
 
         public void PlayTurretFireParticles(Vector3 position, Quaternion rotation)
         {
+            if (_turretFireParticles == null) return;
             _turretFireParticles.transform.SetPositionAndRotation(position, rotation);
             _turretFireParticles.Play();
         }
 
+        public void PlayDamageParticles()
+        {
+            if (_damageParticles == null) return;
+            _damageParticles.Play();
+        }
+
         public void PlayDeathParticles()
         {
+            if (_deathParticles == null) return;
             _deathParticles.Play();
         }
     }

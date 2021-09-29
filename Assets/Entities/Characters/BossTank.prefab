@@ -9982,7 +9982,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainTransform: {fileID: 7325661561084492703}
-  _feedback: {fileID: 3630243160658723953}
+  _bossFeedback: {fileID: 3630243160658723953}
+  _feedback: {fileID: 7325661561032971021}
   _movementSpeed: 2
   _escalationSpeedMultiplier: 2
   _wallMask:
@@ -10125,6 +10126,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _accuracy: 3
   _playerTransform: {fileID: 0}
   _fireTime: {x: 0.1, y: 2.5}
 --- !u!1 &7325661559717051125
@@ -25052,9 +25054,13 @@ MonoBehaviour:
     UseConstant: 0
     Clip: {fileID: 0}
     Data: {fileID: 11400000, guid: b445a114b137a4a4e90db52e1026f9bf, type: 2}
-  _deathSfx:
+  _damageSfx:
     UseConstant: 1
     Clip: {fileID: 0}
+    Data: {fileID: 0}
+  _deathSfx:
+    UseConstant: 1
+    Clip: {fileID: 8300000, guid: 24b3874836a3d7d4293a40ec623424ad, type: 3}
     Data: {fileID: 0}
 --- !u!114 &7325661561032971010
 MonoBehaviour:
@@ -25072,6 +25078,7 @@ MonoBehaviour:
   _speedBoostEffects: {fileID: 0}
   _slowedDownEffects: {fileID: 0}
   _turretFireParticles: {fileID: 7325661559889481251}
+  _damageParticles: {fileID: 0}
   _deathParticles: {fileID: 7325661560489923874}
 --- !u!1 &7325661561084492697
 GameObject:
@@ -25141,6 +25148,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 100
     Variable: {fileID: 11400000, guid: a1cfed76970f2b54aab96417dd7d8992, type: 2}
+  _onDamaged: {fileID: 0}
   _deathFeedback: {fileID: 7325661561032971021}
   _objsToDisable:
   - {fileID: 7325661559495869878}

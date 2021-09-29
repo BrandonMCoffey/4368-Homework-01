@@ -7,6 +7,7 @@ namespace Mechanics.Tanks.Feedback
     {
         [SerializeField] private SfxReference _movementSfx = new SfxReference();
         [SerializeField] private SfxReference _turretFireSfx = new SfxReference();
+        [SerializeField] private SfxReference _damageSfx = new SfxReference();
         [SerializeField] private SfxReference _deathSfx = new SfxReference();
 
         private AudioSourceController _movementSfxController;
@@ -28,12 +29,17 @@ namespace Mechanics.Tanks.Feedback
 
         public void PlayTurretFireSfx(Vector3 position)
         {
-            _turretFireSfx.PlayAtPosition(position);
+            _turretFireSfx?.PlayAtPosition(position);
+        }
+
+        public void PlayDamageSfx()
+        {
+            _damageSfx?.Play();
         }
 
         public void PlayDeathSfx()
         {
-            _deathSfx.Play();
+            _deathSfx?.Play();
         }
     }
 }

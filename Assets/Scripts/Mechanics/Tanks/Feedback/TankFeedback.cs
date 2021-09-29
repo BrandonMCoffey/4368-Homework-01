@@ -41,6 +41,12 @@ namespace Mechanics.Tanks.Feedback
             _tankParticles.PlayTurretFireParticles(position, rotation);
         }
 
+        public void DamageFeedback()
+        {
+            _tankSoundEffects.PlayDamageSfx();
+            _tankParticles.PlayDamageParticles();
+        }
+
         public void DeathFeedback()
         {
             _tankSoundEffects.PlayDeathSfx();

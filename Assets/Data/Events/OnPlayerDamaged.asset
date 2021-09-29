@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f076b068ca141741b9d1666a0324ff5, type: 3}
-  m_Name: boss_move
+  m_Script: {fileID: 11500000, guid: 8f9b095286901a24a9b84417f868603e, type: 3}
+  m_Name: OnPlayerDamaged
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 41229ea8be7a0e44986393e27db46a71, type: 3}
-  _loop: 1
-  _volume: 0.75
-  _pitch: 0.75
-  _spacialBlend: 0

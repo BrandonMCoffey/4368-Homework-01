@@ -6,7 +6,8 @@ namespace Mechanics.Boss
     public class BossMovement : MonoBehaviour
     {
         [SerializeField] private Transform _mainTransform;
-        [SerializeField] private BossFeedback _feedback = null;
+        [SerializeField] private BossFeedback _bossFeedback = null;
+        [SerializeField] private TankFeedback _feedback = null;
         [SerializeField] private float _movementSpeed = 2;
         [SerializeField] private float _escalationSpeedMultiplier = 2;
         [SerializeField] private LayerMask _wallMask = 1;
@@ -34,6 +35,7 @@ namespace Mechanics.Boss
 
         public bool MoveTowards(Vector3 destination)
         {
+            _feedback.SetMovementSpeed(0.5f);
             Vector3 newPosition = Vector3.MoveTowards(_mainTransform.position, destination, _movementSpeed * _speedBonus * Time.deltaTime);
             _mainTransform.position = newPosition;
 
@@ -68,6 +70,7 @@ namespace Mechanics.Boss
 
         public bool Charge(float speed)
         {
+            _feedback.SetMovementSpeed(1);
             _chargeDelta += speed * _speedBonus;
             Vector3 current = Vector3.Lerp(_startCharge, _endCharge, _chargeDelta);
             _mainTransform.position = current;
@@ -80,11 +83,12 @@ namespace Mechanics.Boss
 
         public void Impact()
         {
-            _feedback.ShakeScreen();
+            _bossFeedback.ShakeScreen();
         }
 
         public bool Retreat(float speed)
         {
+            _feedback.SetMovementSpeed(0.5f);
             _chargeDelta += speed * _speedBonus;
             Vector3 current = Vector3.Lerp(_endCharge, _startCharge, _chargeDelta);
             _mainTransform.position = current;
@@ -101,6 +105,12 @@ namespace Mechanics.Boss
                 if (_mainTransform == null) {
                     _mainTransform = transform;
                 }
+            }
+            if (_feedback != null) {
+                _feedback = _mainTransform.GetComponentInChildren<TankFeedback>();
+            }
+            if (_bossFeedback != null) {
+                _bossFeedback = _mainTransform.GetComponentInChildren<BossFeedback>();
             }
         }
     }

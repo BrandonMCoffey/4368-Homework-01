@@ -7,6 +7,8 @@ namespace Game
     {
         [SerializeField] private Transform _mainCamera;
         [SerializeField] private Transform _zoomInTransform = null;
+        [SerializeField] private float _damageShakeDuration = 0.2f;
+        [SerializeField] private float _damageShakeIntensity = 0.15f;
 
         private Vector3 _mainPosition;
 
@@ -16,6 +18,11 @@ namespace Game
                 _mainCamera = GetComponentInChildren<Camera>().transform;
             }
             _mainPosition = _mainCamera.position;
+        }
+
+        public void ShakeCamera()
+        {
+            ShakeCamera(_damageShakeDuration, _damageShakeIntensity);
         }
 
         public void ShakeCamera(float duration, float intensity)
