@@ -9,6 +9,7 @@ namespace Mechanics.Boss
     [RequireComponent(typeof(Collider))]
     public class BossPhysicalAttack : MonoBehaviour
     {
+        [SerializeField] private BossFeedback _feedback;
         [SerializeField] private int _damageOnTouch = 4;
         [SerializeField] private float _pushBackForce = 4;
 
@@ -40,6 +41,7 @@ namespace Mechanics.Boss
                 damageable.OnTankImpact(_damageOnTouch);
                 TankMovement movement = other.gameObject.GetComponentInChildren<TankMovement>();
                 Vector3 angle = other.transform.position - transform.position;
+                if (_feedback != null) _feedback.DamageAttack(angle);
                 if (movement != null) {
                     movement.SetForce(angle.normalized * _pushBackForce);
                 } else {

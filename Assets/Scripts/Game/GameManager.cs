@@ -1,3 +1,4 @@
+using System.Collections;
 using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,10 +14,8 @@ namespace Game
         [SerializeField] private KeyCode _exitGameKey = KeyCode.Escape;
         [Header("Music")]
         [SerializeField] private SfxReference _musicToPlay = new SfxReference();
-        [Header("Win Conditions")]
-        [SerializeField] private FloatVariable _treasureCount = null;
-        [SerializeField] private int _treasureToWin = 10;
-        [SerializeField] private GameEvent _onWin = null;
+        [Header("Winning and Losing")]
+        [SerializeField] private float _slowDownTime = 4;
 
         private void Start()
         {
@@ -31,16 +30,22 @@ namespace Game
             if (Input.GetKeyDown(_exitGameKey)) {
                 Application.Quit();
             }
-            if (_treasureCount.Value >= _treasureToWin) {
-                Win();
-            }
         }
 
-        private void Win()
+        public void Defeat()
         {
-            if (_onWin != null) {
-                _onWin.Invoke();
+            StartCoroutine(SlowSceneToStop());
+        }
+
+        private IEnumerator SlowSceneToStop()
+        {
+            for (float t = 0; t < _slowDownTime; t += 0.01f) {
+                float delta = t / _slowDownTime;
+                Debug.Log(delta);
+                Time.timeScale = 1 - delta;
+                yield return null;
             }
+            Time.timeScale = 0;
         }
     }
 }

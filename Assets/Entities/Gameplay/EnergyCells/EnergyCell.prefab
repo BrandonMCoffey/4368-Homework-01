@@ -9904,6 +9904,10 @@ MonoBehaviour:
   _bulletsBounceWhenDead: 1
   _deathEvent: {fileID: 11400000, guid: 1cc0e57829906e74081888c668c6a31c, type: 2}
   _death: {fileID: 1764405130366502988}
+  _deathSound:
+    UseConstant: 0
+    Clip: {fileID: 0}
+    Data: {fileID: 11400000, guid: d676c59e066db784e8b502c21bfd66cf, type: 2}
   _superChargedColor: {r: 0, g: 1, b: 1, a: 1}
   _fullColor: {r: 0.13861692, g: 0.59152824, b: 0.8396226, a: 1}
   _emptyColor: {r: 0.10450676, g: 0.052331794, b: 0.2264151, a: 1}

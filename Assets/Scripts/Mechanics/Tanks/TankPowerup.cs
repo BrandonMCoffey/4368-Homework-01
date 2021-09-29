@@ -6,7 +6,7 @@ using Utility.CustomFloats;
 
 namespace Mechanics.Tanks
 {
-    public class TankPowerup : MonoBehaviour, IInvincible, IInvisibile, IMoveable, IIncreaseable
+    public class TankPowerup : MonoBehaviour, IInvincible, IMoveable, IIncreaseable
     {
         [Header("References")]
         [SerializeField] private TankMovement _movement;
@@ -30,7 +30,6 @@ namespace Mechanics.Tanks
 
         private void Start()
         {
-            OnSetInvisible();
             if (_movement == null) {
                 _movement = GetComponentInChildren<TankMovement>();
             }
@@ -55,27 +54,6 @@ namespace Mechanics.Tanks
                 _materialsToChangeWhenInvincible[i].material = _regularMaterial[i];
             }
             _regularMaterial.Clear();
-        }
-
-        public void OnRemoveInvisible()
-        {
-            foreach (var obj in _invisibleArt) {
-                obj.SetActive(false);
-            }
-            foreach (var obj in _regularArt) {
-                obj.SetActive(true);
-            }
-        }
-
-        // TODO: Does disabling object break Invincible MeshRenderers?
-        public void OnSetInvisible()
-        {
-            foreach (var obj in _invisibleArt) {
-                obj.SetActive(true);
-            }
-            foreach (var obj in _regularArt) {
-                obj.SetActive(false);
-            }
         }
 
         public void OnSpeedIncrease(float amount, float duration, ValueAdjustType type = ValueAdjustType.AddRaw)

@@ -13,11 +13,12 @@ namespace Mechanics.Tanks
         [Header("Health Settings")]
         [SerializeField] private int _maxHealth = 3;
         [SerializeField] private FloatReference _currentHealth = new FloatReference();
-        [SerializeField] private GameEvent _onDamaged = null;
 
         [Header("Death Feedback")]
         [SerializeField] private TankFeedback _deathFeedback = null;
         [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
+        [SerializeField] private GameEvent _onDamaged = null;
+        [SerializeField] private GameEvent _onDeath = null;
 
         public bool Invincible { get; set; }
         public float Health => _currentHealth;
@@ -52,7 +53,9 @@ namespace Mechanics.Tanks
             if (_onDamaged != null) {
                 _onDamaged.Invoke();
             }
-            _deathFeedback.DamageFeedback();
+            if (_deathFeedback != null) {
+                _deathFeedback.DamageFeedback();
+            }
             if (_currentHealth <= 0) {
                 OnKill();
                 return true;
@@ -100,6 +103,7 @@ namespace Mechanics.Tanks
 
         private void Kill()
         {
+            _currentHealth.Value = 0;
             foreach (var obj in _objsToDisable.Where(obj => obj != null)) {
                 obj.SetActive(false);
             }
@@ -114,6 +118,9 @@ namespace Mechanics.Tanks
             }
             if (_deathFeedback != null) {
                 _deathFeedback.DeathFeedback();
+            }
+            if (_onDeath != null) {
+                _onDeath.Invoke();
             }
         }
     }

@@ -659,12 +659,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collectParticles: {fileID: 4043406106147915702}
   _collectSfx:
-    UseConstant: 1
+    UseConstant: 0
     Clip: {fileID: 8300000, guid: b519c0333ffe019489513abfa2410e9c, type: 3}
-    Data: {fileID: 0}
+    Data: {fileID: 11400000, guid: 5414f62836bc2d544a30e95ce27d649c, type: 2}
   _transformToRotate: {fileID: 5374103012239809100}
   _rotationSpeed: 1
-  _healthAdded: 1
+  _healthAdded: 2
 --- !u!1 &7404861068235479824
 GameObject:
   m_ObjectHideFlags: 0

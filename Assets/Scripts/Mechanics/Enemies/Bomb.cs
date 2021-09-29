@@ -1,3 +1,4 @@
+using Audio;
 using Interfaces;
 using Mechanics.Projectiles;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Mechanics.Enemies
         [Header("References")]
         [SerializeField] private GameObject _visualsToDisable = null;
         [SerializeField] private ParticleSystem _explosionParticles = null;
+        [SerializeField] private SfxReference _explosionSfx = new SfxReference();
 
         private float _lastTime;
         private bool _flash;
@@ -79,6 +81,7 @@ namespace Mechanics.Enemies
             if (_visualsToDisable != null) {
                 _visualsToDisable.SetActive(false);
             }
+            _explosionSfx.Play();
             DealDamage();
             if (_explosionParticles != null) {
                 _explosionParticles.Play();

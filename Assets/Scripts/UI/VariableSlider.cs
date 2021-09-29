@@ -31,7 +31,6 @@ namespace UI
 
         private void UpdateSlider()
         {
-            Debug.Log("Test");
             float value = _variable.Value;
             if (value > _max) {
                 _max = value;

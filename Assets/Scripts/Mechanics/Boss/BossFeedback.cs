@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Game;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Mechanics.Boss
         [SerializeField] private float _screenShakeDuration = 0.5f;
         [SerializeField] private ParticleSystem _escalationParticles = null;
         [SerializeField] private ParticleSystem _enragedParticles = null;
+        [SerializeField] private ParticleSystem _damageAttackParticles = null;
+        [SerializeField] private SfxReference _physicalDamageSfx = new SfxReference();
         [SerializeField] private CameraController _cameraController;
 
         private void Awake()
@@ -17,6 +20,14 @@ namespace Mechanics.Boss
             if (_cameraController == null) {
                 _cameraController = FindObjectOfType<CameraController>();
             }
+        }
+
+        public void DamageAttack(Vector3 forward)
+        {
+            _physicalDamageSfx.Play();
+            if (_damageAttackParticles == null) return;
+            _damageAttackParticles.transform.forward = forward;
+            _damageAttackParticles.Play();
         }
 
         public void ShakeScreen()

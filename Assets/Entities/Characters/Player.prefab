@@ -14860,12 +14860,13 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 124ddd206c15b1a4b805fa1d17f5d78b, type: 2}
-  _onDamaged: {fileID: 11400000, guid: a52885bb12dce25409312f83af001ddd, type: 2}
   _deathFeedback: {fileID: 103708951403084524}
   _objsToDisable:
   - {fileID: 103708951577875988}
   - {fileID: 103708950631574491}
   - {fileID: 103708950132436406}
+  _onDamaged: {fileID: 11400000, guid: a52885bb12dce25409312f83af001ddd, type: 2}
+  _onDeath: {fileID: 11400000, guid: a60c2d6dcc57d0e4680e16a7543ecb38, type: 2}
 --- !u!1 &103708950600378883
 GameObject:
   m_ObjectHideFlags: 0

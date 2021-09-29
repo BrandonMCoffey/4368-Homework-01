@@ -5140,7 +5140,6 @@ MonoBehaviour:
   _upDownSpeed: 0.04
   _upDownAmplitude: 0.2
   _value: 1
-  _startPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8358319842649464827
 GameObject:
   m_ObjectHideFlags: 0

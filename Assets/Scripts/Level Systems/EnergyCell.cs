@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using Interfaces;
 using UnityEngine;
 using Utility.GameEvents.Logic;
@@ -13,6 +14,7 @@ namespace Level_Systems
         [SerializeField] private bool _bulletsBounceWhenDead = true;
         [SerializeField] private GameEvent _deathEvent = null;
         [SerializeField] private ParticleSystem _death = null;
+        [SerializeField] private SfxReference _deathSound = new SfxReference();
         [Header("Colors and Materials")]
         [SerializeField] private Color _superChargedColor = Color.cyan;
         [SerializeField] private Color _fullColor = Color.cyan;
@@ -22,6 +24,7 @@ namespace Level_Systems
         [SerializeField] private List<MeshRenderer> _colorsToChange = new List<MeshRenderer>();
         [Header("Laser")]
         [SerializeField] private GameObject _laserDamageVolume = null;
+        [SerializeField] private SfxReference _laserLoop = new SfxReference();
         [SerializeField] private Transform _laserPrepare = null;
         [SerializeField] private Vector3 _laserPrepareScale = new Vector3(1, 1, 50);
         [SerializeField] private ParticleSystem _laser = null;
@@ -103,7 +106,11 @@ namespace Level_Systems
             if (_laserDamageVolume != null) {
                 _laserDamageVolume.SetActive(true);
             }
+            _laserSfxController = AudioManager.Instance.GetController();
+            _laserLoop.Play(_laserSfxController);
         }
+
+        private AudioSourceController _laserSfxController;
 
         public void DeactivateLaser()
         {
@@ -113,6 +120,8 @@ namespace Level_Systems
             }
             _currentColor = _fullColor;
             _currentHealth = _maxHealth;
+            _laserSfxController.Stop();
+            AudioManager.Instance.ReturnController(_laserSfxController);
         }
 
         public void DeCharge(float delta)
@@ -212,6 +221,7 @@ namespace Level_Systems
             if (_death != null) {
                 _death.Play();
             }
+            _deathSound.Play();
             _customMaterial.color = _deadColor;
             _isAttacking = false;
             _isAlive = false;

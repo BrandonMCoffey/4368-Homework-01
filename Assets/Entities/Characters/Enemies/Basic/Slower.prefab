@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 1982285133998452692}
   - component: {fileID: 1982285133998452695}
   - component: {fileID: 1982285133998452694}
+  - component: {fileID: 7264977415654420644}
   m_Layer: 12
   m_Name: Slower
   m_TagString: Untagged
@@ -140,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 1982285133998452681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 8836204180868476679}
   - {fileID: 6336303423944080387}
@@ -196,6 +197,27 @@ MonoBehaviour:
   _speedIncreaseType: 2
   _amount: 2
   _duration: 5
+--- !u!114 &7264977415654420644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982285133998452681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _currentHealth:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  _onDamaged: {fileID: 0}
+  _deathFeedback: {fileID: 0}
+  _objsToDisable:
+  - {fileID: 2871557398681922981}
 --- !u!1 &2871557398681922981
 GameObject:
   m_ObjectHideFlags: 0

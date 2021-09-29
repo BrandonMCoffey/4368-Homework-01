@@ -64,13 +64,13 @@ MonoBehaviour:
   _constantParticles: {fileID: 8623502553660865854}
   _collectParticles: {fileID: 6005482014100191833}
   _powerUpSfx:
-    UseConstant: 1
+    UseConstant: 0
     Clip: {fileID: 8300000, guid: b45a6f3bf08933c4ca0ebcad9b5fdcbc, type: 3}
-    Data: {fileID: 0}
+    Data: {fileID: 11400000, guid: fcd418fd992e94845a9b3a1475b48d32, type: 2}
   _powerDownSfx:
-    UseConstant: 1
+    UseConstant: 0
     Clip: {fileID: 8300000, guid: 4ef16ba931d659e458c8eb210164fd3e, type: 3}
-    Data: {fileID: 0}
+    Data: {fileID: 11400000, guid: d586451ab788cce428a21cdbcaa7555c, type: 2}
   _effectMultiplication: 1
 --- !u!1 &1303124106992825781
 GameObject:
