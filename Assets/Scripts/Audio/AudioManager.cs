@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using Utility;
 
 namespace Audio
@@ -11,12 +12,15 @@ namespace Audio
         [SerializeField] private AudioSourceController _musicController;
         [Header("Audio Pool")]
         [SerializeField] private string _audioPlayerName = "SFX Player";
+        [SerializeField] private AudioMixerGroup _sfxGroup;
         [SerializeField] private Transform _poolParent;
         [SerializeField] private int _initialPoolSize = 5;
 
         private PoolManager<AudioSourceController> _poolManager = new PoolManager<AudioSourceController>();
         private static string _defaultObjectName = "Audio Manager";
         private static string _defaultPoolName = "SFX Pool";
+
+        public AudioMixerGroup SfxGroup => _sfxGroup;
 
         #region Singleton
 
@@ -27,7 +31,10 @@ namespace Audio
             get
             {
                 if (_instance == null) {
-                    _instance = new GameObject(_defaultObjectName, typeof(AudioManager)).GetComponent<AudioManager>();
+                    _instance = FindObjectOfType<AudioManager>();
+                    if (_instance == null) {
+                        _instance = new GameObject(_defaultObjectName, typeof(AudioManager)).GetComponent<AudioManager>();
+                    }
                 }
                 return _instance;
             }
@@ -36,12 +43,11 @@ namespace Audio
 
         private void Awake()
         {
-            if (_instance == this) return;
+            transform.SetParent(null);
             if (_instance == null) {
-                transform.SetParent(null);
                 if (_dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
                 Instance = this;
-            } else {
+            } else if (_instance != this) {
                 Destroy(gameObject);
             }
 

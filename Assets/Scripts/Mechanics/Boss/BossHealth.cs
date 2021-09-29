@@ -32,6 +32,11 @@ namespace Mechanics.Boss
             DecreaseHealth(amount);
         }
 
+        protected override bool DecreaseHealth(int amount)
+        {
+            return base.DecreaseHealth(_reachedMidpoint ? amount * 4 : amount);
+        }
+
         protected override void OnHealthChanged()
         {
             if (!_reachedEscalation && Health <= MaxHealth * _escalationHp) {
@@ -39,13 +44,21 @@ namespace Mechanics.Boss
                 _reachedEscalation = true;
             }
             if (!_reachedMidpoint && Health <= MaxHealth * _enragedHp) {
-                _stateMachine.UpdateBossStage(BossStage.MidpointCutscene);
+                _stateMachine.ReadyMidpointCutscene();
+                StartCoroutine(MidpointHold());
                 _reachedMidpoint = true;
             }
             if (!_reachedKillSequence && Health <= MaxHealth * _killSequenceHp) {
                 _stateMachine.UpdateBossStage(BossStage.KillSequence);
                 _reachedKillSequence = true;
             }
+        }
+
+        private IEnumerator MidpointHold()
+        {
+            Invincible = true;
+            yield return new WaitForSecondsRealtime(5);
+            Invincible = false;
         }
     }
 }

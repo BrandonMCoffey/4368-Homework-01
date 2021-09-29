@@ -14,7 +14,7 @@ namespace UI
         [SerializeField] private float _timeToAnimate = 4;
 
         private Slider _slider;
-        private float _max;
+        private float _max = 25;
 
         private void Awake()
         {
@@ -40,23 +40,23 @@ namespace UI
             _variable.OnValueChanged -= UpdateSlider;
         }
 
-        private void UpdateSlider()
+        public void UpdateSlider(float newValue)
         {
-            if (_animateOnStart) return;
-            float value = _variable.Value;
-            if (value > _max) {
-                _max = value;
+            if (newValue > _max) {
+                _max = newValue;
             }
-            _slider.value = value / _max;
+            if (_animateOnStart) return;
+            _slider.value = newValue / _max;
         }
 
-        public void SkipAnimation()
+        public void CancelAnimation()
         {
             StopAllCoroutines();
-            UpdateSlider(1);
+            AnimateSlider(1);
+            _animateOnStart = false;
         }
 
-        private void UpdateSlider(float delta)
+        private void AnimateSlider(float delta)
         {
             _slider.value = delta;
         }
@@ -66,7 +66,7 @@ namespace UI
             yield return new WaitForSecondsRealtime(_offset);
             for (float t = 0; t < _timeToAnimate; t += Time.deltaTime) {
                 float delta = t / _timeToAnimate;
-                UpdateSlider(delta);
+                AnimateSlider(delta);
                 yield return null;
             }
             _animateOnStart = false;

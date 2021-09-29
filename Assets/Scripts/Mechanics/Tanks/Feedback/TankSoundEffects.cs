@@ -12,7 +12,7 @@ namespace Mechanics.Tanks.Feedback
 
         private AudioSourceController _movementSfxController;
 
-        private void OnEnable()
+        private void Start()
         {
             if (!_movementSfx.NullTest()) {
                 _movementSfxController = AudioManager.Instance.GetController();

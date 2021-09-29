@@ -13,12 +13,12 @@ namespace Utility.CustomFloats
             get => _value;
             set
             {
-                OnValueChanged?.Invoke();
                 _value = value;
+                OnValueChanged?.Invoke(_value);
             }
         }
 
-        public event Action OnValueChanged = delegate { };
+        public event Action<float> OnValueChanged = delegate { };
 
         public void SetValue(float value)
         {

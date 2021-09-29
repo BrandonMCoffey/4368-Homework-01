@@ -37,6 +37,7 @@ namespace Mechanics.Boss
 
         public void EscalationFeedback()
         {
+            _cameraController.ShakeCamera(_screenShakeDuration * 2, _screenShakeIntensity);
             if (_escalationParticles != null) {
                 _escalationParticles.Play();
             }

@@ -120,8 +120,7 @@ namespace Level_Systems
             }
             _currentColor = _fullColor;
             _currentHealth = _maxHealth;
-            _laserSfxController.Stop();
-            AudioManager.Instance.ReturnController(_laserSfxController);
+            if (_laserSfxController != null) _laserSfxController.Stop();
         }
 
         public void DeCharge(float delta)

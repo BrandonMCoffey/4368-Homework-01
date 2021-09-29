@@ -53,8 +53,11 @@ namespace Mechanics.Boss
         private BossStage _stage = BossStage.IntroCutscene;
         private List<IState> _availableAttacks = new List<IState>();
         private List<IState> _availableMovements = new List<IState>();
+        private IState _previousAttack;
 
         public Transform MainTransform => _movement.MainTransform;
+
+        private bool _readyMidpointCutscene;
 
         private void Awake()
         {
@@ -71,11 +74,16 @@ namespace Mechanics.Boss
             ChangeState(CutsceneState);
         }
 
-        private void OnEnable()
+        private void Start()
         {
             if (_onEndCutscene == null) {
                 OnEndCutscene();
-            } else {
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (_onEndCutscene != null) {
                 _onEndCutscene.OnEvent += OnEndCutscene;
             }
         }
@@ -91,6 +99,11 @@ namespace Mechanics.Boss
         {
             bool canShoot = CurrentState == IdleState || CurrentState == MoveToPlatformState;
             _turret.SetCanShoot(canShoot);
+        }
+
+        public void ReadyMidpointCutscene()
+        {
+            _readyMidpointCutscene = true;
         }
 
         public void UpdateBossStage(BossStage stage)
@@ -118,6 +131,8 @@ namespace Mechanics.Boss
                     break;
                 case BossStage.MidpointCutscene:
                     _midpointCutscene.StartCutscene();
+                    _readyMidpointCutscene = false;
+                    InTransition = true;
                     break;
                 case BossStage.Enraged:
                     if (_colorToSet != null) _colorToSet.color = _enragedColor;
@@ -131,6 +146,8 @@ namespace Mechanics.Boss
                     PlatformSummoningState.Escalate();
                     ChargeAttackState.Escalate();
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
+                    InTransition = false;
+                    RandomAttack();
                     break;
                 case BossStage.KillSequence:
                     if (_colorToSet != null) _colorToSet.color = _killColor;
@@ -143,6 +160,10 @@ namespace Mechanics.Boss
 
         public void BossReachedPlatform()
         {
+            if (_readyMidpointCutscene) {
+                UpdateBossStage(BossStage.MidpointCutscene);
+                return;
+            }
             if (_hasError) return;
             switch (_stage) {
                 case BossStage.Basic:
@@ -162,6 +183,10 @@ namespace Mechanics.Boss
 
         public void BossFinishedCharge()
         {
+            if (_readyMidpointCutscene) {
+                UpdateBossStage(BossStage.MidpointCutscene);
+                return;
+            }
             if (PreviousState == MoveToPlatformState) {
                 RevertToPreviousState(true, false);
             } else {
@@ -171,6 +196,10 @@ namespace Mechanics.Boss
 
         public void BossFinishedAttack()
         {
+            if (_readyMidpointCutscene) {
+                UpdateBossStage(BossStage.MidpointCutscene);
+                return;
+            }
             if (_hasError) return;
 
             if (PreviousState == MoveToPlatformState) {
@@ -196,6 +225,10 @@ namespace Mechanics.Boss
 
         public void BossFinishedIdle()
         {
+            if (_readyMidpointCutscene) {
+                UpdateBossStage(BossStage.MidpointCutscene);
+                return;
+            }
             if (_hasError) return;
             switch (_stage) {
                 case BossStage.Basic:
@@ -215,8 +248,13 @@ namespace Mechanics.Boss
 
         private void RandomAttack()
         {
+            if (!_availableAttacks.Contains(_previousAttack)) {
+                _availableAttacks.Add(_previousAttack);
+            }
             IState attack = _availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState;
             if (_aiData.Debug) Debug.Log("Set Attack: " + attack);
+            _availableAttacks.Remove(attack);
+            _previousAttack = attack;
             ChangeState(attack, true);
         }
 

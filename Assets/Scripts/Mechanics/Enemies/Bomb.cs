@@ -26,15 +26,16 @@ namespace Mechanics.Enemies
         private float _lastTime;
         private bool _flash;
         private bool _hasExploded;
+        private Collider _collider;
 
         private void Awake()
         {
             if (_baseMaterial == null && _meshRenderer != null) {
                 _baseMaterial = _meshRenderer.material;
             }
-            Collider c = GetComponent<Collider>();
-            if (c != null) {
-                c.isTrigger = true;
+            _collider = GetComponent<Collider>();
+            if (_collider != null) {
+                _collider.isTrigger = true;
             }
         }
 
@@ -78,6 +79,9 @@ namespace Mechanics.Enemies
 
         private void Explode()
         {
+            if (_collider != null) {
+                _collider.enabled = false;
+            }
             if (_visualsToDisable != null) {
                 _visualsToDisable.SetActive(false);
             }

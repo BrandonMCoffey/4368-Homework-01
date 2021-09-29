@@ -32,6 +32,7 @@ namespace Mechanics.Tanks
             if (!_currentHealth.UseConstant && _currentHealth.Variable == null) {
                 _currentHealth.UseConstant = true;
             }
+            _currentHealth.Value = _maxHealth;
         }
 
         private void Start()
@@ -42,13 +43,12 @@ namespace Mechanics.Tanks
         public bool IncreaseHealth(int amount)
         {
             if (_currentHealth >= _maxHealth) return false;
-            _currentHealth.Value = _currentHealth + amount;
-            _currentHealth.Value = Mathf.Clamp(_currentHealth.Value, 0, _maxHealth);
+            _currentHealth.Value = Mathf.Clamp(_currentHealth + amount, 0, _maxHealth);
             OnHealthChanged();
             return true;
         }
 
-        protected bool DecreaseHealth(int amount)
+        protected virtual bool DecreaseHealth(int amount)
         {
             if (Invincible) return false;
             _currentHealth.Value -= amount;

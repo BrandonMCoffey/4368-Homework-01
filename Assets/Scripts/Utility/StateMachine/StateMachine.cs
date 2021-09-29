@@ -10,11 +10,11 @@ namespace Utility.StateMachine
         public IState PreviousState { get; private set; }
         internal IState DefaultState = new NullState();
 
-        private bool _inTransition;
+        protected bool InTransition { get; set; }
 
         public void ChangeState(IState newState, bool canBeSame = false)
         {
-            if (_inTransition || newState == null) return;
+            if (InTransition || newState == null) return;
             if (CurrentState == newState && !canBeSame) return;
 
             ChangeStateRoutine(newState);
@@ -44,7 +44,7 @@ namespace Utility.StateMachine
 
         private void ChangeStateRoutine(IState newState)
         {
-            _inTransition = true;
+            InTransition = true;
 
             if (CurrentState != null) {
                 CurrentState.Exit();
@@ -59,19 +59,19 @@ namespace Utility.StateMachine
             CurrentState.Enter();
             OnStateChanged();
 
-            _inTransition = false;
+            InTransition = false;
         }
 
         public void Update()
         {
-            if (CurrentState == null || _inTransition) return;
+            if (CurrentState == null || InTransition) return;
 
             CurrentState.Tick();
         }
 
         public void FixedUpdate()
         {
-            if (CurrentState == null || _inTransition) return;
+            if (CurrentState == null || InTransition) return;
 
             CurrentState.FixedTick();
         }

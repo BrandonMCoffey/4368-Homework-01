@@ -34891,7 +34891,7 @@ MonoBehaviour:
   _stateMachine: {fileID: 7928012434638989222}
   _escalationHp: 0.9
   _enragedHp: 0.25
-  _healToHp: 0.75
+  _healToHp: 1
   _killSequenceHp: 0.05
 --- !u!114 &433473513
 MonoBehaviour:
@@ -34906,7 +34906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _feedback: {fileID: 3630243160658723953}
-  _damageOnTouch: 4
+  _damageOnTouch: 5
   _pushBackForce: 4
 --- !u!114 &5629243831249813205
 MonoBehaviour:

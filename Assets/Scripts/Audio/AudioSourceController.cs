@@ -16,6 +16,13 @@ namespace Audio
             _source = GetComponent<AudioSource>();
         }
 
+        private void OnEnable()
+        {
+            if (_source.outputAudioMixerGroup == null) {
+                _source.outputAudioMixerGroup = AudioManager.Instance.SfxGroup;
+            }
+        }
+
         private void LateUpdate()
         {
             if (!Claimed) return;

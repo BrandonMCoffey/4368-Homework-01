@@ -14855,7 +14855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 25
   _currentHealth:
     UseConstant: 0
     ConstantValue: 0
@@ -14867,6 +14867,7 @@ MonoBehaviour:
   - {fileID: 103708950132436406}
   _onDamaged: {fileID: 11400000, guid: a52885bb12dce25409312f83af001ddd, type: 2}
   _onDeath: {fileID: 11400000, guid: a60c2d6dcc57d0e4680e16a7543ecb38, type: 2}
+  _destroyOnDeath: 0
 --- !u!1 &103708950600378883
 GameObject:
   m_ObjectHideFlags: 0
@@ -20013,7 +20014,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103708951431522442}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -20088,7 +20089,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 5
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -20948,7 +20949,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 240
+        scalar: 400
         minScalar: 30
         maxCurve:
           serializedVersion: 2

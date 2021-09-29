@@ -72,7 +72,6 @@ namespace Game
         {
             for (float t = 0; t < _slowDownTime; t += 0.01f) {
                 float delta = t / _slowDownTime;
-                Debug.Log(delta);
                 Time.timeScale = 1 - delta;
                 yield return null;
             }
