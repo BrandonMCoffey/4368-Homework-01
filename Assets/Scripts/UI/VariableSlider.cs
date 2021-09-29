@@ -17,9 +17,20 @@ namespace UI
             _slider = GetComponent<Slider>();
         }
 
-        private void Update()
+        private void OnEnable()
         {
             if (_variable == null) return;
+            _variable.OnValueChanged += UpdateSlider;
+        }
+
+        private void OnDisable()
+        {
+            if (_variable == null) return;
+            _variable.OnValueChanged -= UpdateSlider;
+        }
+
+        private void UpdateSlider()
+        {
             float value = _variable.Value;
             if (value > _max) {
                 _max = value;
