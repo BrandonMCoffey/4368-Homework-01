@@ -91,6 +91,9 @@ MonoBehaviour:
   - {fileID: 958444668764177308}
   - {fileID: 958444668628753778}
   - {fileID: 5144476053909828313}
+  _onDamaged: {fileID: 0}
+  _onDeath: {fileID: 0}
+  _destroyOnDeath: 1
 --- !u!1 &958444668677697544
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +240,7 @@ MonoBehaviour:
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
   _maximumBullets: 5
+  _rapidFireSpeed: 0.25
   _tankFeedback: {fileID: 958444668668007529}
 --- !u!1001 &6793023314510064366
 PrefabInstance:

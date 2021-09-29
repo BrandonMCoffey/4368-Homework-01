@@ -34875,17 +34875,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0500809dffb6e4099e6f3c0746bb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 250
+  _maxHealth: 200
   _currentHealth:
     UseConstant: 0
     ConstantValue: 100
     Variable: {fileID: 11400000, guid: a1cfed76970f2b54aab96417dd7d8992, type: 2}
-  _onDamaged: {fileID: 0}
   _deathFeedback: {fileID: 7325661561032971021}
   _objsToDisable:
   - {fileID: 7325661559495869878}
   - {fileID: 263924130341688030}
   - {fileID: 7325661559825202138}
+  _onDamaged: {fileID: 0}
+  _onDeath: {fileID: 11400000, guid: 2c13f3e2cc6dc294c8e49a3e58ba58cb, type: 2}
+  _destroyOnDeath: 0
   _stateMachine: {fileID: 7928012434638989222}
   _escalationHp: 0.9
   _enragedHp: 0.25

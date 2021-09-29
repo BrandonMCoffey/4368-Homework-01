@@ -17,6 +17,7 @@ namespace Game
         [SerializeField] private PlayerTank _player;
         [SerializeField] private Transform _tempPlayerArt = null;
         [SerializeField] private BossStateMachine _bossAi;
+        [SerializeField] private BossTurret _turret;
         [SerializeField] private BossHealth _bossHealth;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _cutsceneParticles = null;
@@ -42,6 +43,7 @@ namespace Game
             _player.gameObject.SetActive(false);
             _tempPlayerArt.gameObject.SetActive(true);
             _bossAi.gameObject.SetActive(false);
+            _turret.SetLockTurret(true);
             _tempPlayerArt.transform.SetPositionAndRotation(_player.transform.position, _player.transform.rotation);
             StartCoroutine(Cutscene());
         }
@@ -80,6 +82,7 @@ namespace Game
         {
             _player.gameObject.SetActive(true);
             _tempPlayerArt.gameObject.SetActive(false);
+            _turret.SetLockTurret(false);
             _bossAi.gameObject.SetActive(true);
             _bossAi.UpdateBossStage(BossStage.Enraged);
         }

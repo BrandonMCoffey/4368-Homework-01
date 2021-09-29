@@ -88,6 +88,7 @@ MonoBehaviour:
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
   _maximumBullets: 5
+  _rapidFireSpeed: 0.25
   _tankFeedback: {fileID: 1137177702793105550}
 --- !u!114 &1137177701814552437
 MonoBehaviour:
@@ -199,10 +200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 1
+  _maxHealth: 2
   _currentHealth:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 2
     Variable: {fileID: 0}
   _deathFeedback: {fileID: 1137177702793105550}
   _objsToDisable:
@@ -210,6 +211,9 @@ MonoBehaviour:
   - {fileID: 1137177701814552443}
   - {fileID: 1137177702765386133}
   - {fileID: 5035548814029944382}
+  _onDamaged: {fileID: 0}
+  _onDeath: {fileID: 0}
+  _destroyOnDeath: 1
 --- !u!1 &1137177702781826287
 GameObject:
   m_ObjectHideFlags: 0

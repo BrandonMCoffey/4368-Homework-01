@@ -10,30 +10,61 @@ namespace Game
     public class GameManager : MonoBehaviour
     {
         [Header("Game Related Keys")]
+        [SerializeField] private KeyCode _pauseKey = KeyCode.Escape;
         [SerializeField] private KeyCode _restartKey = KeyCode.Backspace;
-        [SerializeField] private KeyCode _exitGameKey = KeyCode.Escape;
+        [Header("References")]
+        [SerializeField] private GameObject _pauseMenuPanel = null;
         [Header("Music")]
         [SerializeField] private SfxReference _musicToPlay = new SfxReference();
         [Header("Winning and Losing")]
         [SerializeField] private float _slowDownTime = 4;
 
+        private bool _isPaused;
+        private bool _gameOver;
+
         private void Start()
         {
+            PauseGame(false);
             AudioManager.Instance.PlayMusic(_musicToPlay, 2);
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(_restartKey)) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                RestartLevel();
             }
-            if (Input.GetKeyDown(_exitGameKey)) {
-                Application.Quit();
+            if (Input.GetKeyDown(_pauseKey)) {
+                PauseGame();
             }
+        }
+
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void PauseGame()
+        {
+            PauseGame(!_isPaused);
+        }
+
+        public void PauseGame(bool pause)
+        {
+            _isPaused = pause;
+            if (!_gameOver) {
+                Time.timeScale = pause ? 0 : 1;
+            }
+            if (_pauseMenuPanel != null) _pauseMenuPanel.SetActive(pause);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
         }
 
         public void Defeat()
         {
+            _gameOver = true;
             StartCoroutine(SlowSceneToStop());
         }
 
@@ -46,6 +77,7 @@ namespace Game
                 yield return null;
             }
             Time.timeScale = 0;
+            _isPaused = true;
         }
     }
 }

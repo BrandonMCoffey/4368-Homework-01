@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
@@ -19,6 +20,7 @@ namespace Mechanics.Tanks
         [SerializeField] private List<GameObject> _objsToDisable = new List<GameObject>();
         [SerializeField] private GameEvent _onDamaged = null;
         [SerializeField] private GameEvent _onDeath = null;
+        [SerializeField] private bool _destroyOnDeath = false;
 
         public bool Invincible { get; set; }
         public float Health => _currentHealth;
@@ -118,10 +120,20 @@ namespace Mechanics.Tanks
             }
             if (_deathFeedback != null) {
                 _deathFeedback.DeathFeedback();
+                _deathFeedback.SetMovementSpeed(0);
             }
             if (_onDeath != null) {
                 _onDeath.Invoke();
             }
+            if (_destroyOnDeath) {
+                StartCoroutine(DestroySelf());
+            }
+        }
+
+        private IEnumerator DestroySelf()
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            Destroy(gameObject);
         }
     }
 }

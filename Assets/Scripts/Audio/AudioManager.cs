@@ -6,6 +6,7 @@ namespace Audio
 {
     public class AudioManager : MonoBehaviour
     {
+        [SerializeField] private bool _dontDestroyOnLoad = false;
         [Header("Music Controller")]
         [SerializeField] private AudioSourceController _musicController;
         [Header("Audio Pool")]
@@ -38,7 +39,7 @@ namespace Audio
             if (_instance == this) return;
             if (_instance == null) {
                 transform.SetParent(null);
-                DontDestroyOnLoad(gameObject);
+                if (_dontDestroyOnLoad) DontDestroyOnLoad(gameObject);
                 Instance = this;
             } else {
                 Destroy(gameObject);

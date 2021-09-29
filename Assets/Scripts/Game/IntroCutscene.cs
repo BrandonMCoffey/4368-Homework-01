@@ -44,6 +44,8 @@ namespace Game
         [Header("References")]
         [SerializeField] private PlayerTank _player;
         [SerializeField] private BossStateMachine _boss;
+        [SerializeField] private GameObject _skipCutsceneButton = null;
+        [SerializeField] private BossTurret _turret = null;
         [SerializeField] private BossPlatform _bossSpawnPlatform = null;
         [SerializeField] private Image _fadeInPanel = null;
         [SerializeField] private SfxReference _tankSfx = new SfxReference();
@@ -55,6 +57,7 @@ namespace Game
         private float _timer;
         private bool _finished;
         private bool _hasError;
+        private bool _bossIsRising;
 
         private AudioSourceController _tankSfxController;
         private AudioSourceController _sirenController;
@@ -91,7 +94,9 @@ namespace Game
                     backRedLight.gameObject.SetActive(true);
                     backRedLight.SetIntensityDelta(1);
                 }
+                _turret.SetLockTurret(false);
                 _startGame.Invoke();
+                if (_skipCutsceneButton != null) _skipCutsceneButton.SetActive(false);
                 return;
             }
             _boss.SetVisuals(false);
@@ -110,6 +115,30 @@ namespace Game
             _timer = 0;
             _tankSfxController = AudioManager.Instance.GetController();
             _sirenController = AudioManager.Instance.GetController();
+        }
+
+        public void SkipCutscene()
+        {
+            _directionalLight.intensity = _directionalMax;
+            foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
+                redLight.gameObject.SetActive(false);
+            }
+            foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
+                backRedLight.gameObject.SetActive(true);
+                backRedLight.SetIntensityDelta(1);
+            }
+            if (!_bossIsRising) {
+                _boss.SetVisuals(true);
+            }
+            _player.transform.position = _artEndPos;
+            _player.gameObject.SetActive(true);
+            _tempPlayerArt.gameObject.SetActive(false);
+            _turret.SetLockTurret(false);
+            _finished = true;
+            _startGame.Invoke();
+            _tankSfxController.SetCustomVolume(0);
+            _tankSfxController.Stop();
+            _sirenController.Stop();
         }
 
         private void Update()
@@ -153,6 +182,7 @@ namespace Game
                         }
                         _state = IntroState.BossEnter;
                         _bossSpawnPlatform.PrepareToRaise(_boss);
+                        _bossIsRising = true;
                         _timer = 0;
                         _tankSfxController.SetCustomVolume(1);
                     }
@@ -196,7 +226,9 @@ namespace Game
                     _player.transform.position = _artEndPos;
                     _player.gameObject.SetActive(true);
                     _tempPlayerArt.gameObject.SetActive(false);
+                    _turret.SetLockTurret(false);
                     _finished = true;
+                    if (_skipCutsceneButton != null) _skipCutsceneButton.SetActive(false);
                     _startGame.Invoke();
                     break;
             }

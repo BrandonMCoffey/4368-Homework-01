@@ -9916,6 +9916,10 @@ MonoBehaviour:
   _colorsToChange:
   - {fileID: 2806118841433882254}
   _laserDamageVolume: {fileID: 1894016408}
+  _laserLoop:
+    UseConstant: 0
+    Clip: {fileID: 0}
+    Data: {fileID: 11400000, guid: 9faf189a084dc9048963885247ee06c5, type: 2}
   _laserPrepare: {fileID: 817002013}
   _laserPrepareScale: {x: 1, y: 1, z: 50}
   _laser: {fileID: 1183021753}

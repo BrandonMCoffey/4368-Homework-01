@@ -14,6 +14,7 @@ namespace Mechanics.Boss
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Vector2 _fireTime = new Vector2(4, 6);
 
+        private bool _lockTurret = true;
         private float _fireTimer;
         private bool _canShoot;
         private float _fireTimeMultiplier = 1;
@@ -29,7 +30,13 @@ namespace Mechanics.Boss
 
         private void Update()
         {
+            if (_lockTurret) return;
             SetAimPosition();
+        }
+
+        public void SetLockTurret(bool active)
+        {
+            _lockTurret = active;
         }
 
         public void Escalate()
