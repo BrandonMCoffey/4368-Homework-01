@@ -21,13 +21,6 @@ namespace UI
             _slider = GetComponent<Slider>();
         }
 
-        private void Start()
-        {
-            if (_animateOnStart) {
-                StartCoroutine(AnimateSlider());
-            }
-        }
-
         private void OnEnable()
         {
             if (_variable == null) return;
@@ -38,6 +31,13 @@ namespace UI
         {
             if (_variable == null) return;
             _variable.OnValueChanged -= UpdateSlider;
+        }
+
+        public void StartAnimation()
+        {
+            if (_animateOnStart) {
+                StartCoroutine(AnimateSlider());
+            }
         }
 
         public void UpdateSlider(float newValue)

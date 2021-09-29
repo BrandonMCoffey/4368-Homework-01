@@ -23,8 +23,6 @@ namespace Game
 
     public class IntroCutscene : MonoBehaviour
     {
-        [SerializeField] private bool _skipCutscene = false;
-
         [Header("Time of Events")]
         [SerializeField] private float _fadeIn = 1;
         [SerializeField] private float _playerEnter = 1;
@@ -58,6 +56,7 @@ namespace Game
         private bool _finished;
         private bool _hasError;
         private bool _bossIsRising;
+        private bool _notStarted = true;
 
         private AudioSourceController _tankSfxController;
         private AudioSourceController _sirenController;
@@ -84,21 +83,6 @@ namespace Game
                 _hasError = true;
                 throw new MissingComponentException("No assigned Boss Tank Spawn Platform on " + gameObject);
             }
-
-            if (_skipCutscene) {
-                _directionalLight.intensity = _directionalMax;
-                foreach (var redLight in _redLights.Where(redLight => redLight != null)) {
-                    redLight.gameObject.SetActive(false);
-                }
-                foreach (var backRedLight in _backingRedLights.Where(backRedLight => backRedLight != null)) {
-                    backRedLight.gameObject.SetActive(true);
-                    backRedLight.SetIntensityDelta(1);
-                }
-                _turret.SetLockTurret(false);
-                _startGame.Invoke();
-                if (_skipCutsceneButton != null) _skipCutsceneButton.SetActive(false);
-                return;
-            }
             _boss.SetVisuals(false);
             _player.gameObject.SetActive(false);
             _tempPlayerArt.gameObject.SetActive(true);
@@ -112,9 +96,6 @@ namespace Game
                 backRedLight.gameObject.SetActive(true);
                 backRedLight.SetIntensityDelta(0);
             }
-            _timer = 0;
-            _tankSfxController = AudioManager.Instance.GetController();
-            _sirenController = AudioManager.Instance.GetController();
         }
 
         public void SkipCutscene()
@@ -141,16 +122,24 @@ namespace Game
             _sirenController.Stop();
         }
 
+        public void StartCutscene()
+        {
+            _timer = 0;
+            _tankSfxController = AudioManager.Instance.GetController();
+            _sirenController = AudioManager.Instance.GetController();
+            _notStarted = false;
+        }
+
         private void Update()
         {
-            if (_hasError || _skipCutscene || _finished) return;
+            if (_notStarted || _hasError || _finished) return;
 
             _timer += Time.deltaTime;
 
             switch (_state) {
                 case IntroState.FadeIn:
                     Color col = _fadeInPanel.color;
-                    col.a = 1 - _timer / _fadeIn;
+                    col.a = 0.5f - 0.5f * _timer / _fadeIn;
                     _fadeInPanel.color = col;
                     if (_timer > _fadeIn) {
                         _fadeInPanel.gameObject.SetActive(false);
