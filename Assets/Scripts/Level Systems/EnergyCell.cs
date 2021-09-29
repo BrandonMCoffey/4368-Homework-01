@@ -73,7 +73,7 @@ namespace Level_Systems
         public void Charge(float delta)
         {
             if (_respawnCell) {
-                _customMaterial.color = Color.Lerp(_currentColor, _fullColor, delta);
+                _customMaterial.color = Color.Lerp(_deadColor, _fullColor, delta);
             } else {
                 _customMaterial.color = Color.Lerp(_currentColor, _superChargedColor, delta);
                 _laserPrepare.localScale = Vector3.Lerp(Vector3.zero, _laserPrepareScale, delta);
@@ -84,6 +84,7 @@ namespace Level_Systems
         {
             if (_respawnCell) {
                 _isAlive = true;
+                _respawnCell = false;
                 _currentHealth = _maxHealth;
                 return;
             }
