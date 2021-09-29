@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnChance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnerList.Array.size
@@ -2811,6 +2811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662632564ca4caf49b1bffe0d301dd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
   _musicController: {fileID: 388409703}
   _audioPlayerName: SFX
   _poolParent: {fileID: 493410739}
@@ -6392,6 +6393,9 @@ MonoBehaviour:
   - {fileID: 1137177702644822162, guid: e116ba1c774894245b75a2fbfa7d655f, type: 3}
   - {fileID: 1137177702644822162, guid: e116ba1c774894245b75a2fbfa7d655f, type: 3}
   - {fileID: 1982285133998452681, guid: 7319d2c2acebc474293a6f55e98ae293, type: 3}
+  - {fileID: 958444668537484405, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
+  - {fileID: 958444668537484405, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
+  - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
   _collectibleToSpawn:
   - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
   - {fileID: 6922401649231279772, guid: 9e4ed7bae4e0cc04dbdb914aa4ff1973, type: 3}
@@ -15174,7 +15178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnChance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnerList.Array.size
@@ -23134,7 +23138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnChance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnerList.Array.size
@@ -23480,7 +23484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnChance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnerList.Array.size
@@ -28710,7 +28714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnChance
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2767427063635549323, guid: 0121de85d407b1c4ab15498849eb0294, type: 3}
       propertyPath: _spawnerList.Array.data[0]
