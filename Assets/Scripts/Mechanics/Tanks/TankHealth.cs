@@ -80,6 +80,12 @@ namespace Mechanics.Tanks
             return true;
         }
 
+        public void SetHealth(float percent)
+        {
+            percent = Mathf.Clamp01(percent);
+            _currentHealth.Value = MaxHealth * percent;
+        }
+
         public void OnKill()
         {
             if (Invincible) return;

@@ -27,11 +27,11 @@ namespace Mechanics.Boss
             _currentPlatformOption = currentPlatform;
         }
 
-        public void SetEscalation()
+        public void Escalate()
         {
-            _leftBossPlatform.SetEscalation();
-            _centerBossPlatform.SetEscalation();
-            _rightBossPlatform.SetEscalation();
+            _leftBossPlatform.Escalate();
+            _centerBossPlatform.Escalate();
+            _rightBossPlatform.Escalate();
         }
 
         public Transform GetNewDestination()
@@ -81,7 +81,7 @@ namespace Mechanics.Boss
 
             platform.PrepareToRaise(boss);
             _currentPlatformOption = option;
-            return platform.RaiseTime;
+            return platform.TotalTime;
         }
 
         private BossPlatform GetPlatform(PlatformOptions option)

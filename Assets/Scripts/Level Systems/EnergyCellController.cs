@@ -15,6 +15,12 @@ namespace Level_Systems
         [SerializeField] private float _laserTime = 0.8f;
         [SerializeField] private float _fadeCellTime = 0.4f;
         [SerializeField] private float _inBetweenTime = 1f;
+        [Header("Platform Summoning")]
+        [SerializeField] private float _chargeCellTime1 = 0.8f;
+        [SerializeField] private float _summonTime = 2;
+        [SerializeField] private float _waitTime = 0.4f;
+        [SerializeField] private List<GameObject> _enemyToSpawn = new List<GameObject>();
+        [SerializeField] private List<GameObject> _collectibleToSpawn = new List<GameObject>();
 
         private void Awake()
         {
@@ -30,7 +36,6 @@ namespace Level_Systems
             int energyCellCount = _energyCells.Count;
             for (var i = 0; i < energyCellCount; i++) {
                 var cell = startFromLeft ? _energyCells[i] : _energyCells[energyCellCount - i - 1];
-                cell.Respawn();
                 startTime += _inBetweenTime;
                 StartCoroutine(LaserAttack(cell, startTime));
             }
@@ -53,10 +58,34 @@ namespace Level_Systems
             cell.DeactivateLaser();
             for (float t = 0; t < _fadeCellTime; t += Time.deltaTime) {
                 float delta = t / _fadeCellTime;
-                cell.Charge(1 - delta);
+                cell.DeCharge(delta);
                 yield return null;
             }
             cell.FinishLaserSequence();
+        }
+
+        public float StartPlatformSummoning(float amount)
+        {
+            bool startFromLeft = _playerTank.position.x > 0;
+            int energyCellCount = _energyCells.Count;
+            for (var i = 0; i < energyCellCount; i++) {
+                var cell = startFromLeft ? _energyCells[i] : _energyCells[energyCellCount - i - 1];
+                cell.Respawn();
+                StartCoroutine(PlatformSummoning(cell, (energyCellCount) * 10 - 10 * i, 40 + 10 * i, amount));
+            }
+            return _chargeCellTime1 + _summonTime + _waitTime;
+        }
+
+        private IEnumerator PlatformSummoning(EnergyCell cell, int good, int bad, float amount)
+        {
+            cell.StartSummonSequence();
+
+            for (float t = 0; t < _chargeCellTime; t += Time.deltaTime) {
+                float delta = t / _chargeCellTime;
+                cell.ChargeSummon(delta);
+                yield return null;
+            }
+            cell.Summon(_collectibleToSpawn, good, _enemyToSpawn, bad, amount);
         }
     }
 }

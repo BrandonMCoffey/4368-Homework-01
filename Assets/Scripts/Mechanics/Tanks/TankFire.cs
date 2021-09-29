@@ -17,11 +17,14 @@ namespace Mechanics.Tanks
         [Header("Limits")]
         [SerializeField] private bool _hasMaximumBullets = false;
         [SerializeField] private float _maximumBullets = 5;
+        [SerializeField] private float _rapidFireSpeed = 0.25f;
         [Header("References")]
         [SerializeField] private TankFeedback _tankFeedback = null;
 
         private List<Bullet> _bullets = new List<Bullet>();
         private bool _missingTurret;
+        private float _rapidFire;
+        private float _rapidFireTimer;
 
         private void Awake()
         {
@@ -34,6 +37,27 @@ namespace Mechanics.Tanks
         private void OnDisable()
         {
             _bullets.Clear();
+        }
+
+        private void Update()
+        {
+            if (_rapidFire > 0) {
+                _rapidFireTimer += Time.deltaTime;
+                if (_rapidFireTimer > _rapidFireSpeed / _rapidFire) {
+                    Fire();
+                    _rapidFireTimer = 0;
+                }
+            }
+        }
+
+        public void SetBulletType(BulletType type)
+        {
+            _bulletType = type;
+        }
+
+        public void RapidFire(float amount)
+        {
+            _rapidFire = amount;
         }
 
         public void Fire()

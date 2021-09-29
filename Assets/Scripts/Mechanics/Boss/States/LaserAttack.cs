@@ -28,7 +28,7 @@ namespace Mechanics.Boss.States
         public void Enter()
         {
             if (!_platformController.IsOnPlatform) {
-                if (_debug) Debug.Log("Idle: Not on Platform, Reverting...");
+                if (_debug) Debug.Log("Laser Attack: Not on Platform, Reverting...");
                 _stateMachine.RevertToPreviousState();
                 return;
             }
@@ -36,7 +36,7 @@ namespace Mechanics.Boss.States
             float timeToLower = _platformController.Lower(_stateMachine);
             _idleTime = _energyCellController.BeginLaserAttack(timeToLower / 2);
 
-            _timer = -timeToLower / 4;
+            _timer = -timeToLower / 2;
             if (_debug) Debug.Log("Laser Attack: Idle for " + _idleTime);
             _finishedIdle = false;
         }
@@ -49,7 +49,7 @@ namespace Mechanics.Boss.States
             if (!_finishedIdle) {
                 float timeToRaise = _platformController.Raise(_stateMachine);
                 _timer = 0;
-                _idleTime = timeToRaise;
+                _idleTime = timeToRaise + 0.2f;
                 _finishedIdle = true;
             } else {
                 _stateMachine.BossReachedPlatform();

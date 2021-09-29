@@ -1,10 +1,11 @@
 using Audio;
+using Interfaces;
 using UnityEngine;
 
 namespace Mechanics.Collectibles
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class CollectibleBase : MonoBehaviour
+    public abstract class CollectibleBase : MonoBehaviour, IDamageable
     {
         [Header("Feedback")]
         [SerializeField] private ParticleSystem _collectParticles = null;
@@ -59,6 +60,29 @@ namespace Mechanics.Collectibles
         {
             Quaternion turnOffset = Quaternion.Euler(0, _rotationSpeed, 0);
             obj.rotation *= turnOffset;
+        }
+
+        public bool OnDamageVolume(int damage)
+        {
+            Destroy(gameObject);
+            return true;
+        }
+
+        public void OnTankImpact(int damageTaken)
+        {
+        }
+
+        public void OnBombDealDamage(int damageTaken)
+        {
+        }
+
+        public bool OnBulletImpact(int damageTaken)
+        {
+            return false;
+        }
+
+        public void OnKill()
+        {
         }
     }
 }

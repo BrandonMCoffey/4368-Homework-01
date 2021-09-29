@@ -1,11 +1,12 @@
 using System.Collections;
 using Audio;
+using Interfaces;
 using UnityEngine;
 
 namespace Mechanics.Powerups
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class PowerupBase : MonoBehaviour
+    public abstract class PowerupBase : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _powerupDuration = 5;
         [SerializeField] private GameObject _art = null;
@@ -77,6 +78,29 @@ namespace Mechanics.Powerups
         protected virtual void DisableObject()
         {
             gameObject.SetActive(false);
+        }
+
+        public bool OnDamageVolume(int damage)
+        {
+            Destroy(gameObject);
+            return true;
+        }
+
+        public void OnTankImpact(int damageTaken)
+        {
+        }
+
+        public void OnBombDealDamage(int damageTaken)
+        {
+        }
+
+        public bool OnBulletImpact(int damageTaken)
+        {
+            return false;
+        }
+
+        public void OnKill()
+        {
         }
     }
 }

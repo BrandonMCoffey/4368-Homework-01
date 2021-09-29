@@ -9972,6 +9972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b62028543f8b345abac69c4ff9610a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movement: {fileID: 103708950631574487}
+  _fire: {fileID: 103708950631574489}
   _invincibilityMaterial: {fileID: 2100000, guid: 15373bac37a1b09468ac4819d99aafb7, type: 2}
   _materialsToChangeWhenInvincible:
   - {fileID: 103708950135572604}
@@ -9990,7 +9992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 15
+  _maxHealth: 20
   _currentHealth:
     UseConstant: 0
     ConstantValue: 0
@@ -10120,6 +10122,7 @@ MonoBehaviour:
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
   _maximumBullets: 5
+  _rapidFireSpeed: 0.25
   _tankFeedback: {fileID: 103708951403084524}
 --- !u!1 &103708950865759590
 GameObject:
@@ -20037,6 +20040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a149b270c5e2c146883bd50195a1050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireSpeed: 0.2
   _fireKey: 32
   _altFireLeftClick: 1
   _axisRaw: 1

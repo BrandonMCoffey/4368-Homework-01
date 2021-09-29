@@ -13,6 +13,7 @@ namespace Mechanics.Tanks
 
         private Vector3 _lookAtPos;
         private bool _missingTurret;
+        private float _speedMultiplier = 1;
 
         private void Awake()
         {
@@ -34,10 +35,15 @@ namespace Mechanics.Tanks
             Quaternion currentRotation = _turretPivot.rotation;
             _turretPivot.LookAt(_lookAtPos);
             if (_smoothRotation) {
-                _turretPivot.rotation = Quaternion.Slerp(currentRotation, _turretPivot.rotation, _rotateSpeed * Time.deltaTime);
+                _turretPivot.rotation = Quaternion.Slerp(currentRotation, _turretPivot.rotation, _rotateSpeed * _speedMultiplier * Time.deltaTime);
             } else {
-                _turretPivot.rotation = Quaternion.RotateTowards(currentRotation, _turretPivot.rotation, _rotateSpeed * Time.deltaTime * 10);
+                _turretPivot.rotation = Quaternion.RotateTowards(currentRotation, _turretPivot.rotation, _rotateSpeed * _speedMultiplier * Time.deltaTime * 10);
             }
+        }
+
+        public void Escalate()
+        {
+            _speedMultiplier *= 2;
         }
 
         public void SetAimPosition(Vector2 pos)

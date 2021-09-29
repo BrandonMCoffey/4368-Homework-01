@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
 using Interfaces;
+using Mechanics.Tanks.Movement;
 using UnityEngine;
+using Utility.CustomFloats;
 
 namespace Mechanics.Tanks
 {
-    public class TankPowerup : MonoBehaviour, IInvincible, IInvisibile
+    public class TankPowerup : MonoBehaviour, IInvincible, IInvisibile, IMoveable, IIncreaseable
     {
+        [Header("References")]
+        [SerializeField] private TankMovement _movement;
+        [SerializeField] private TankFire _fire;
+
         [Header("Invincibility Settings")]
         [SerializeField] private Material _invincibilityMaterial = null;
         [SerializeField] private List<MeshRenderer> _materialsToChangeWhenInvincible = new List<MeshRenderer>();
@@ -25,6 +31,9 @@ namespace Mechanics.Tanks
         private void Start()
         {
             OnSetInvisible();
+            if (_movement == null) {
+                _movement = GetComponentInChildren<TankMovement>();
+            }
         }
 
         public void OnSetInvincible()
@@ -67,6 +76,30 @@ namespace Mechanics.Tanks
             foreach (var obj in _regularArt) {
                 obj.SetActive(false);
             }
+        }
+
+        public void OnSpeedIncrease(float amount, float duration, ValueAdjustType type = ValueAdjustType.AddRaw)
+        {
+            _movement.OnSpeedIncrease(amount, duration, type);
+        }
+
+        public void OnSpeedDecrease(float amount, float duration, ValueAdjustType type = ValueAdjustType.AddRaw)
+        {
+            _movement.OnSpeedDecrease(amount, duration, type);
+        }
+
+        private float _rapidFireCount;
+
+        public void Increase(float amount)
+        {
+            _rapidFireCount += amount;
+            _fire.RapidFire(_rapidFireCount);
+        }
+
+        public void Decrease(float amount)
+        {
+            _rapidFireCount -= amount;
+            _fire.RapidFire(_rapidFireCount);
         }
     }
 }

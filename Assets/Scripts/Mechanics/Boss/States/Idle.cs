@@ -21,9 +21,9 @@ namespace Mechanics.Boss.States
             _debug = data.Debug;
         }
 
-        public void SetEscalation()
+        public void Escalate()
         {
-            _idleTimeMultiplier = 0.5f;
+            _idleTimeMultiplier *= 0.5f;
         }
 
         public void Enter()

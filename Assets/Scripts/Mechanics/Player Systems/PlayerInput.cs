@@ -6,6 +6,9 @@ namespace Mechanics.Player_Systems
 {
     public class PlayerInput : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private float _fireSpeed = 0.1f;
+
         [Header("Key Inputs")]
         [SerializeField] private KeyCode _fireKey = KeyCode.Space;
         [SerializeField] private bool _altFireLeftClick = true;
@@ -23,6 +26,8 @@ namespace Mechanics.Player_Systems
         public UnityEvent<Vector2> OnMoveBody = new UnityEvent<Vector2>();
         public UnityEvent<Vector2> OnAimTurret = new UnityEvent<Vector2>();
         public UnityEvent OnShoot = new UnityEvent();
+
+        private float _fireTimer;
 
         private void Awake()
         {
@@ -60,8 +65,16 @@ namespace Mechanics.Player_Systems
         {
             if (Input.GetKeyDown(_fireKey)) {
                 OnShoot.Invoke();
+                _fireTimer = 0;
             } else if (_altFireLeftClick && !IsMouseOverUI() && Input.GetMouseButtonDown(0)) {
                 OnShoot.Invoke();
+                _fireTimer = 0;
+            } else if (Input.GetKey(_fireKey) || (_altFireLeftClick && !IsMouseOverUI() && Input.GetMouseButton(0))) {
+                _fireTimer += Time.deltaTime;
+                if (_fireTimer > _fireSpeed) {
+                    OnShoot.Invoke();
+                    _fireTimer = 0;
+                }
             }
         }
 

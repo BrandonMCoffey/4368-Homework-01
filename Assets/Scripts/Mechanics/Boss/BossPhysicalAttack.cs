@@ -25,6 +25,16 @@ namespace Mechanics.Boss
 
         private void OnCollisionEnter(Collision other)
         {
+            CollectibleBase collectible = other.gameObject.GetComponent<CollectibleBase>();
+            if (collectible != null) {
+                Destroy(other.gameObject);
+                return;
+            }
+            PowerupBase powerup = other.gameObject.GetComponent<PowerupBase>();
+            if (powerup != null) {
+                Destroy(other.gameObject);
+                return;
+            }
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (damageable != null) {
                 damageable.OnTankImpact(_damageOnTouch);
@@ -38,15 +48,6 @@ namespace Mechanics.Boss
                         rb.velocity += angle.normalized * _pushBackForce;
                     }
                 }
-                return;
-            }
-            CollectibleBase collectible = other.gameObject.GetComponent<CollectibleBase>();
-            if (collectible != null) {
-                Destroy(other.gameObject);
-            }
-            PowerupBase powerup = other.gameObject.GetComponent<PowerupBase>();
-            if (powerup != null) {
-                Destroy(other.gameObject);
             }
         }
     }

@@ -10,11 +10,13 @@ namespace Mechanics.Boss
         public UnityEvent<Vector2> OnAimTurret = new UnityEvent<Vector2>();
         public UnityEvent OnShoot = new UnityEvent();
 
+        [SerializeField] private float _accuracy = 3;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Vector2 _fireTime = new Vector2(4, 6);
 
         private float _fireTimer;
         private bool _canShoot;
+        private float _fireTimeMultiplier = 1;
 
         private void Start()
         {
@@ -30,6 +32,11 @@ namespace Mechanics.Boss
             SetAimPosition();
         }
 
+        public void Escalate()
+        {
+            _fireTimeMultiplier /= 2;
+        }
+
         public void SetCanShoot(bool active)
         {
             _canShoot = active;
@@ -40,7 +47,7 @@ namespace Mechanics.Boss
         {
             _fireTimer -= Time.deltaTime;
             if (_fireTimer <= 0) {
-                _fireTimer = RandomFloat.MinMax(_fireTime);
+                _fireTimer = RandomFloat.MinMax(_fireTime) * _fireTimeMultiplier;
                 if (_canShoot) {
                     OnAimTurret.Invoke(NewAimPosition());
                     OnShoot.Invoke();
@@ -53,7 +60,7 @@ namespace Mechanics.Boss
             Vector3 playerPos = _playerTransform.position;
             Vector2 accuratePos = new Vector2(playerPos.x, playerPos.z);
 
-            Vector2 offset = Random.insideUnitCircle;
+            Vector2 offset = Random.insideUnitCircle * _accuracy * _fireTimeMultiplier;
 
             return accuratePos + offset;
         }

@@ -30,6 +30,7 @@ namespace Mechanics.Boss.States
         {
             Transform destination = _platformController.GetNewDestination();
             if (destination == null) {
+                Debug.Log("Move To Platform: Invalid Platform");
                 _bossStateMachine.RevertToPreviousState(false);
                 return;
             }

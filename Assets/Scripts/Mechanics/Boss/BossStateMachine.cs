@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using Game;
 using Level_Systems;
 using Mechanics.Boss.States;
+using Mechanics.Projectiles;
+using Mechanics.Tanks;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility.GameEvents.Logic;
 using Utility.StateMachine;
 
@@ -23,12 +27,21 @@ namespace Mechanics.Boss
     {
         [SerializeField] private BossPlatformController _platformController;
         [SerializeField] private EnergyCellController _energyCellController;
+        [SerializeField] private MidpointCutscene _midpointCutscene;
         [SerializeField] private BossMovement _movement;
         [SerializeField] private BossFeedback _feedback;
         [SerializeField] private BossTurret _turret;
         [SerializeField] private GameObject _art = null;
         [SerializeField] private GameEvent _onEndCutscene = null;
         [SerializeField] private BossAiData _aiData;
+        [SerializeField] private TankFire _fire = null;
+        [SerializeField] private TankAim _aim = null;
+        [Header("Colors")]
+        [SerializeField] private Image _colorToSet = null;
+        [SerializeField] private Color _basicColor = Color.white;
+        [SerializeField] private Color _escalationColor = Color.magenta;
+        [SerializeField] private Color _enragedColor = Color.red;
+        [SerializeField] private Color _killColor = Color.black;
 
         public NullState CutsceneState { get; private set; }
         public Idle IdleState { get; private set; }
@@ -51,7 +64,7 @@ namespace Mechanics.Boss
             MoveToPlatformState = new MoveToPlatform(this, _platformController, _movement, _aiData);
             ChargeAttackState = new ChargeAttack(this, _movement, _aiData);
             LaserAttackState = new LaserAttack(this, _platformController, _energyCellController, _aiData);
-            PlatformSummoningState = new PlatformSummoning(this);
+            PlatformSummoningState = new PlatformSummoning(this, _platformController, _energyCellController, _aiData);
 
             _availableMovements = new List<IState> { MoveToPlatformState };
 
@@ -87,25 +100,42 @@ namespace Mechanics.Boss
             _stage = stage;
             switch (_stage) {
                 case BossStage.Basic:
+                    if (_colorToSet != null) _colorToSet.color = _basicColor;
                     _availableAttacks = new List<IState> { ChargeAttackState };
                     RandomMovementOrAttack(40, 60, 0);
                     break;
                 case BossStage.Escalation:
+                    if (_colorToSet != null) _colorToSet.color = _escalationColor;
                     _feedback.EscalationFeedback();
-                    _movement.SetEscalation();
-                    _platformController.SetEscalation();
-                    IdleState.SetEscalation();
+                    _movement.Escalate();
+                    _aim.Escalate();
+                    _turret.Escalate();
+                    _platformController.Escalate();
+                    IdleState.Escalate();
+                    ChargeAttackState.Escalate();
                     ChangeState(ChargeAttackState, true);
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
                 case BossStage.MidpointCutscene:
-                    _feedback.MidpointFeedback();
+                    _midpointCutscene.StartCutscene();
                     break;
                 case BossStage.Enraged:
+                    if (_colorToSet != null) _colorToSet.color = _enragedColor;
+                    _feedback.MidpointFeedback();
+                    if (_fire != null) _fire.SetBulletType(BulletType.Fast);
+                    _movement.Escalate();
+                    _aim.Escalate();
+                    _turret.Escalate();
+                    _platformController.Escalate();
+                    IdleState.Escalate();
+                    PlatformSummoningState.Escalate();
+                    ChargeAttackState.Escalate();
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
                 case BossStage.KillSequence:
+                    if (_colorToSet != null) _colorToSet.color = _killColor;
                     _feedback.KillSequenceFeedback();
+                    ChangeState(CutsceneState);
                     break;
             }
             _availableAttacks = _availableAttacks.Where(item => item != null).ToList();
@@ -255,6 +285,9 @@ namespace Mechanics.Boss
                     _hasError = true;
                     throw new MissingComponentException("Missing Turret for Boss AI - " + gameObject);
                 }
+            }
+            if (_midpointCutscene == null) {
+                _midpointCutscene = FindObjectOfType<MidpointCutscene>();
             }
             if (_movement == null) {
                 Transform parent = transform.parent;

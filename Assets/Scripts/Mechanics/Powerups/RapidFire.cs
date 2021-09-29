@@ -30,7 +30,7 @@ namespace Mechanics.Powerups
 
         protected override void Deactivate()
         {
-            //_effected.Decrease(_effectMultiplication);
+            _effected.Decrease(_effectMultiplication);
         }
     }
 }

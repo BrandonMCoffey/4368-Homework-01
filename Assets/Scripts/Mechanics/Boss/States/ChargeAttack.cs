@@ -30,6 +30,11 @@ namespace Mechanics.Boss.States
             _debug = data.Debug;
         }
 
+        public void Escalate()
+        {
+            _timeToRotate /= 1.5f;
+        }
+
         public void Enter()
         {
             _velocity = 0;

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Interfaces;
 using UnityEngine;
+using Utility.GameEvents.Logic;
 
 namespace Level_Systems
 {
@@ -9,6 +11,8 @@ namespace Level_Systems
         [Header("Settings")]
         [SerializeField] private int _maxHealth = 5;
         [SerializeField] private bool _bulletsBounceWhenDead = true;
+        [SerializeField] private GameEvent _deathEvent = null;
+        [SerializeField] private ParticleSystem _death = null;
         [Header("Colors and Materials")]
         [SerializeField] private Color _superChargedColor = Color.cyan;
         [SerializeField] private Color _fullColor = Color.cyan;
@@ -21,6 +25,9 @@ namespace Level_Systems
         [SerializeField] private Transform _laserPrepare = null;
         [SerializeField] private Vector3 _laserPrepareScale = new Vector3(1, 1, 50);
         [SerializeField] private ParticleSystem _laser = null;
+        [Header("Platform Summoning")]
+        [SerializeField] private int _spawnChance = 60;
+        [SerializeField] private List<PlatformSpawner> _spawnerList = new List<PlatformSpawner>();
 
         private Material _customMaterial;
         private int _currentHealth;
@@ -40,11 +47,19 @@ namespace Level_Systems
             if (_laserDamageVolume != null) {
                 _laserDamageVolume.SetActive(false);
             }
+            _spawnerList = _spawnerList.Where(item => item != null).ToList();
         }
+
+        #region Laser Attack
+
+        private bool _respawnCell;
 
         public void StartLaserSequence()
         {
-            if (!_isAlive) return;
+            if (!_isAlive) {
+                _respawnCell = true;
+                return;
+            }
             _isAttacking = true;
             if (_laserPrepare != null) {
                 _laserPrepare.gameObject.SetActive(true);
@@ -54,14 +69,26 @@ namespace Level_Systems
 
         public void Charge(float delta)
         {
-            if (!_isAlive) return;
-            _customMaterial.color = Color.Lerp(_currentColor, _superChargedColor, delta);
-            _laserPrepare.localScale = Vector3.Lerp(Vector3.zero, _laserPrepareScale, delta);
+            if (_respawnCell) {
+                _customMaterial.color = Color.Lerp(_currentColor, _fullColor, delta);
+            } else {
+                _customMaterial.color = Color.Lerp(_currentColor, _superChargedColor, delta);
+                _laserPrepare.localScale = Vector3.Lerp(Vector3.zero, _laserPrepareScale, delta);
+            }
         }
 
         public void ActivateLaser(float time)
         {
-            if (!_isAlive) return;
+            if (_respawnCell) {
+                _isAlive = true;
+                _currentHealth = _maxHealth;
+                return;
+            }
+            if (!_isAlive) {
+                _currentHealth = 0;
+                _customMaterial.color = _deadColor;
+                return;
+            }
             _invincible = true;
 
             if (_laserPrepare != null) {
@@ -84,12 +111,53 @@ namespace Level_Systems
             if (_laserDamageVolume != null) {
                 _laserDamageVolume.SetActive(false);
             }
+            _currentColor = _fullColor;
+            _currentHealth = _maxHealth;
+        }
+
+        public void DeCharge(float delta)
+        {
+            if (!_isAlive) return;
+            _customMaterial.color = Color.Lerp(_superChargedColor, _currentColor, delta);
         }
 
         public void FinishLaserSequence()
         {
             _isAttacking = false;
         }
+
+        #endregion
+
+        #region Summon Platforms
+
+        public void StartSummonSequence()
+        {
+            if (!_isAlive) return;
+            _isAttacking = true;
+        }
+
+        public void ChargeSummon(float delta)
+        {
+            if (!_isAlive) return;
+            _customMaterial.color = Color.Lerp(_currentColor, _superChargedColor, delta);
+        }
+
+        public void Summon(List<GameObject> good, int goodChance, List<GameObject> bad, int badChance, float amount)
+        {
+            if (!_isAlive) return;
+            foreach (var spawner in _spawnerList) {
+                int rand = Random.Range(0, 100);
+                if (rand > _spawnChance * amount) continue;
+                rand = Random.Range(0, goodChance + badChance);
+                spawner.PrepareToSpawn(rand < goodChance ? good[Random.Range(0, good.Count)] : bad[Random.Range(0, bad.Count)]);
+            }
+            _currentColor = _fullColor;
+            _customMaterial.color = _currentColor;
+            _currentHealth = _maxHealth;
+            _isAttacking = false;
+        }
+
+        #endregion
 
         public bool OnDamageVolume(int damage)
         {
@@ -140,6 +208,10 @@ namespace Level_Systems
 
         private void Kill()
         {
+            _deathEvent?.Invoke();
+            if (_death != null) {
+                _death.Play();
+            }
             _customMaterial.color = _deadColor;
             _isAttacking = false;
             _isAlive = false;

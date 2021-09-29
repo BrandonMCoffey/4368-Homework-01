@@ -30,9 +30,9 @@ namespace Level_Systems
             _endPos = _platformToMove.position + _lowerOffset;
         }
 
-        public void SetEscalation()
+        public void Escalate()
         {
-            _timeMultiplier = 0.5f;
+            _timeMultiplier *= 0.5f;
         }
 
         public Vector3 GetCenter()

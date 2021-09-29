@@ -1,4 +1,5 @@
 using System.Collections;
+using Game;
 using UnityEngine;
 
 namespace Mechanics.Boss
@@ -9,17 +10,18 @@ namespace Mechanics.Boss
         [SerializeField] private float _screenShakeDuration = 0.5f;
         [SerializeField] private ParticleSystem _escalationParticles = null;
         [SerializeField] private ParticleSystem _enragedParticles = null;
-
-        private Transform _mainCamera;
+        [SerializeField] private CameraController _cameraController;
 
         private void Awake()
         {
-            _mainCamera = Camera.main.transform;
+            if (_cameraController == null) {
+                _cameraController = FindObjectOfType<CameraController>();
+            }
         }
 
         public void ShakeScreen()
         {
-            StartCoroutine(ShakeCamera());
+            _cameraController.ShakeCamera(_screenShakeDuration, _screenShakeIntensity);
         }
 
         public void EscalationFeedback()
@@ -38,16 +40,6 @@ namespace Mechanics.Boss
 
         public void KillSequenceFeedback()
         {
-        }
-
-        private IEnumerator ShakeCamera()
-        {
-            Vector3 originalPosition = _mainCamera.localPosition;
-            for (float t = 0; t < _screenShakeDuration; t += Time.deltaTime) {
-                float delta = 1 - Mathf.Abs(1f - 2 * t / _screenShakeDuration);
-                _mainCamera.localPosition = originalPosition + Random.insideUnitSphere * _screenShakeIntensity * delta;
-                yield return null;
-            }
         }
     }
 }

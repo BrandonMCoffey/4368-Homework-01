@@ -48,7 +48,9 @@ namespace Utility.StateMachine
 
             if (CurrentState != null) {
                 CurrentState.Exit();
-                PreviousState = CurrentState;
+                if (CurrentState != PreviousState) {
+                    PreviousState = CurrentState;
+                }
             }
 
             //if (_debugState) Debug.Log("Changing to New State: " + newState);

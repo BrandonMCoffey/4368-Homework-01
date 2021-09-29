@@ -21,7 +21,7 @@ namespace Game
         StartGame
     }
 
-    public class BossIntroSequence : MonoBehaviour
+    public class IntroCutscene : MonoBehaviour
     {
         [SerializeField] private bool _skipCutscene = false;
 

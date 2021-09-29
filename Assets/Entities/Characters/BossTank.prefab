@@ -9967,6 +9967,7 @@ MonoBehaviour:
   _ignoreDuration: 0.2
   _hasMaximumBullets: 0
   _maximumBullets: 5
+  _rapidFireSpeed: 0.25
   _tankFeedback: {fileID: 7325661561032971021}
 --- !u!114 &779128534518501593
 MonoBehaviour:
@@ -10068,12 +10069,20 @@ MonoBehaviour:
   _debugState: 1
   _platformController: {fileID: 0}
   _energyCellController: {fileID: 0}
+  _midpointCutscene: {fileID: 0}
   _movement: {fileID: 779128534518501593}
   _feedback: {fileID: 3630243160658723953}
   _turret: {fileID: 356106726}
   _art: {fileID: 7325661559825202138}
   _onEndCutscene: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
   _aiData: {fileID: 11400000, guid: 75d30567186521843bf333b29736ab99, type: 2}
+  _fire: {fileID: 451784181826155991}
+  _aim: {fileID: 5356475668981379608}
+  _colorToSet: {fileID: 0}
+  _basicColor: {r: 0.8396226, g: 0.2936774, b: 0.22574759, a: 1}
+  _escalationColor: {r: 0.8962264, g: 0.1700887, b: 0.13105197, a: 1}
+  _enragedColor: {r: 1, g: 0, b: 0, a: 1}
+  _killColor: {r: 0.2264151, g: 0.0993236, b: 0.0993236, a: 1}
 --- !u!114 &356106726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25009,6 +25018,7 @@ MonoBehaviour:
   _screenShakeDuration: 0.8
   _escalationParticles: {fileID: 1692957083}
   _enragedParticles: {fileID: 852332860}
+  _cameraController: {fileID: 0}
 --- !u!114 &7325661561032971021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25075,6 +25085,7 @@ GameObject:
   - component: {fileID: 7325661561084492702}
   - component: {fileID: 7868129092032501205}
   - component: {fileID: 433473513}
+  - component: {fileID: 5629243831249813205}
   m_Layer: 16
   m_Name: BossTank
   m_TagString: Untagged
@@ -25125,11 +25136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0500809dffb6e4099e6f3c0746bb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 250
   _currentHealth:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 100
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: a1cfed76970f2b54aab96417dd7d8992, type: 2}
   _deathFeedback: {fileID: 7325661561032971021}
   _objsToDisable:
   - {fileID: 7325661559495869878}
@@ -25138,7 +25149,8 @@ MonoBehaviour:
   _stateMachine: {fileID: 7928012434638989222}
   _escalationHp: 0.9
   _enragedHp: 0.25
-  _killSequenceHp: 0.02
+  _healToHp: 0.75
+  _killSequenceHp: 0.05
 --- !u!114 &433473513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25153,6 +25165,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageOnTouch: 4
   _pushBackForce: 4
+--- !u!114 &5629243831249813205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325661561084492697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04ba6fddf2d3734f8343334f39d20fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 1cc0e57829906e74081888c668c6a31c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7868129092032501205}
+        m_TargetAssemblyTypeName: Mechanics.Boss.BossHealth, Assembly-CSharp
+        m_MethodName: DamageByEnergyCell
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7325661561199266965
 GameObject:
   m_ObjectHideFlags: 0

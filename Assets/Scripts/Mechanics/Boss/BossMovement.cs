@@ -27,9 +27,9 @@ namespace Mechanics.Boss
             _originalRotation = MainTransform.eulerAngles;
         }
 
-        public void SetEscalation()
+        public void Escalate()
         {
-            _speedBonus = _escalationSpeedMultiplier;
+            _speedBonus *= _escalationSpeedMultiplier;
         }
 
         public bool MoveTowards(Vector3 destination)

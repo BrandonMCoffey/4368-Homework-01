@@ -1,3 +1,4 @@
+using System.Collections;
 using Mechanics.Tanks;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Mechanics.Boss
 
         [SerializeField] [Range(0, 1)] private float _escalationHp = 0.9f;
         [SerializeField] [Range(0, 1)] private float _enragedHp = 0.25f;
+        [SerializeField] [Range(0, 1)] private float _healToHp = 0.5f;
         [SerializeField] [Range(0, 1)] private float _killSequenceHp = 0.02f;
 
         private bool _reachedEscalation;
@@ -18,6 +20,16 @@ namespace Mechanics.Boss
         private void Awake()
         {
             _stateMachine = GetComponentInChildren<BossStateMachine>();
+        }
+
+        public void HealEnrage(float delta)
+        {
+            SetHealth(Mathf.SmoothStep(_enragedHp, _healToHp, delta));
+        }
+
+        public void DamageByEnergyCell(int amount)
+        {
+            DecreaseHealth(amount);
         }
 
         protected override void OnHealthChanged()

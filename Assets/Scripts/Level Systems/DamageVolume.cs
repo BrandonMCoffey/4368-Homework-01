@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
+using Mechanics.Boss;
 using UnityEngine;
 
 namespace Level_Systems
@@ -27,10 +28,7 @@ namespace Level_Systems
             if (_timer > _delay) {
                 _delayDamageObjects = _delayDamageObjects.Where(item => item != null).ToList();
                 foreach (var damageable in _delayDamageObjects) {
-                    bool killed = damageable.OnDamageVolume(_damage);
-                    if (killed) {
-                        _delayDamageObjects.Remove(damageable);
-                    }
+                    damageable.OnDamageVolume(_damage);
                 }
                 _timer = 0;
             }
@@ -38,6 +36,7 @@ namespace Level_Systems
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.GetComponent<BossHealth>()) return;
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (_delayDamageObjects.Contains(damageable)) return;
             _delayDamageObjects.Add(damageable);
