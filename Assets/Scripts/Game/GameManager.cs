@@ -2,8 +2,6 @@ using System.Collections;
 using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Utility.CustomFloats;
-using Utility.GameEvents.Logic;
 
 namespace Game
 {
@@ -65,13 +63,19 @@ namespace Game
         public void Defeat()
         {
             _gameOver = true;
-            StartCoroutine(SlowSceneToStop());
+            StartCoroutine(SlowSceneToStop(_slowDownTime));
         }
 
-        private IEnumerator SlowSceneToStop()
+        public void Victory()
         {
-            for (float t = 0; t < _slowDownTime; t += 0.01f) {
-                float delta = t / _slowDownTime;
+            _gameOver = true;
+            StartCoroutine(SlowSceneToStop(_slowDownTime * 2));
+        }
+
+        private IEnumerator SlowSceneToStop(float time)
+        {
+            for (float t = 0; t < time; t += 0.01f) {
+                float delta = t / time;
                 Time.timeScale = 1 - delta;
                 yield return null;
             }
