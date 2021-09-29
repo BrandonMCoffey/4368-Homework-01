@@ -52,7 +52,7 @@ namespace Mechanics.Boss.States
 
         private IEnumerator Rotate()
         {
-            if (_debug) Debug.Log("ChargeAttack: Rotate");
+            //if (_debug) Debug.Log("ChargeAttack: Rotate");
             for (float t = 0; t < _timeToRotate; t += Time.deltaTime) {
                 float delta = t / _timeToRotate;
                 _bossMovement.Rotate(90f * delta);
@@ -78,7 +78,7 @@ namespace Mechanics.Boss.States
 
         private IEnumerator Impact()
         {
-            if (_debug) Debug.Log("ChargeAttack: Impact");
+            //if (_debug) Debug.Log("ChargeAttack: Impact");
             _bossMovement.Impact();
             yield return new WaitForSecondsRealtime(_impactHold);
             NextEvent(Retreat());
@@ -101,14 +101,14 @@ namespace Mechanics.Boss.States
 
         private IEnumerator EndRotate()
         {
-            if (_debug) Debug.Log("ChargeAttack: EndRotate");
+            //if (_debug) Debug.Log("ChargeAttack: EndRotate");
             for (float t = 0; t < _timeToRotate; t += Time.deltaTime) {
                 float delta = t / _timeToRotate;
                 _bossMovement.Rotate(90f - 90f * delta);
                 yield return null;
             }
             _isRotated = false;
-            _stateMachine.BossFinishedAttack();
+            _stateMachine.BossFinishedCharge();
         }
 
         public void Tick()

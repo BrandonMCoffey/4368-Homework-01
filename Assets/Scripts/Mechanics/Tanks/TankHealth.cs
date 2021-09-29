@@ -43,18 +43,25 @@ namespace Mechanics.Tanks
             return true;
         }
 
-        protected void DecreaseHealth(int amount)
+        protected bool DecreaseHealth(int amount)
         {
-            if (Invincible) return;
+            if (Invincible) return false;
             _currentHealth.Value -= amount;
             if (_currentHealth <= 0) {
                 OnKill();
+                return true;
             }
             OnHealthChanged();
+            return false;
         }
 
         protected virtual void OnHealthChanged()
         {
+        }
+
+        public bool OnDamageVolume(int damageTaken)
+        {
+            return DecreaseHealth(damageTaken);
         }
 
         public void OnTankImpact(int damageTaken)

@@ -20,7 +20,7 @@ namespace Utility.StateMachine
             ChangeStateRoutine(newState);
         }
 
-        public void RevertToPreviousState(bool exitCurrentState = true)
+        public void RevertToPreviousState(bool exitCurrentState = true, bool enterNextState = true)
         {
             PreviousState ??= DefaultState;
             // Exit current State
@@ -32,7 +32,9 @@ namespace Utility.StateMachine
             CurrentState = PreviousState;
             PreviousState = null;
             // Enter the new state
-            CurrentState.Enter();
+            if (enterNextState) {
+                CurrentState.Enter();
+            }
             OnStateChanged();
         }
 
@@ -49,7 +51,7 @@ namespace Utility.StateMachine
                 PreviousState = CurrentState;
             }
 
-            if (_debugState) Debug.Log("Changing to New State: " + newState);
+            //if (_debugState) Debug.Log("Changing to New State: " + newState);
             CurrentState = newState;
 
             CurrentState.Enter();

@@ -8,8 +8,8 @@ namespace Mechanics.Boss
         [SerializeField] private BossStateMachine _stateMachine;
 
         [SerializeField] [Range(0, 1)] private float _escalationHp = 0.9f;
-        [SerializeField] [Range(0, 1)] private float _enragedHP = 0.25f;
-        [SerializeField] [Range(0, 1)] private float _killSequenceHP = 0.02f;
+        [SerializeField] [Range(0, 1)] private float _enragedHp = 0.25f;
+        [SerializeField] [Range(0, 1)] private float _killSequenceHp = 0.02f;
 
         private bool _reachedEscalation;
         private bool _reachedMidpoint;
@@ -26,11 +26,11 @@ namespace Mechanics.Boss
                 _stateMachine.UpdateBossStage(BossStage.Escalation);
                 _reachedEscalation = true;
             }
-            if (!_reachedMidpoint && Health <= MaxHealth * _enragedHP) {
+            if (!_reachedMidpoint && Health <= MaxHealth * _enragedHp) {
                 _stateMachine.UpdateBossStage(BossStage.MidpointCutscene);
                 _reachedMidpoint = true;
             }
-            if (!_reachedKillSequence && Health <= MaxHealth * _killSequenceHP) {
+            if (!_reachedKillSequence && Health <= MaxHealth * _killSequenceHp) {
                 _stateMachine.UpdateBossStage(BossStage.KillSequence);
                 _reachedKillSequence = true;
             }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Level_Systems;
 using Mechanics.Boss.States;
 using UnityEngine;
 using Utility.GameEvents.Logic;
@@ -21,6 +22,7 @@ namespace Mechanics.Boss
     public class BossStateMachine : StateMachine
     {
         [SerializeField] private BossPlatformController _platformController;
+        [SerializeField] private EnergyCellController _energyCellController;
         [SerializeField] private BossMovement _movement;
         [SerializeField] private BossFeedback _feedback;
         [SerializeField] private BossTurret _turret;
@@ -29,7 +31,6 @@ namespace Mechanics.Boss
         [SerializeField] private BossAiData _aiData;
 
         public NullState CutsceneState { get; private set; }
-        public NotInArena NotInArenaState { get; private set; }
         public Idle IdleState { get; private set; }
         public MoveToPlatform MoveToPlatformState { get; private set; }
         public ChargeAttack ChargeAttackState { get; private set; }
@@ -46,11 +47,10 @@ namespace Mechanics.Boss
         {
             NullTest();
             CutsceneState = new NullState();
-            NotInArenaState = new NotInArena(this, _platformController, _aiData);
             IdleState = new Idle(this, _aiData);
             MoveToPlatformState = new MoveToPlatform(this, _platformController, _movement, _aiData);
             ChargeAttackState = new ChargeAttack(this, _movement, _aiData);
-            LaserAttackState = new LaserAttack(this);
+            LaserAttackState = new LaserAttack(this, _platformController, _energyCellController, _aiData);
             PlatformSummoningState = new PlatformSummoning(this);
 
             _availableMovements = new List<IState> { MoveToPlatformState };
@@ -93,6 +93,8 @@ namespace Mechanics.Boss
                 case BossStage.Escalation:
                     _feedback.EscalationFeedback();
                     _movement.SetEscalation();
+                    _platformController.SetEscalation();
+                    IdleState.SetEscalation();
                     ChangeState(ChargeAttackState, true);
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
@@ -125,6 +127,15 @@ namespace Mechanics.Boss
                 default:
                     ChangeState(IdleState);
                     break;
+            }
+        }
+
+        public void BossFinishedCharge()
+        {
+            if (PreviousState == MoveToPlatformState) {
+                RevertToPreviousState(true, false);
+            } else {
+                BossFinishedAttack();
             }
         }
 
@@ -176,13 +187,13 @@ namespace Mechanics.Boss
         {
             IState attack = _availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState;
             if (_aiData.Debug) Debug.Log("Set Attack: " + attack);
-            ChangeState(attack);
+            ChangeState(attack, true);
         }
 
         private void RandomMovement()
         {
             IState movement = _availableMovements[Random.Range(0, _availableMovements.Count)];
-            if (_aiData.Debug) Debug.Log("Set Attack: " + movement);
+            if (_aiData.Debug) Debug.Log("Set Movement: " + movement);
             ChangeState(movement);
         }
 
@@ -231,8 +242,19 @@ namespace Mechanics.Boss
                     throw new MissingComponentException("Missing Boss Platform Controller for Boss AI - " + gameObject);
                 }
             }
+            if (_energyCellController) {
+                _energyCellController = FindObjectOfType<EnergyCellController>();
+                if (_energyCellController == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Energy Cell Controller for Boss AI - " + gameObject);
+                }
+            }
             if (_turret == null) {
                 _turret = GetComponent<BossTurret>();
+                if (_turret == null) {
+                    _hasError = true;
+                    throw new MissingComponentException("Missing Turret for Boss AI - " + gameObject);
+                }
             }
             if (_movement == null) {
                 Transform parent = transform.parent;

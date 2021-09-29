@@ -12,6 +12,7 @@ namespace Mechanics.Boss.States
         private float _idleTime;
         private float _timer;
         private bool _debug;
+        private float _idleTimeMultiplier = 1;
 
         public Idle(BossStateMachine stateMachine, BossAiData data)
         {
@@ -20,9 +21,14 @@ namespace Mechanics.Boss.States
             _debug = data.Debug;
         }
 
+        public void SetEscalation()
+        {
+            _idleTimeMultiplier = 0.5f;
+        }
+
         public void Enter()
         {
-            _idleTime = RandomFloat.MinMax(_idleTimeMinMax);
+            _idleTime = RandomFloat.MinMax(_idleTimeMinMax) * _idleTimeMultiplier;
             if (_debug) Debug.Log("Idle: Idle for " + _idleTime);
             _timer = 0;
         }

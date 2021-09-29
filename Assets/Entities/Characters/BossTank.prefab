@@ -10067,9 +10067,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugState: 1
   _platformController: {fileID: 0}
-  _movement: {fileID: 0}
-  _feedback: {fileID: 0}
-  _turret: {fileID: 0}
+  _energyCellController: {fileID: 0}
+  _movement: {fileID: 779128534518501593}
+  _feedback: {fileID: 3630243160658723953}
+  _turret: {fileID: 356106726}
   _art: {fileID: 7325661559825202138}
   _onEndCutscene: {fileID: 11400000, guid: 213c5955a0fbb27428d0f8e9bce1ce41, type: 2}
   _aiData: {fileID: 11400000, guid: 75d30567186521843bf333b29736ab99, type: 2}
@@ -25136,8 +25137,8 @@ MonoBehaviour:
   - {fileID: 7325661559825202138}
   _stateMachine: {fileID: 7928012434638989222}
   _escalationHp: 0.9
-  _enragedHP: 0.25
-  _killSequenceHP: 0.02
+  _enragedHp: 0.25
+  _killSequenceHp: 0.02
 --- !u!114 &433473513
 MonoBehaviour:
   m_ObjectHideFlags: 0

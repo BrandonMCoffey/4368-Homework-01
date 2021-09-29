@@ -28,11 +28,6 @@ namespace Mechanics.Boss.States
 
         public void Enter()
         {
-            if (_willChargeDuringMovement) {
-                _willChargeDuringMovement = false;
-                // Returning
-                return;
-            }
             Transform destination = _platformController.GetNewDestination();
             if (destination == null) {
                 _bossStateMachine.RevertToPreviousState(false);
@@ -66,8 +61,7 @@ namespace Mechanics.Boss.States
                 _chargeTimer += Time.deltaTime;
                 if (_chargeTimer > _whenToCharge) {
                     _bossStateMachine.ChangeState(_bossStateMachine.ChargeAttackState);
-                    // Keep this true so when it returns to here Enter() is canceled
-                    _willChargeDuringMovement = true;
+                    _willChargeDuringMovement = false;
                 }
             }
         }

@@ -27,6 +27,13 @@ namespace Mechanics.Boss
             _currentPlatformOption = currentPlatform;
         }
 
+        public void SetEscalation()
+        {
+            _leftBossPlatform.SetEscalation();
+            _centerBossPlatform.SetEscalation();
+            _rightBossPlatform.SetEscalation();
+        }
+
         public Transform GetNewDestination()
         {
             switch (_currentPlatformOption) {
@@ -50,7 +57,7 @@ namespace Mechanics.Boss
 
         public float Lower(BossStateMachine boss)
         {
-            BossPlatform platform = GetPlatform(_currentPlatformOption);
+            BossPlatform platform = EnsureCurrentPlatform(boss);
             if (platform == null) return 0;
 
             platform.PrepareToLower(boss);
@@ -86,6 +93,37 @@ namespace Mechanics.Boss
                 PlatformOptions.Right  => _rightBossPlatform,
                 _                      => throw new InvalidEnumArgumentException(nameof(option) + " on " + gameObject)
             };
+        }
+
+        private BossPlatform EnsureCurrentPlatform(BossStateMachine boss)
+        {
+            BossPlatform current = GetPlatform(_currentPlatformOption);
+            Vector3 bossPosition = boss.transform.position;
+            if (Vector3.Distance(current.transform.position, bossPosition) > 4) {
+                Debug.LogWarning("Boss Platform has incorrect data. Correcting...");
+                // Test Left Platform
+                if (_currentPlatformOption != PlatformOptions.Left) {
+                    if (Vector3.Distance(_leftBossPlatform.transform.position, bossPosition) < 4) {
+                        _currentPlatformOption = PlatformOptions.Left;
+                        return _leftBossPlatform;
+                    }
+                }
+                // Test Center Platform
+                if (_currentPlatformOption != PlatformOptions.Center) {
+                    if (Vector3.Distance(_centerBossPlatform.transform.position, bossPosition) < 4) {
+                        _currentPlatformOption = PlatformOptions.Center;
+                        return _centerBossPlatform;
+                    }
+                }
+                // Test Right Platform
+                if (_currentPlatformOption != PlatformOptions.Right) {
+                    if (Vector3.Distance(_rightBossPlatform.transform.position, bossPosition) < 4) {
+                        _currentPlatformOption = PlatformOptions.Right;
+                        return _rightBossPlatform;
+                    }
+                }
+            }
+            return current;
         }
     }
 }
