@@ -38,10 +38,6 @@ namespace Mechanics.Boss
 
         protected override bool DecreaseHealth(int amount)
         {
-            if (Invincible) return false;
-            if (_bossFeedback != null) {
-                _bossFeedback.OnDamaged();
-            }
             return base.DecreaseHealth(_reachedMidpoint ? amount * 4 : amount);
         }
 

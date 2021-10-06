@@ -34745,13 +34745,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _screenShakeIntensity: 0.4
   _screenShakeDuration: 0.8
-  _damagedTimer: 0.1
-  _materialsToSet:
-  - {fileID: 7325661560522640108}
-  - {fileID: 7325661561199266987}
-  _baseMaterial: {fileID: 2100000, guid: 20e7a71ad808f5b4b84e9574d2094ed8, type: 2}
-  _damagedMaterial: {fileID: 2100000, guid: 4dd9c5dbf2c181a41894fc5c8544bf97, type: 2}
-  _deadMaterial: {fileID: 2100000, guid: 91dc5c293faf4b046aff59c3fc9f6f5b, type: 2}
   _escalationParticles: {fileID: 1692957083}
   _enragedParticles: {fileID: 852332860}
   _damageAttackParticles: {fileID: 1465526560}
@@ -34775,6 +34768,13 @@ MonoBehaviour:
   _visualsTransform: {fileID: 7325661559825202139}
   _visualShakeIntensity: 0.2
   _visualShakeDuration: 0.25
+  _damagedTimer: 0.25
+  _materialsToSet:
+  - {fileID: 7325661560522640108}
+  - {fileID: 7325661561199266987}
+  _baseMaterial: {fileID: 2100000, guid: 20e7a71ad808f5b4b84e9574d2094ed8, type: 2}
+  _damagedMaterial: {fileID: 2100000, guid: 4dd9c5dbf2c181a41894fc5c8544bf97, type: 2}
+  _deadMaterial: {fileID: 2100000, guid: 91dc5c293faf4b046aff59c3fc9f6f5b, type: 2}
   _moveSpeedSmoothing: 0.5
 --- !u!114 &7325661561032971011
 MonoBehaviour:

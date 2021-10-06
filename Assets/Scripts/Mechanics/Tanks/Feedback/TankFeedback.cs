@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mechanics.Tanks.Feedback
@@ -7,12 +8,21 @@ namespace Mechanics.Tanks.Feedback
     [RequireComponent(typeof(TankParticles))]
     public class TankFeedback : MonoBehaviour
     {
+        [Header("Shake on Damaged")]
         [SerializeField] private Transform _visualsTransform = null;
         [SerializeField] private float _visualShakeIntensity = 0.2f;
         [SerializeField] private float _visualShakeDuration = 0.25f;
+        [Header("Flash on Damaged")]
+        [SerializeField] private float _damagedTimer = 0.25f;
+        [SerializeField] private List<MeshRenderer> _materialsToSet = new List<MeshRenderer>();
+        [SerializeField] private Material _baseMaterial = null;
+        [SerializeField] private Material _damagedMaterial = null;
+        [SerializeField] private Material _deadMaterial = null;
+        [Header("Other Settings")]
         [SerializeField] [Range(0, 1)] private float _moveSpeedSmoothing = 0.5f;
 
         private float _moveSpeed;
+        private bool _isDead;
 
         private TankSoundEffects _tankSoundEffects;
         private TankParticles _tankParticles;
@@ -52,6 +62,7 @@ namespace Mechanics.Tanks.Feedback
             if (_visualsTransform != null) {
                 StopAllCoroutines();
                 StartCoroutine(ShakePlayer());
+                StartCoroutine(DamageFlash());
             }
         }
 
@@ -59,6 +70,27 @@ namespace Mechanics.Tanks.Feedback
         {
             _tankSoundEffects.PlayDeathSfx();
             _tankParticles.PlayDeathParticles();
+        }
+
+        public void KillSequenceFeedback()
+        {
+            _isDead = true;
+            foreach (var mat in _materialsToSet) {
+                mat.material = _deadMaterial;
+            }
+        }
+
+        public IEnumerator DamageFlash()
+        {
+            foreach (var mat in _materialsToSet) {
+                mat.material = _damagedMaterial;
+            }
+            yield return new WaitForSecondsRealtime(_damagedTimer);
+            if (_isDead) yield break;
+
+            foreach (var mat in _materialsToSet) {
+                mat.material = _baseMaterial;
+            }
         }
 
         private IEnumerator ShakePlayer()

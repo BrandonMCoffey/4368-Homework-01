@@ -19930,6 +19930,13 @@ MonoBehaviour:
   _visualsTransform: {fileID: 103708950132436405}
   _visualShakeIntensity: 0.4
   _visualShakeDuration: 0.25
+  _damagedTimer: 0.25
+  _materialsToSet:
+  - {fileID: 103708951631737125}
+  - {fileID: 103708950135572604}
+  _baseMaterial: {fileID: 2100000, guid: b1310ba89d583b1449ae1c0bf6e5b4f0, type: 2}
+  _damagedMaterial: {fileID: 2100000, guid: f330a192d8e54134b8dcc7b41c492ef4, type: 2}
+  _deadMaterial: {fileID: 0}
   _moveSpeedSmoothing: 0.25
 --- !u!114 &103708951403084525
 MonoBehaviour:
