@@ -125,8 +125,9 @@ namespace Mechanics.Boss
                     _turret.Escalate();
                     _platformController.Escalate();
                     IdleState.Escalate();
+                    MoveToPlatformState.Escalate();
                     ChargeAttackState.Escalate();
-                    if (_aiData.Debug) Debug.Log("<color=orange>Set Movement: </color>" + ChargeAttackState.GetType().Name);
+                    if (_aiData.Debug) Debug.Log("<color=orange>" + ChargeAttackState.GetType().Name + "</color>");
                     ChangeState(ChargeAttackState, true);
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
@@ -153,6 +154,7 @@ namespace Mechanics.Boss
                 case BossStage.KillSequence:
                     if (_colorToSet != null) _colorToSet.color = _killColor;
                     _feedback.KillSequenceFeedback();
+                    if (_aiData.Debug) Debug.Log("<color=yellow>DeadState</color>");
                     ChangeState(CutsceneState);
                     break;
             }
@@ -162,12 +164,13 @@ namespace Mechanics.Boss
         public void BossReachedPlatform()
         {
             if (_hasError) return;
-            PreviousState = IdleState;
             if (_readyMidpointCutscene) {
                 UpdateBossStage(BossStage.MidpointCutscene);
                 return;
             }
-            _platformController.EnsureCurrentPlatform(this);
+            var platform = _platformController.EnsureCurrentPlatform(this);
+            Debug.Log("  - Reached destination: " + platform.gameObject.name, platform.gameObject);
+            PreviousState = IdleState;
             switch (_stage) {
                 case BossStage.Basic:
                     RandomMovementOrAttack(85, 0, 15);
@@ -184,28 +187,18 @@ namespace Mechanics.Boss
             }
         }
 
-        public void BossFinishedCharge()
-        {
-            if (_readyMidpointCutscene) {
-                UpdateBossStage(BossStage.MidpointCutscene);
-                return;
-            }
-            if (PreviousState == MoveToPlatformState) {
-                RevertToPreviousState(true, false);
-            } else {
-                BossFinishedAttack();
-            }
-        }
-
         public void BossFinishedAttack()
         {
+            if (_hasError) {
+                Debug.LogError("Unknown Error");
+                return;
+            }
             if (_readyMidpointCutscene) {
                 UpdateBossStage(BossStage.MidpointCutscene);
                 return;
             }
-            if (_hasError) return;
-
             if (PreviousState == MoveToPlatformState) {
+                if (_aiData.Debug) Debug.Log("<color=aqua>MoveToPlatformState</color>");
                 ChangeState(MoveToPlatformState);
                 return;
             }
@@ -255,7 +248,7 @@ namespace Mechanics.Boss
                 _availableAttacks.Add(_previousAttack);
             }
             IState attack = _availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState;
-            if (attack != null && _aiData.Debug) Debug.Log("<color=orange>Set Attack: </color>" + attack.GetType().Name);
+            if (attack != null && _aiData.Debug) Debug.Log("<color=orange>" + attack.GetType().Name + "</color>");
             _availableAttacks.Remove(attack);
             _previousAttack = attack;
             ChangeState(attack, true);
@@ -264,7 +257,7 @@ namespace Mechanics.Boss
         private void RandomMovement()
         {
             IState movement = _availableMovements[Random.Range(0, _availableMovements.Count)];
-            if (_aiData.Debug) Debug.Log("<color=aqua>Set Movement: </color>" + movement.GetType().Name);
+            if (_aiData.Debug) Debug.Log("<color=aqua>" + movement.GetType().Name + "</color>");
             ChangeState(movement);
         }
 
@@ -272,7 +265,7 @@ namespace Mechanics.Boss
         {
             int rand = Random.Range(0, idle + move + attack);
             if (rand < idle) {
-                if (_aiData.Debug) Debug.Log("<color=yellow>Set Idle: </color>" + IdleState.GetType().Name);
+                if (_aiData.Debug) Debug.Log("<color=yellow>IdleState</color>");
                 ChangeState(IdleState);
             } else if (rand < idle + move) {
                 RandomMovement();

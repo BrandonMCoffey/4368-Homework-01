@@ -37,7 +37,7 @@ namespace Mechanics.Boss.States
             _idleTime = _energyCellController.BeginLaserAttack(timeToLower / 2);
 
             _timer = -timeToLower / 2;
-            if (_debug) Debug.Log("  - <color=orange>Wait for " + _idleTime.ToString("F2") + "</color>");
+            if (_debug) Debug.Log("  - Wait for " + _idleTime.ToString("F2") + "s");
             _finishedIdle = false;
         }
 

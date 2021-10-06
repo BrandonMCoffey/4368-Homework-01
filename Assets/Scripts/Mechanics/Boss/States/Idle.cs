@@ -29,7 +29,7 @@ namespace Mechanics.Boss.States
         public void Enter()
         {
             _idleTime = RandomFloat.MinMax(_idleTimeMinMax) * _idleTimeMultiplier;
-            if (_debug) Debug.Log("  - <color=yellow>Wait for " + _idleTime.ToString("F2") + "</color>");
+            if (_debug) Debug.Log("  - Wait for " + _idleTime.ToString("F2") + "s");
             _timer = 0;
         }
 

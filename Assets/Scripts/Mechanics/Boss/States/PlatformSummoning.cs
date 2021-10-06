@@ -36,7 +36,7 @@ namespace Mechanics.Boss.States
                 return;
             }
             _idleTime = _energyCellController.StartPlatformSummoning(_escalation);
-            if (_debug) Debug.Log("  - <color=orange>Wait for " + _idleTime.ToString("F2") + "</color>");
+            if (_debug) Debug.Log("  - Wait for " + _idleTime.ToString("F2") + "s");
             _timer = 0;
         }
 

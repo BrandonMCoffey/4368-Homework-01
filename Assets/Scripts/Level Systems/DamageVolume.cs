@@ -26,9 +26,8 @@ namespace Level_Systems
         {
             _timer += Time.deltaTime;
             if (_timer > _delay) {
-                _delayDamageObjects = _delayDamageObjects.Where(item => item != null).ToList();
-                foreach (var damageable in _delayDamageObjects) {
-                    damageable?.OnDamageVolume(_damage);
+                for (var index = 0; index < _delayDamageObjects.Count; index++) {
+                    _delayDamageObjects[index]?.OnDamageVolume(_damage);
                 }
                 _timer = 0;
             }

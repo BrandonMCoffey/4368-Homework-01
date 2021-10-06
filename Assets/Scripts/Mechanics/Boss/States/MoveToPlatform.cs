@@ -26,6 +26,11 @@ namespace Mechanics.Boss.States
 
         private Vector3 _destination;
 
+        public void Escalate()
+        {
+            _whenToChargeMinMax /= 2;
+        }
+
         public void Enter()
         {
             Transform destination = _platformController.GetNewDestination();
@@ -35,14 +40,14 @@ namespace Mechanics.Boss.States
                 return;
             }
 
-            Debug.Log("  - <color=aqua>Destination: " + destination.gameObject.name + "</color>", destination.gameObject);
+            Debug.Log("  - Destination: " + destination.gameObject.name, destination.gameObject);
             _destination = destination.position;
 
             int rand = Random.Range(0, 100);
             if (rand <= _changeToCharge) {
                 _willChargeDuringMovement = true;
                 _whenToCharge = RandomFloat.MinMax(_whenToChargeMinMax);
-                Debug.Log("<color=white>After " + _whenToCharge.ToString("F2") + ": </color><color=orange>Set Attack: </color>ChargeAttack");
+                Debug.Log("  - After " + _whenToCharge.ToString("F2") + "s: Set to ChargeAttack");
                 _chargeTimer = 0;
             } else {
                 _willChargeDuringMovement = false;
@@ -61,6 +66,7 @@ namespace Mechanics.Boss.States
             if (_willChargeDuringMovement) {
                 _chargeTimer += Time.deltaTime;
                 if (_chargeTimer > _whenToCharge) {
+                    Debug.Log("<color=orange>ChargeAttack</color>");
                     _bossStateMachine.ChangeState(_bossStateMachine.ChargeAttackState);
                     _willChargeDuringMovement = false;
                 }
