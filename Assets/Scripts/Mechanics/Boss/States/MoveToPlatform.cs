@@ -30,23 +30,23 @@ namespace Mechanics.Boss.States
         {
             Transform destination = _platformController.GetNewDestination();
             if (destination == null) {
-                Debug.Log("Move To Platform: Invalid Platform");
+                Debug.Log("  - Move To Platform: Invalid Platform");
                 _bossStateMachine.RevertToPreviousState(false);
                 return;
             }
+
+            Debug.Log("  - <color=aqua>Destination: " + destination.gameObject.name + "</color>", destination.gameObject);
+            _destination = destination.position;
 
             int rand = Random.Range(0, 100);
             if (rand <= _changeToCharge) {
                 _willChargeDuringMovement = true;
                 _whenToCharge = RandomFloat.MinMax(_whenToChargeMinMax);
-                Debug.Log("Move to Platform: Will Charge after " + _whenToCharge);
+                Debug.Log("<color=white>After " + _whenToCharge.ToString("F2") + ": </color><color=orange>Set Attack: </color>ChargeAttack");
                 _chargeTimer = 0;
             } else {
                 _willChargeDuringMovement = false;
             }
-
-            Debug.Log("Move to Platform: New Destination: " + destination.gameObject);
-            _destination = destination.position;
         }
 
         public void Tick()

@@ -108,7 +108,7 @@ namespace Mechanics.Boss
 
         public void UpdateBossStage(BossStage stage)
         {
-            if (_aiData.Debug) Debug.LogWarning("Set Stage: " + stage);
+            if (_aiData.Debug) Debug.LogWarning("<color=red>Set Stage: </color>" + stage);
             _availableAttacks.Clear();
             _stage = stage;
             switch (_stage) {
@@ -126,6 +126,7 @@ namespace Mechanics.Boss
                     _platformController.Escalate();
                     IdleState.Escalate();
                     ChargeAttackState.Escalate();
+                    if (_aiData.Debug) Debug.Log("<color=orange>Set Movement: </color>" + ChargeAttackState.GetType().Name);
                     ChangeState(ChargeAttackState, true);
                     _availableAttacks = new List<IState> { ChargeAttackState, LaserAttackState, PlatformSummoningState };
                     break;
@@ -160,14 +161,16 @@ namespace Mechanics.Boss
 
         public void BossReachedPlatform()
         {
+            if (_hasError) return;
+            PreviousState = IdleState;
             if (_readyMidpointCutscene) {
                 UpdateBossStage(BossStage.MidpointCutscene);
                 return;
             }
-            if (_hasError) return;
+            _platformController.EnsureCurrentPlatform(this);
             switch (_stage) {
                 case BossStage.Basic:
-                    RandomMovementOrAttack(30, 70, 0);
+                    RandomMovementOrAttack(85, 0, 15);
                     break;
                 case BossStage.Escalation:
                     RandomMovementOrAttack(10, 40, 50);
@@ -252,7 +255,7 @@ namespace Mechanics.Boss
                 _availableAttacks.Add(_previousAttack);
             }
             IState attack = _availableAttacks.Count > 0 ? _availableAttacks[Random.Range(0, _availableAttacks.Count)] : IdleState;
-            if (_aiData.Debug) Debug.Log("Set Attack: " + attack);
+            if (attack != null && _aiData.Debug) Debug.Log("<color=orange>Set Attack: </color>" + attack.GetType().Name);
             _availableAttacks.Remove(attack);
             _previousAttack = attack;
             ChangeState(attack, true);
@@ -261,7 +264,7 @@ namespace Mechanics.Boss
         private void RandomMovement()
         {
             IState movement = _availableMovements[Random.Range(0, _availableMovements.Count)];
-            if (_aiData.Debug) Debug.Log("Set Movement: " + movement);
+            if (_aiData.Debug) Debug.Log("<color=aqua>Set Movement: </color>" + movement.GetType().Name);
             ChangeState(movement);
         }
 
@@ -269,6 +272,7 @@ namespace Mechanics.Boss
         {
             int rand = Random.Range(0, idle + move + attack);
             if (rand < idle) {
+                if (_aiData.Debug) Debug.Log("<color=yellow>Set Idle: </color>" + IdleState.GetType().Name);
                 ChangeState(IdleState);
             } else if (rand < idle + move) {
                 RandomMovement();

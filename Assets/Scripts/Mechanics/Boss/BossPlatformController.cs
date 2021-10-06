@@ -95,12 +95,12 @@ namespace Mechanics.Boss
             };
         }
 
-        private BossPlatform EnsureCurrentPlatform(BossStateMachine boss)
+        public BossPlatform EnsureCurrentPlatform(BossStateMachine boss)
         {
             BossPlatform current = GetPlatform(_currentPlatformOption);
             Vector3 bossPosition = boss.transform.position;
             if (Vector3.Distance(current.transform.position, bossPosition) > 4) {
-                Debug.LogWarning("Boss Platform has incorrect data. Correcting...");
+                Debug.LogWarning("<color=white>Boss Platform has incorrect data. Correcting...</color>");
                 // Test Left Platform
                 if (_currentPlatformOption != PlatformOptions.Left) {
                     if (Vector3.Distance(_leftBossPlatform.transform.position, bossPosition) < 4) {

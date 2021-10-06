@@ -69,7 +69,7 @@ namespace Mechanics.Boss.States
 
         private IEnumerator Charge()
         {
-            if (_debug) Debug.Log("ChargeAttack: Charge");
+            if (_debug) Debug.Log("  - <color=orange>Charge</color>");
             while (true) {
                 _velocity += _acceleration * Time.deltaTime;
                 bool finished = _bossMovement.Charge(_velocity * Time.deltaTime);
@@ -92,7 +92,7 @@ namespace Mechanics.Boss.States
         private IEnumerator Retreat()
         {
             _isRetreating = true;
-            if (_debug) Debug.Log("ChargeAttack: Retreat");
+            if (_debug) Debug.Log("  - <color=orange>Retreat</color>");
             while (true) {
                 bool finished = _bossMovement.Retreat(_retreatSpeed * Time.deltaTime);
                 if (finished) {

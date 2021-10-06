@@ -31,11 +31,12 @@ namespace Mechanics.Boss.States
         public void Enter()
         {
             if (!_platformController.IsOnPlatform) {
-                if (_debug) Debug.Log("Platform Summoning: Not on Platform, Reverting...");
+                if (_debug) Debug.Log("  - <color=white>Not on Platform, Reverting...</color>");
                 _stateMachine.RevertToPreviousState();
                 return;
             }
             _idleTime = _energyCellController.StartPlatformSummoning(_escalation);
+            if (_debug) Debug.Log("  - <color=orange>Wait for " + _idleTime.ToString("F2") + "</color>");
             _timer = 0;
         }
 

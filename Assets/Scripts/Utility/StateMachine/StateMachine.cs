@@ -7,7 +7,7 @@ namespace Utility.StateMachine
         [SerializeField] private bool _debugState = false;
 
         public IState CurrentState { get; private set; }
-        public IState PreviousState { get; private set; }
+        public IState PreviousState { get; set; }
         internal IState DefaultState = new NullState();
 
         protected bool InTransition { get; set; }
@@ -28,7 +28,7 @@ namespace Utility.StateMachine
                 CurrentState.Exit();
             }
             // Set to the previous state
-            if (_debugState) Debug.Log("Reverting to Previous State: " + PreviousState);
+            if (_debugState) Debug.Log("<color=white>Reverting to Previous State: </color>" + PreviousState.GetType().Name);
             CurrentState = PreviousState;
             PreviousState = null;
             // Enter the new state
