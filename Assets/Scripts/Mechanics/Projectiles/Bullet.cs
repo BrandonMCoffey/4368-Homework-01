@@ -9,6 +9,7 @@ namespace Mechanics.Projectiles
         [Header("Settings")]
         [SerializeField] private BulletType _type = BulletType.Normal;
         [SerializeField] private int _damageAmount = 1;
+        [SerializeField] private float _knockBackForce = 0.5f;
         [SerializeField] private int _bounceTimes = 1;
         [Header("References")]
         [SerializeField] private Collider _collider;
@@ -51,7 +52,7 @@ namespace Mechanics.Projectiles
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (damageable != null) {
                 // Damage the object and kill bullet
-                if (damageable.OnBulletImpact(_damageAmount)) {
+                if (damageable.OnBulletImpact(_damageAmount, transform.forward * _knockBackForce)) {
                     Kill();
                     return;
                 }

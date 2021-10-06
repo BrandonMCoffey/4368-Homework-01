@@ -29919,7 +29919,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -30610,7 +30610,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 320
+        scalar: 160
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -30674,14 +30674,14 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
+          time: 0.34259415
           value: 1
-          inSlope: 0
-          outSlope: 0
+          inSlope: 0.63713336
+          outSlope: 0.63713336
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.6244121
         - serializedVersion: 3
           time: 1
           value: 0
@@ -34743,8 +34743,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae546c0ccd215ac47a057d2ae2e3e04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenShakeIntensity: 0.5
+  _screenShakeIntensity: 0.4
   _screenShakeDuration: 0.8
+  _damagedTimer: 0.1
+  _materialsToSet:
+  - {fileID: 7325661560522640108}
+  - {fileID: 7325661561199266987}
+  _baseMaterial: {fileID: 2100000, guid: 20e7a71ad808f5b4b84e9574d2094ed8, type: 2}
+  _damagedMaterial: {fileID: 2100000, guid: 4dd9c5dbf2c181a41894fc5c8544bf97, type: 2}
+  _deadMaterial: {fileID: 2100000, guid: 91dc5c293faf4b046aff59c3fc9f6f5b, type: 2}
   _escalationParticles: {fileID: 1692957083}
   _enragedParticles: {fileID: 852332860}
   _damageAttackParticles: {fileID: 1465526560}
@@ -34765,6 +34772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd347d028d7a7fb4db5b7e882f6bbb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _visualsTransform: {fileID: 7325661559825202139}
+  _visualShakeIntensity: 0.2
+  _visualShakeDuration: 0.25
   _moveSpeedSmoothing: 0.5
 --- !u!114 &7325661561032971011
 MonoBehaviour:
@@ -34889,6 +34899,7 @@ MonoBehaviour:
   _onDeath: {fileID: 11400000, guid: 2c13f3e2cc6dc294c8e49a3e58ba58cb, type: 2}
   _destroyOnDeath: 0
   _stateMachine: {fileID: 7928012434638989222}
+  _bossFeedback: {fileID: 0}
   _escalationHp: 0.9
   _enragedHp: 0.25
   _healToHp: 1
@@ -34907,7 +34918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _feedback: {fileID: 3630243160658723953}
   _damageOnTouch: 5
-  _pushBackForce: 4
+  _pushBackForce: 3
 --- !u!114 &5629243831249813205
 MonoBehaviour:
   m_ObjectHideFlags: 0

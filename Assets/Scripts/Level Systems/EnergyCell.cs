@@ -184,7 +184,7 @@ namespace Level_Systems
             }
         }
 
-        public bool OnBulletImpact(int damageTaken)
+        public bool OnBulletImpact(int damageTaken, Vector3 forward)
         {
             if (_invincible || !_isAlive) return !_bulletsBounceWhenDead;
             Damage();

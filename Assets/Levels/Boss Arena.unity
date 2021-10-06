@@ -17517,8 +17517,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 139571743}
   _zoomInTransform: {fileID: 2133230109}
-  _damageShakeDuration: 0.2
-  _damageShakeIntensity: 0.15
+  _damageShakeDuration: 0.25
+  _damageShakeIntensity: 0.2
 --- !u!114 &645652849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26215,7 +26215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.2
-  _maxAlpha: 0.25
+  _maxAlpha: 0.5
 --- !u!1001 &1167627356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32248,7 +32248,7 @@ MonoBehaviour:
   _startPauseTime: 0.5
   _zoomInTime: 2.5
   _screenShakeDuration: 2
-  _screenShakeIntensity: 1
+  _screenShakeIntensity: 0.6
   _zoomOutTime: 2.5
   _bossHealTime: 3
   _endPauseTime: 0.25
@@ -41215,10 +41215,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 103708951577875986, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
-      propertyPath: _mainCamera
-      value: 
-      objectReference: {fileID: 139571742}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e137948986ae754f900bf505d4a419f, type: 3}
 --- !u!1001 &7325661560514713930

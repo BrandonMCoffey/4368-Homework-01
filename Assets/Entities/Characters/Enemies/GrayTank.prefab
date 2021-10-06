@@ -191,10 +191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 2
+  _maxHealth: 4
   _currentHealth:
     UseConstant: 1
-    ConstantValue: 2
+    ConstantValue: 4
     Variable: {fileID: 0}
   _deathFeedback: {fileID: 6716787742314604595}
   _objsToDisable:
@@ -258,6 +258,9 @@ MonoBehaviour:
   _turnSpeed: 16
   _distanceThreshold: 1
   _moveTimeout: 10
+  _forceMultiplier: 25
+  _forceDrag: 1.25
+  _forceCancel: 0.1
 --- !u!114 &6716787742677712843
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Interfaces
 {
     public interface IDamageable
@@ -5,7 +7,7 @@ namespace Interfaces
         bool OnDamageVolume(int damage);
         void OnTankImpact(int damageTaken);
         void OnBombDealDamage(int damageTaken);
-        bool OnBulletImpact(int damageTaken);
+        bool OnBulletImpact(int damageTaken, Vector3 forward);
         void OnKill();
     }
 }

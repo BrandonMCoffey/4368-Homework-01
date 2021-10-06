@@ -11,6 +11,10 @@ namespace Mechanics.Tanks.Movement
         [Header("Reached Destination Settings")]
         [SerializeField] private float _distanceThreshold = 1;
         [SerializeField] private float _moveTimeout = 5;
+        [Header("Force")]
+        [SerializeField] private float _forceMultiplier = 8;
+        [SerializeField] [Range(1f, 2f)] private float _forceDrag = 1.2f;
+        [SerializeField] [Range(0.01f, 0.25f)] private float _forceCancel = 0.1f;
 
         public event Action ReachedDestination = delegate { };
         private bool _reachedDestination;
@@ -32,6 +36,16 @@ namespace Mechanics.Tanks.Movement
             }
 
             Vector3 moveOffset = Forward * speed;
+
+
+            if (Force.magnitude > 0) {
+                moveOffset += Force * _forceMultiplier;
+                Force /= _forceDrag;
+                if (Force.magnitude <= _forceCancel) {
+                    Force = Vector3.zero;
+                }
+            }
+
             Rb.velocity = moveOffset;
         }
 

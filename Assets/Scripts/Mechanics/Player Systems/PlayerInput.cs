@@ -19,7 +19,6 @@ namespace Mechanics.Player_Systems
         [SerializeField] private string _moveUpDown = "Vertical";
 
         [Header("References")]
-        [SerializeField] private Camera _mainCamera;
         [SerializeField] private LayerMask _tankAimMask = 0;
         [SerializeField] private float _tankAimMaxDistance = 100;
 
@@ -27,11 +26,12 @@ namespace Mechanics.Player_Systems
         public UnityEvent<Vector2> OnAimTurret = new UnityEvent<Vector2>();
         public UnityEvent OnShoot = new UnityEvent();
 
+        private Camera _mainCamera;
         private float _fireTimer;
 
         private void Awake()
         {
-            if (_mainCamera == null) _mainCamera = Camera.main;
+            _mainCamera = Camera.main;
         }
 
         private void Update()

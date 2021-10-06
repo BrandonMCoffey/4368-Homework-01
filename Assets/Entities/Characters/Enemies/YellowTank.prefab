@@ -54,6 +54,9 @@ MonoBehaviour:
   _turnSpeed: 10
   _distanceThreshold: 1.5
   _moveTimeout: 6
+  _forceMultiplier: 25
+  _forceDrag: 1.25
+  _forceCancel: 0.1
 --- !u!114 &1137177701814552438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,10 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 2
+  _maxHealth: 4
   _currentHealth:
     UseConstant: 1
-    ConstantValue: 2
+    ConstantValue: 4
     Variable: {fileID: 0}
   _deathFeedback: {fileID: 1137177702793105550}
   _objsToDisable:
@@ -317,8 +320,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _fireTime: {x: 15, y: 25}
-  _bombTime: {x: 3, y: 10}
+  _fireTime: {x: 8, y: 20}
+  _bombTime: {x: 2, y: 8}
   _moveDistance: {x: 2, y: 4}
   _destinationMovement: {fileID: 1137177701814552442}
 --- !u!1001 &6683535325865258505

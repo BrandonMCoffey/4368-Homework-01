@@ -80,10 +80,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9c19abcb4c264d85bc024bcb83b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 1
+  _maxHealth: 2
   _currentHealth:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 2
     Variable: {fileID: 0}
   _deathFeedback: {fileID: 958444668668007529}
   _objsToDisable:
@@ -173,7 +173,7 @@ MonoBehaviour:
   OnDropBomb:
     m_PersistentCalls:
       m_Calls: []
-  _fireTime: {x: 2, y: 3}
+  _fireTime: {x: 1, y: 3}
 --- !u!1 &958444668764177308
 GameObject:
   m_ObjectHideFlags: 0

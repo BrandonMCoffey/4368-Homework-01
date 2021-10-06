@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
 using Mechanics.Tanks.Feedback;
+using Mechanics.Tanks.Movement;
 using UnityEngine;
 using Utility.CustomFloats;
 using Utility.GameEvents.Logic;
@@ -26,8 +27,15 @@ namespace Mechanics.Tanks
         public float Health => _currentHealth;
         public int MaxHealth => _maxHealth;
 
+        private TankMovement _movement;
+
         private void Awake()
         {
+            _movement = GetComponent<TankMovement>();
+            if (_movement == null) {
+                _movement = GetComponentInChildren<TankMovement>();
+            }
+
             // Check if mis-assigned current health
             if (!_currentHealth.UseConstant && _currentHealth.Variable == null) {
                 _currentHealth.UseConstant = true;
@@ -85,9 +93,12 @@ namespace Mechanics.Tanks
             DecreaseHealth(damageTaken);
         }
 
-        public bool OnBulletImpact(int damageTaken)
+        public bool OnBulletImpact(int damageTaken, Vector3 forward)
         {
             DecreaseHealth(damageTaken);
+            if (_movement != null) {
+                _movement.SetForce(forward);
+            }
             return true;
         }
 

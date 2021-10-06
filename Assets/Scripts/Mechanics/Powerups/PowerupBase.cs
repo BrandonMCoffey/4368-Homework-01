@@ -94,7 +94,7 @@ namespace Mechanics.Powerups
         {
         }
 
-        public bool OnBulletImpact(int damageTaken)
+        public bool OnBulletImpact(int damageTaken, Vector3 forward)
         {
             return false;
         }

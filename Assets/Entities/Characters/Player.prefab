@@ -14951,7 +14951,7 @@ MonoBehaviour:
   _turnSpeed: 8
   _slowEffectWhenTurning: 45
   _reverseDirectionAngle: 90
-  _forceMultiplier: 8
+  _forceMultiplier: 16
   _forceDrag: 1.15
   _forceCancel: 0.1
 --- !u!114 &103708950631574488
@@ -19927,6 +19927,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd347d028d7a7fb4db5b7e882f6bbb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _visualsTransform: {fileID: 103708950132436405}
+  _visualShakeIntensity: 0.4
+  _visualShakeDuration: 0.25
   _moveSpeedSmoothing: 0.25
 --- !u!114 &103708951403084525
 MonoBehaviour:
@@ -24918,7 +24921,6 @@ MonoBehaviour:
   _axisRaw: 1
   _moveLeftRight: Horizontal
   _moveUpDown: Vertical
-  _mainCamera: {fileID: 0}
   _tankAimMask:
     serializedVersion: 2
     m_Bits: 1024
