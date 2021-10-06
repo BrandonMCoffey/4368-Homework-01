@@ -6807,12 +6807,12 @@ MonoBehaviour:
   - {fileID: 958444668537484405, guid: 5db7f3460e40bb3498793d2413dc8429, type: 3}
   - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
   _collectibleToSpawn:
-  - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
+  - {fileID: 6922401649231279772, guid: 9e4ed7bae4e0cc04dbdb914aa4ff1973, type: 3}
   - {fileID: 6922401649231279772, guid: 9e4ed7bae4e0cc04dbdb914aa4ff1973, type: 3}
   - {fileID: 7446247150334773184, guid: fe0a23a0ac7c2fe4fbd79aa52dfd14c9, type: 3}
-  - {fileID: 1223492244675218163, guid: 01700c3867df5154983fa9679ba101a0, type: 3}
   - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
-  - {fileID: 1223492244675218163, guid: 01700c3867df5154983fa9679ba101a0, type: 3}
+  - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
+  - {fileID: 7177935319050409494, guid: 5b68a3e66f37ec540b0a0915ca258346, type: 3}
 --- !u!1 &375078797
 GameObject:
   m_ObjectHideFlags: 0
